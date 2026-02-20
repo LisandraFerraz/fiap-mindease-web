@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'me-sticky-note',
+  selector: 'sticky-note',
   templateUrl: './sticky-note.component.html',
   styleUrls: ['./sticky-note.component.scss'],
 })
-export class MEStickyNoteComponent implements OnInit {
+export class StickyNoteComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}

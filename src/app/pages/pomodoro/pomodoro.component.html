@@ -1,3 +1,27 @@
-<p>
-  pomodoro works!
-</p>
+<app-sidenav>
+  <div class="container">
+    <div class="timer-wrapper">
+      <div [class]="classes">
+        <span class="timer-count">{{ formattedTime() }}</span>
+        <div class="buttons">
+          <button (click)="isRunning() ? stop() : start()">
+            <mat-icon [fontIcon]="isRunning() ? 'pause' : 'play_arrow'" />
+          </button>
+          <button (click)="reset()"><mat-icon fontIcon="replay" /></button>
+        </div>
+        <span>{{ currentRound }}/4</span>
+      </div>
+    </div>
+
+    <div class="to-do-list">
+      <input-add-task />
+      <todo-card description="Teste descrição" />
+    </div>
+
+    <div class="time-options">
+      <me-button (clicked)="setStep('FIRSTROUND')" color="primary" label="Trabalho" />
+      <me-button (clicked)="setStep('SHORTBREAK')" color="secondary" label="Pausa 5min" />
+      <me-button (clicked)="setStep('LONGBREAK')" color="secondary" label="Pausa 15min" />
+    </div>
+  </div>
+</app-sidenav>

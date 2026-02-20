@@ -1,0 +1,44 @@
+@use 'variables' as v;
+
+.card {
+  padding: 0 25px;
+  color: v.$grey;
+  font-weight: 500;
+  border: 1px solid v.$grey_undertone;
+  border-radius: 10px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  transition: ease 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 60%;
+    text-decoration: line-through;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    height: 25px;
+    color: v.$grey_soft;
+    transition: ease 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      color: v.$grey;
+    }
+  }
+}
+
+.done {
+  opacity: 60%;
+  text-decoration: line-through;
+
+  button {
+    display: none;
+  }
+}

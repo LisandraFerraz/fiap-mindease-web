@@ -1,0 +1,86 @@
+@use 'animations/enter.animation' as *;
+@use 'variables' as v;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  .sidenav {
+    box-shadow: 0 0 12px #00000018;
+    padding: 0 25px;
+    position: fixed;
+    width: 230px;
+    height: 100%;
+    z-index: 10;
+
+    .top {
+      padding: 25px 0;
+
+      em {
+        background-image: url('./../../../assets/me-icon.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 160px;
+        width: 160px;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+
+      .divisor {
+        background-color: v.$grey_undertone;
+        width: 100%;
+        height: 1px;
+      }
+
+      .active-route {
+        a {
+          color: v.$grey;
+          &:hover {
+            opacity: 1;
+            border-right: 4px solid v.$grey;
+          }
+        }
+        border-right: 4px solid v.$grey;
+      }
+
+      a {
+        display: inline-block;
+        color: v.$grey_soft;
+        font-size: 0.8rem;
+        list-style: none;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: 0.2s ease;
+        width: 100%;
+
+        &:hover {
+          opacity: 80%;
+          border-right: 4px solid v.$grey_undertone;
+        }
+      }
+
+      ul > li:not(:last-child) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .content {
+    margin: 25px 25px 25px 315px;
+  }
+
+  .content-focused {
+    margin: 25px 25px;
+  }
+}

@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-todo-card',
+  selector: 'todo-card',
+  imports: [MatIconModule],
   templateUrl: './todo-card.component.html',
   styleUrls: ['./todo-card.component.scss'],
 })
-export class TodoCardComponent implements OnInit {
-  constructor() {}
+export class TodoCardComponent {
+  @Input() description = '';
 
-  ngOnInit() {}
+  constructor() {}
 }

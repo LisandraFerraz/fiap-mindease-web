@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { DefaultButtonComponent } from '../../../shared/components/default-button/default-button.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAuthComponent } from '../../components/modal-auth/modal-auth.component';
@@ -9,14 +9,10 @@ import { ModalAuthComponent } from '../../components/modal-auth/modal-auth.compo
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent {
   constructor(readonly dialog: MatDialog) {}
 
   isModalOpen = signal(false);
-
-  ngOnInit(): void {
-    this.openModal();
-  }
 
   openModal() {
     this.isModalOpen.update(() => true);

@@ -1,0 +1,44 @@
+@use 'variables' as v;
+
+div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 2px dashed v.$grey_undertone;
+  border-radius: 10px;
+  height: 45px;
+  padding: 0 15px;
+  transition: ease 0.2s;
+  background-color: v.$all_white;
+  position: relative;
+  padding: 0 25px;
+}
+
+input {
+  width: 100%;
+  outline: none;
+  border: none;
+  color: v.$grey;
+
+  &::placeholder {
+    color: v.$grey_undertone;
+  }
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 25px;
+
+  .icon {
+    color: v.$grey_soft;
+    transition: 0.2s ease;
+
+    &:hover {
+      color: v.$grey;
+      cursor: pointer;
+    }
+  }
+}

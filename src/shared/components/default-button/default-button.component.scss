@@ -1,3 +1,5 @@
+@use 'variables' as v;
+
 .button {
   border-radius: 35px;
   box-shadow: 0 0 8px #00000008;
@@ -7,6 +9,8 @@
   height: 45px;
   border: none !important;
   transition: ease 0.2s;
+  font-weight: 600;
+  font-size: 0.8rem;
 
   &:hover {
     opacity: 80%;
@@ -24,7 +28,7 @@
 }
 
 .secondary-btn {
-  background-color: #f1f1f1;
-  color: #8d8e99;
+  background-color: v.$soft_white;
+  color: v.$grey_soft;
   box-shadow: 0 0 8px #00000034;
 }
