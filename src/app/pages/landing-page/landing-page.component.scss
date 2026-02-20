@@ -1,0 +1,57 @@
+@use 'animations/enter.animation' as *;
+@use 'variables' as v;
+
+.container {
+  background-image: url('./../../../assets/landing-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+    &__top {
+      padding-top: 6%;
+
+      .icone {
+        background-image: url('./../../../assets/me-icon.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 220px;
+        width: 220px;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      h1 {
+        padding: 0;
+        margin: 0;
+      }
+      h1 {
+        font-size: 5rem;
+        font-family: 'Alfa Slab One', serif;
+        color: v.$grey;
+        letter-spacing: 4px;
+      }
+      p {
+        text-align: right;
+        font-family: 'Inter', serif;
+        color: v.$grey;
+        font-size: 1.25rem;
+        text-decoration: underline;
+        padding-top: 25px;
+      }
+    }
+
+    &__bottom {
+      padding-bottom: 2%;
+      text-align: center;
+      width: 240px;
+    }
+  }
+}

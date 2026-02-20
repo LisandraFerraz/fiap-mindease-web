@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="top">
+    <button (click)="close()" class="close-btn">x</button>
+  </div>
+  <ng-content />
+  <div class="bottom">
+    <me-button
+      label="Confirmar"
+      customClass="interactive_button"
+      color="primary"
+      (click)="onConfirm()"
+    />
+  </div>
+</div>

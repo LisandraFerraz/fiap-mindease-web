@@ -1,0 +1,67 @@
+<me-modal animate.enter="fadein" (clickConfirm)="sendReq()">
+  <em class="icone"></em>
+
+  <div class="modal-body">
+    <div class="tabs">
+      <button [ngClass]="loginLayout ? 'btn-active' : 'btn-inactive'" (click)="changeLayout()">
+        login
+      </button>
+      <button [ngClass]="loginLayout ? 'btn-inactive' : 'btn-active'" (click)="changeLayout()">
+        cadastro
+      </button>
+    </div>
+    <div class="form-body">
+      @if (loginLayout) {
+        <div animate.enter="fadein">
+          <me-input-text
+            (changeEvent)="loginBody.email = $event"
+            placeholder="seu@email.com"
+            type="text"
+            label="e-mail"
+            inputId="email"
+          />
+          <me-input-text
+            (changeEvent)="loginBody.password = $event"
+            placeholder="******"
+            type="password"
+            label="senha"
+            inputId="password"
+          />
+        </div>
+      } @else {
+        <div animate.enter="fadein">
+          <me-input-text
+            (changeEvent)="registerBody.nome = $event"
+            placeholder="seu nome"
+            type="text"
+            label="nome"
+            inputId="name"
+          />
+          <me-input-text
+            (changeEvent)="registerBody.email = $event"
+            placeholder="seu@email.com"
+            type="text"
+            label="e-mail"
+            inputId="email"
+          />
+          <div class="row">
+            <me-input-text
+              (changeEvent)="registerBody.password = $event"
+              placeholder="******"
+              type="password"
+              label="senha"
+              inputId="password"
+            />
+            <me-input-text
+              (changeEvent)="confirmPass = $event"
+              placeholder="******"
+              type="password"
+              label="repetir senha"
+              inputId="password"
+            />
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</me-modal>

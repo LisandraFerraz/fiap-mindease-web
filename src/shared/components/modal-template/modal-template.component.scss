@@ -1,0 +1,20 @@
+@use 'variables' as v;
+
+.container {
+  background-color: v.$all_white;
+  padding: 15px 45px;
+
+  .top {
+    text-align: right;
+
+    .close-btn {
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  .bottom {
+    padding: 35px 0 25px 0;
+    text-align: center;
+  }
+}

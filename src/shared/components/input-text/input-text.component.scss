@@ -1,0 +1,22 @@
+@use 'variables' as v;
+
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.7rem;
+    color: v.$grey;
+  }
+
+  input {
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    background-color: #f6f6f6;
+    padding: 0 15px;
+  }
+}

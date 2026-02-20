@@ -1,0 +1,21 @@
+<div class="container">
+  @if (!isModalOpen()) {
+    <div class="content">
+      <div class="content__top">
+        <em animate.enter="fadein" class="icone"></em>
+        <h1 animate.enter="fadein">MindEase</h1>
+        <p animate.enter="slow-fadein">Facilite sua rotina.</p>
+      </div>
+
+      <div class="content__bottom">
+        <me-button
+          animate.enter="slow-fadein"
+          label="Começar"
+          customClass="interactive_button"
+          color="primary"
+          (clicked)="openModal()"
+        />
+      </div>
+    </div>
+  }
+</div>

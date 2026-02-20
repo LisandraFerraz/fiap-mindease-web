@@ -1,0 +1,71 @@
+@use 'animations/enter.animation' as *;
+@use 'variables' as v;
+
+.icone {
+  background-image: url('./../../../assets/me-icon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 140px;
+  width: 140px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -30px;
+}
+
+.modal-body {
+  background-color: v.$all_white;
+
+  // width: 500px;
+
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    button {
+      width: 100%;
+      border: none;
+      background-color: transparent;
+      height: 45px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .btn-active {
+      border-radius: 15px 15px 0 0;
+
+      border: 1px solid v.$grey_undertone;
+      border-bottom: none;
+    }
+
+    .btn-inactive {
+      background-color: transparent;
+      color: v.$grey_soft;
+    }
+  }
+
+  .form-body > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 45px 25px;
+
+    border: 1px solid v.$grey_undertone;
+    border-radius: 0 0 15px 15px;
+    border-top: none;
+
+    .row {
+      display: flex;
+      gap: 15px;
+
+      > * {
+        min-width: 0;
+      }
+    }
+  }
+}
