@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { ModalTemplateComponent } from '../../../shared/components/modal-template/modal-template.component';
 import { MEInputTextComponent } from '../../../shared/components/input-text/input-text.component';
 import { CommonModule } from '@angular/common';
-import { UsuarioLogin, UsuarioRegister } from '../../../shared/models/model';
+import { UsuarioLogin, UsuarioRegister } from '../../../shared/models/user-model';
 import { AuthService } from './auth.service';
 import { provideToastr, ToastrService } from 'ngx-toastr';
 import { Route, Router } from '@angular/router';
