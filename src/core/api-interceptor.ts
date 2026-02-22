@@ -1,17 +1,29 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from './env/environment';
 
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
 
-  // const token = sessionStorage.getItem('auth_token') || '';
+  const tools_id = sessionStorage.getItem('platToolsId') || '';
 
-  let cloned;
-  let baseurl;
+  console.log(tools_id);
 
-  cloned = req.clone({
-    url: `${baseurl}${req.url}`,
+  let endpoindUrl = req.url;
+
+  if (tools_id) {
+    console.log(tools_id);
+    if (endpoindUrl.includes(':id')) {
+      console.log('endpoindUrl :: ', endpoindUrl);
+      endpoindUrl = req.url.replace(':id', tools_id);
+    }
+  } else {
+    router.navigateByUrl('/');
+  }
+
+  let cloned = req.clone({
+    url: `${environment.data_api}${endpoindUrl}`,
   });
 
   return next(cloned);

@@ -1,28 +1,25 @@
-import { InputAddTask } from './../../../shared/components/input-add-task/input-add-task.component';
+import { InputAddTask } from '@components/input-add-task/input-add-task.component';
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { TodoCardComponent } from '../../../shared/components/todo-card/todo-card.component';
-import { Sidenav } from '../../../shared/components/sidenav/sidenav.component';
+import { TodoCardComponent } from '@components/todo-card/todo-card.component';
 import { MatIconModule } from '@angular/material/icon';
-import { DefaultButtonComponent } from '../../../shared/components/default-button/default-button.component';
-import { FocusModeService } from '../../../shared/services/focus-mode.service';
+import { FocusModeService } from '@services/focus-mode.service';
+import { PomodoroService } from './pomodoro.service';
+import { ToastNotification } from '@services/toast-notification.service';
+import { DefaultButtonComponent } from '@components/default-button/default-button.component';
+import { Sidenav } from '@components/sidenav/sidenav.component';
 
 type Step = 'FIRSTROUND' | 'SHORTBREAK' | 'SECONDROUND' | 'LONGBREAK';
 
 @Component({
   selector: 'app-pomodoro',
-  imports: [
-    DefaultButtonComponent,
-    MatIconModule,
-    Sidenav,
-    InputAddTask,
-    TodoCardComponent,
-    DefaultButtonComponent,
-  ],
+  imports: [MatIconModule, Sidenav, InputAddTask, TodoCardComponent, DefaultButtonComponent],
   templateUrl: './pomodoro.component.html',
   styleUrls: ['./pomodoro.component.scss'],
 })
 export class PomodoroComponent implements OnInit {
   focusMode = inject(FocusModeService);
+  pomodoroService = inject(PomodoroService);
+  toastNotif = inject(ToastNotification);
 
   private timeRemaining = signal(0);
   readonly isRunning = signal(false);
@@ -38,6 +35,19 @@ export class PomodoroComponent implements OnInit {
 
   ngOnInit(): void {
     this.setStepTime(this.currentStep);
+    this.getPomodoroTasks();
+  }
+
+  getPomodoroTasks() {
+    this.pomodoroService.listPomodoroTasks().subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError('Erro ao listar tasks.');
+      },
+    });
   }
 
   setStep(step: Step) {

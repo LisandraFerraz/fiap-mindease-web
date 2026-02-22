@@ -1,13 +1,10 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ModalTemplateComponent } from '../../../shared/components/modal-template/modal-template.component';
-import { MEInputTextComponent } from '../../../shared/components/input-text/input-text.component';
 import { CommonModule } from '@angular/common';
-import { UsuarioLogin, UsuarioRegister } from '../../../shared/models/user-model';
+import { IRegisterResponse, UsuarioLogin, UsuarioRegister } from '@models/user-model';
 import { AuthService } from './auth.service';
-import { provideToastr, ToastrService } from 'ngx-toastr';
-import { Route, Router } from '@angular/router';
-import { ToastNotification } from '../../../shared/services/toast-notification.service';
-import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { ModalTemplateComponent } from '@components/modal-template/modal-template.component';
+import { MEInputTextComponent } from '@components/input-text/input-text.component';
 
 @Component({
   imports: [CommonModule, ModalTemplateComponent, MEInputTextComponent],
@@ -30,9 +27,7 @@ export class ModalAuthComponent {
   constructor(
     private authService: AuthService,
     private toastNotif: ToastrService,
-    private router: Router,
     private cd: ChangeDetectorRef,
-    private dialog: MatDialog,
   ) {}
 
   changeLayout() {
@@ -42,21 +37,11 @@ export class ModalAuthComponent {
 
   sendReq() {
     if (this.loginLayout) {
-      this.authService.login(this.loginBody).subscribe({
-        next: (res: any) => {
-          if (res.access_token) {
-            this.dialog.closeAll();
-            this.router.navigateByUrl('pomodoro');
-          }
-        },
-        error: (err) => {
-          this.toastNotif.error('Erro ao autenticar usuário', '', this.config);
-        },
-      });
+      this.authService.login(this.loginBody);
     } else {
       this.authService.register(this.registerBody).subscribe({
-        next: (res) => {
-          this.toastNotif.success('Cadastro feito com sucesso', '', this.config);
+        next: (res: IRegisterResponse) => {
+          this.toastNotif.success(res.message, '', this.config);
 
           this.changeLayout();
           this.cd.detectChanges();

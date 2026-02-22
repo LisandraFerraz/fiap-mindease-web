@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
-import { DefaultButtonComponent } from '../../../shared/components/default-button/default-button.component';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalAuthComponent } from '../../components/modal-auth/modal-auth.component';
+import { ModalAuthComponent } from './modal-auth/modal-auth.component';
+import { DefaultButtonComponent } from '@components/default-button/default-button.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,8 +9,8 @@ import { ModalAuthComponent } from '../../components/modal-auth/modal-auth.compo
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent {
-  constructor(readonly dialog: MatDialog) {}
+export class LandingPageComponent implements OnDestroy {
+  readonly dialog = inject(MatDialog);
 
   isModalOpen = signal(false);
 
@@ -24,5 +24,9 @@ export class LandingPageComponent {
       .subscribe(() => {
         this.isModalOpen.update(() => false);
       });
+  }
+
+  ngOnDestroy(): void {
+    this.dialog.closeAll();
   }
 }
