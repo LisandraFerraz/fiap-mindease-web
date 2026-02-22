@@ -18,7 +18,7 @@ export class KanbanService {
   }
 
   updateKanbanItem(body: IKanbanTodo) {
-    return this.http.post<IKanbanColumn[]>(`${endpoints.atualizaKanbanTask}`, body);
+    return this.http.patch<IKanbanColumn[]>(`${endpoints.atualizaKanbanTask}`, body);
   }
 
   deleteKanbanItem(id: string) {

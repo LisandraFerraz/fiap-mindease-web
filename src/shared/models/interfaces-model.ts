@@ -14,10 +14,17 @@ export class PomodoroTodo {
 }
 
 export interface IKanbanColumn {
-  id: number;
+  id: string;
   title: string;
   items: IKanbanTodo[];
   status: kanbanStatus;
+}
+
+export interface IKanbanColumns {
+  backlog: IKanbanColumn;
+  todo: IKanbanColumn;
+  progress: IKanbanColumn;
+  done: IKanbanColumn;
 }
 
 export interface IKanbanTodo {

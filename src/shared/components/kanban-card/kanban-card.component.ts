@@ -25,7 +25,6 @@ export class KanbanCardComponent {
 
   ngOnInit(): void {
     const result = this.getPriority('MEDIO');
-    console.log(result);
   }
 
   getPriority(prioridade: keyof typeof kanbanPriority) {

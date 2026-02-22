@@ -2,18 +2,27 @@
   <div class="wrapper">
     <span class="title">Quadro de tarefas</span>
     <div class="container">
-      @for (column of kanbanColumns; track column) {
-        <div class="column">
+      @for (kanbanData of kanbanColumns; track kanbanData.id) {
+        <div
+          class="column"
+          cdkDropList
+          [id]="kanbanData.id"
+          [cdkDropListData]="kanbanData.items"
+          [cdkDropListConnectedTo]="connectedLists"
+          (cdkDropListDropped)="drop($event)"
+        >
           <div class="header">
             <button (openModal)="openModal()">
               <mat-icon fontIcon="add" />
             </button>
-            <span>{{ `${column.title} (${column.items.length})` }}</span>
+            <span>{{ `${kanbanData.title} (${kanbanData.items.length})` }}</span>
           </div>
           <div class="cards">
-            @if (column.items.length > 0) {
-              @for (item of column.items; track item) {
+            @if (kanbanData.items.length > 0) {
+              @for (item of kanbanData.items; track item) {
                 <kanban-card
+                  cdkDrag
+                  [cdkDragData]="item"
                   [title]="item.title"
                   [priority]="item.priority"
                   [description]="item.description"
