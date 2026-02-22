@@ -70,8 +70,7 @@ export class PomodoroComponent implements OnInit, OnDestroy {
   getPomodoroTasks() {
     this.pomodoroService.listPomodoroTasks().subscribe({
       next: (res: PomodoroTodo[]) => {
-        this.pomodoroData = res;
-        this.cd.detectChanges();
+        this.updateChanges(res);
       },
       error: (error) => {
         console.error(error);

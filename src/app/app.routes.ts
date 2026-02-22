@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { AuthGuard } from '../core/auth-guard.service';
+import { KanbanComponent } from './pages/kanban/kanban.component';
 
 export const routes: Routes = [
   {
@@ -11,6 +12,11 @@ export const routes: Routes = [
   {
     path: 'pomodoro',
     component: PomodoroComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'kanban',
+    component: KanbanComponent,
     canActivate: [AuthGuard],
   },
   // to-do: not found page

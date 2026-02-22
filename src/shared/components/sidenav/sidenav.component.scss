@@ -135,6 +135,7 @@
 
   .content {
     padding: 25px 25px 25px 315px;
+    overflow-x: hidden;
 
     @media screen and (max-width: 940px) {
       padding: 25px 25px;
@@ -143,6 +144,7 @@
 
   .content-focused {
     padding: 25px 25px;
-    height: 100%;
+    overflow-y: auto;
+    // height: 100%;
   }
 }

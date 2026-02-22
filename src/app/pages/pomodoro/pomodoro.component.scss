@@ -92,7 +92,7 @@
     display: flex;
     gap: 15px;
     flex-direction: column;
-    height: 320px;
+    min-height: 320px;
     padding: 0 20px;
 
     overflow-y: auto;

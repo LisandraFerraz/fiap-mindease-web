@@ -1,0 +1,32 @@
+<sidenav>
+  <div class="wrapper">
+    <span class="title">Quadro de tarefas</span>
+    <div class="container">
+      @for (column of kanbanColumns; track column) {
+        <div class="column">
+          <div class="header">
+            <button (openModal)="openModal()">
+              <mat-icon fontIcon="add" />
+            </button>
+            <span>{{ `${column.title} (${column.items.length})` }}</span>
+          </div>
+          <div class="cards">
+            @if (column.items.length > 0) {
+              @for (item of column.items; track item) {
+                <kanban-card
+                  [title]="item.title"
+                  [priority]="item.priority"
+                  [description]="item.description"
+                  (deleteItem)="deleteKanbanItem(item.id)"
+                  (openModal)="openModal(item)"
+                />
+              }
+            } @else {
+              <span></span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</sidenav>

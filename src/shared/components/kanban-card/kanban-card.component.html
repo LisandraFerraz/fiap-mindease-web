@@ -1,3 +1,21 @@
-<p>
-  kanban-card works!
-</p>
+<div class="card">
+  <div class="top">
+    <span>{{ title }}</span>
+    <div class="buttons">
+      <button (click)="handleDelete()">
+        <mat-icon fontIcon="delete" />
+      </button>
+      <button (click)="handleOpenModal()">
+        <mat-icon fontIcon="edit" />
+      </button>
+    </div>
+  </div>
+  <div class="description">
+    <span>
+      {{ description }}
+    </span>
+  </div>
+  <div class="bottom">
+    <span [class]="priority">{{ getPriority(priority) }}</span>
+  </div>
+</div>

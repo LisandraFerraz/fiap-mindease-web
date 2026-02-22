@@ -1,0 +1,82 @@
+@use 'variables' as v;
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  .title {
+    color: v.$grey;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding-top: 35px;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    padding: 10px 5px;
+
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    .column {
+      width: max-content;
+      background-color: v.$soft_white;
+      width: 100%;
+
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      min-width: 375px;
+      padding: 0 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 4px v.$grey_undertone;
+
+      .header {
+        padding: 25px 0;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        width: 100%;
+        font-weight: 600;
+        color: v.$grey;
+
+        button {
+          outline: none;
+          border: none;
+          height: 25px;
+          background-color: transparent;
+        }
+
+        span {
+          font-size: 0.8rem;
+        }
+      }
+
+      .cards {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 5px;
+
+        span {
+          content: '';
+          height: 160px;
+          width: 100%;
+          border: 4px dotted v.$grey_undertone;
+        }
+      }
+    }
+  }
+}

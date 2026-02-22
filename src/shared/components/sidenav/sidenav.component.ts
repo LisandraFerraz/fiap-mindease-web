@@ -11,7 +11,7 @@ interface INavItems {
 }
 
 @Component({
-  selector: 'app-sidenav',
+  selector: 'sidenav',
   imports: [MatIconModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
@@ -34,19 +34,19 @@ export class Sidenav {
       },
       {
         name: 'Kanban',
-        route: '',
+        route: 'kanban',
         icon: 'view_kanban',
         isActive: this.checkActiveRoute('kanban'),
       },
       {
         name: 'Lista de tarefas',
-        route: '',
+        route: 'lista-de-tarefas',
         icon: 'checklist_rtl',
         isActive: this.checkActiveRoute('lista-de-tarefas'),
       },
       {
         name: 'Post-its',
-        route: '',
+        route: 'post-its',
         icon: 'note',
         isActive: this.checkActiveRoute('post-its'),
       },
