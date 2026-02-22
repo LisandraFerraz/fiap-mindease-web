@@ -1,5 +1,8 @@
 <div class="card">
-  <span [class.completed]="isCompleted" (click)="handleClick()">{{ description }}</span>
+  <span [class.completed]="isCompleted" (click)="handleClick()">
+    <input id="description" [checked]="isCompleted" type="checkbox" />
+    {{ description }}</span
+  >
   <button (click)="handleDelete()">
     <mat-icon fontIcon="delete" />
   </button>

@@ -152,7 +152,6 @@ export class PomodoroComponent implements OnInit, OnDestroy {
           this.currentRound + 1;
           return time;
         }
-        console.log(this.currentRound);
         return time - 1;
       });
     }, 1000);

@@ -23,11 +23,21 @@
 
   span {
     width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    overflow: hidden;
 
     &.completed,
     &:hover {
       cursor: pointer;
       text-decoration: line-through;
+    }
+
+    input[type='checkbox'] {
+      height: 18px;
+      width: 18px;
+      accent-color: v.$grey_soft;
     }
   }
 
@@ -41,12 +51,12 @@
     cursor: pointer;
 
     &:hover {
-      color: v.$grey;
+      color: v.$dark_red;
     }
   }
 }
 
-.done {
+.completed {
   opacity: 60%;
   text-decoration: line-through;
 

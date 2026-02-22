@@ -4,7 +4,7 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class FocusModeService {
-  private readonly isfocusMode = signal(false);
+  private readonly isfocusMode = signal(true);
   readonly focusOn = this.isfocusMode.asReadonly();
 
   public activate() {

@@ -1,36 +1,43 @@
 <div class="container">
-  @if (!isFocusOn()) {
-    <div animate.enter="slow-fadein" class="sidenav">
-      <div class="top">
-        <em class="icone"></em>
-      </div>
-      <div class="items">
-        <div class="main">
-          <ul>
-            @for (item of navItems; track item.name) {
-              <li [class.active-route]="item.isActive">
-                <a [href]="item.route">
-                  <mat-icon [fontIcon]="item.icon" />
-                  {{ item.name }}</a
-                >
-              </li>
-            }
-          </ul>
+  <div class="sidenav-wrapper">
+    <span [class]="['btn-nav', !isSidenavOpened() ? 'btn-close' : 'btn-open']">
+      <button (click)="setNavVisible()">
+        <mat-icon [class.openMenu]="!isSidenavOpened()" fontIcon="menu_open'" />
+      </button>
+    </span>
+    @if (!isSidenavOpened()) {
+      <div class="sidenav">
+        <div class="top">
+          <em class="icone"></em>
         </div>
-        <span class="divisor"></span>
-        <div class="bottom">
-          <span>
-            <a href="">
-              <mat-icon fontIcon="settings" />
-              Preferências</a
-            >
-          </span>
+        <div class="items">
+          <div class="main">
+            <ul>
+              @for (item of navItems; track item.name) {
+                <li [class.active-route]="item.isActive">
+                  <a [href]="item.route">
+                    <mat-icon [fontIcon]="item.icon" />
+                    {{ item.name }}</a
+                  >
+                </li>
+              }
+            </ul>
+          </div>
+          <span class="divisor"></span>
+          <div class="bottom">
+            <span>
+              <a href="">
+                <mat-icon fontIcon="settings" />
+                Preferências</a
+              >
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  }
+    }
+  </div>
 
-  <div [class]="[!isFocusOn() ? 'content' : 'content-focused']" style="width: 100%">
+  <div [class]="[!isSidenavOpened() ? 'content' : 'content-focused']" style="width: 100%">
     <ng-content />
   </div>
 </div>

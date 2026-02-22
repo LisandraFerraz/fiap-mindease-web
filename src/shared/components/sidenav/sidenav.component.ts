@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { FocusModeService } from '../../services/focus-mode.service';
@@ -21,6 +21,8 @@ export class Sidenav {
   focusMode = inject(FocusModeService);
 
   isFocusOn = this.focusMode.focusOn;
+
+  isSidenavOpened = signal(false);
 
   get navItems(): INavItems[] {
     return [
@@ -53,5 +55,15 @@ export class Sidenav {
 
   checkActiveRoute(item: string): boolean {
     return this.route.url.includes(item.toLowerCase());
+  }
+
+  setNavVisible() {
+    // if (!this.isFocusOn() ) {
+    this.isSidenavOpened.update((isOpen) => !isOpen);
+    // }
+  }
+
+  isNavVisible() {
+    return !this.isFocusOn() && this.isSidenavOpened();
   }
 }
