@@ -1,10 +1,10 @@
 type kanbanStatus = 'PENDENTE' | 'AFAZER' | 'ANDAMENTO' | 'CONCLUIDO';
 type stickyNoteColor = 'BLUE' | 'YELLOW' | 'RED' | 'GREEN';
 
-export interface IPomodoroTodo {
-  id: string;
-  description: string;
-  completed: boolean;
+export class PomodoroTodo {
+  id: string = '';
+  description: string = '';
+  completed: boolean = false;
 }
 
 export interface IKanbanTodo {

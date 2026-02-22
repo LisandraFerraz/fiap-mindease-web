@@ -14,8 +14,15 @@
     </div>
 
     <div class="to-do-list">
-      <input-add-task />
-      <todo-card description="Teste descrição" />
+      <input-add-task (changeEvent)="pomoItemBody.description = $event" (addTask)="addTask()" />
+      @for (item of pomodoroData; track item.id) {
+        <todo-card
+          [isCompleted]="item.completed"
+          (deleteItem)="deleteTodo(item.id)"
+          (markAs)="updateTodo(item)"
+          [description]="item.description"
+        />
+      }
     </div>
 
     <div class="time-options">

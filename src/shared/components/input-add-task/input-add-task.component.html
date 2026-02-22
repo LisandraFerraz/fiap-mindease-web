@@ -1,6 +1,15 @@
 <div>
-  <input (change)="handleChange($event)" [id]="inputId" type="text" placeholder="Digitar..." />
-  <button>
-    <mat-icon class="icon" fontIcon="add_circle" />
-  </button>
+  <input
+    maxlength="40"
+    minlength="5"
+    (input)="handleChange($event)"
+    id="addTask"
+    type="text"
+    placeholder="Digitar..."
+  />
+  @if (isInputValid()) {
+    <button (click)="handleClick()">
+      <mat-icon class="icon" fontIcon="add_circle" />
+    </button>
+  }
 </div>

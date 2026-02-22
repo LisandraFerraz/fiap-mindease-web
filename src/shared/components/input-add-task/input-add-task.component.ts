@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -8,12 +8,19 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './input-add-task.component.scss',
 })
 export class InputAddTask {
-  @Input() inputId = '';
-  @Input() placeholder = '';
   @Output() changeEvent = new EventEmitter<string>();
+  @Output() addTask = new EventEmitter<void>();
+
+  isInputValid = signal(false);
 
   handleChange(event: Event) {
     const fieldValue = (event.target as HTMLInputElement).value;
     this.changeEvent.emit(fieldValue);
+
+    this.isInputValid.update((isValid) => (isValid = fieldValue.length >= 5));
+  }
+
+  handleClick() {
+    if (this.isInputValid()) this.addTask.emit();
   }
 }

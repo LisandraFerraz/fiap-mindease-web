@@ -1,0 +1,52 @@
+// FROM TOP TO BOTTOM //
+.fadein {
+  animation: fadeInAnimation 0.45s ease-in-out;
+}
+
+.slow-fadein {
+  animation: fadeInAnimation 1.2s ease-in-out;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+// FIM FROM TOP TO BOTTOM //
+
+// INICIO 0 TO 1 //
+.appearFade {
+  animation: appearFadeAnimation 0.0425s ease-in;
+}
+
+@keyframes appearFadeAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(1);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.disappearFade {
+  animation: disappearFadeAnimation 0.2s ease-out;
+}
+
+@keyframes disappearFadeAnimation {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(1);
+  }
+}
+// FIM 0 TO 1 //

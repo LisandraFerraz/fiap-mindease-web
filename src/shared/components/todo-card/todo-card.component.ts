@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -9,6 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class TodoCardComponent {
   @Input() description = '';
+  @Input() isCompleted = false;
+  @Output() markAs = new EventEmitter<void>();
+  @Output() deleteItem = new EventEmitter<void>();
 
-  constructor() {}
+  handleClick() {
+    this.markAs.emit();
+  }
+
+  handleDelete() {
+    this.deleteItem.emit();
+  }
 }

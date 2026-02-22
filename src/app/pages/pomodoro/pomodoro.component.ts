@@ -1,25 +1,42 @@
+import { CommonModule } from '@angular/common';
 import { InputAddTask } from '@components/input-add-task/input-add-task.component';
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
 import { TodoCardComponent } from '@components/todo-card/todo-card.component';
 import { MatIconModule } from '@angular/material/icon';
-import { FocusModeService } from '@services/focus-mode.service';
 import { PomodoroService } from './pomodoro.service';
 import { ToastNotification } from '@services/toast-notification.service';
 import { DefaultButtonComponent } from '@components/default-button/default-button.component';
 import { Sidenav } from '@components/sidenav/sidenav.component';
+import { PomodoroTodo } from '@models/interfaces-model';
+import { v4 as generateUID } from 'uuid';
 
 type Step = 'FIRSTROUND' | 'SHORTBREAK' | 'SECONDROUND' | 'LONGBREAK';
 
 @Component({
   selector: 'app-pomodoro',
-  imports: [MatIconModule, Sidenav, InputAddTask, TodoCardComponent, DefaultButtonComponent],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    Sidenav,
+    InputAddTask,
+    TodoCardComponent,
+    DefaultButtonComponent,
+  ],
   templateUrl: './pomodoro.component.html',
   styleUrls: ['./pomodoro.component.scss'],
 })
-export class PomodoroComponent implements OnInit {
-  focusMode = inject(FocusModeService);
-  pomodoroService = inject(PomodoroService);
-  toastNotif = inject(ToastNotification);
+export class PomodoroComponent implements OnInit, OnDestroy {
+  private pomodoroService = inject(PomodoroService);
+  private toastNotif = inject(ToastNotification);
+  private cd = inject(ChangeDetectorRef);
 
   private timeRemaining = signal(0);
   readonly isRunning = signal(false);
@@ -33,15 +50,28 @@ export class PomodoroComponent implements OnInit {
   private currentStep: Step = 'FIRSTROUND';
   currentRound: number = 1;
 
+  private stepTimes: Record<Step, number> = {
+    FIRSTROUND: 1500,
+    SHORTBREAK: 300,
+    SECONDROUND: 1500,
+    LONGBREAK: 900,
+  };
+
+  pomodoroData: PomodoroTodo[] = [];
+  pomoItemBody: PomodoroTodo = new PomodoroTodo();
+
   ngOnInit(): void {
     this.setStepTime(this.currentStep);
     this.getPomodoroTasks();
   }
 
+  // -- API CALLS - -
+
   getPomodoroTasks() {
     this.pomodoroService.listPomodoroTasks().subscribe({
-      next: (res) => {
-        console.log(res);
+      next: (res: PomodoroTodo[]) => {
+        this.pomodoroData = res;
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.error(error);
@@ -50,39 +80,63 @@ export class PomodoroComponent implements OnInit {
     });
   }
 
+  addTask() {
+    const body: PomodoroTodo = {
+      ...this.pomoItemBody,
+      id: generateUID(),
+    };
+    this.pomodoroService.addPomodoroTask(body).subscribe({
+      next: (res: PomodoroTodo[]) => {
+        this.updateChanges(res);
+        this.pomoItemBody = new PomodoroTodo();
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError('Erro ao adicionar task.');
+      },
+    });
+  }
+
+  deleteTodo(id: string) {
+    this.pomodoroService.deletePomodoroTask(id).subscribe({
+      next: (res: PomodoroTodo[]) => {
+        this.updateChanges(res);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError('Erro ao apagar task.');
+      },
+    });
+  }
+
+  updateTodo(task: PomodoroTodo) {
+    const body = {
+      ...task,
+      completed: !task.completed,
+    };
+
+    this.pomodoroService.updatePomodoroTaskStatus(body).subscribe({
+      next: (res: PomodoroTodo[]) => {
+        this.updateChanges(res);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError('Erro ao  task.');
+      },
+    });
+  }
+
+  private updateChanges(data: PomodoroTodo[]) {
+    this.pomodoroData = data;
+    this.cd.detectChanges();
+  }
+
+  // -- FIM API CALLS - -
+
   setStep(step: Step) {
     this.currentStep = step;
     this.setStepTime(step);
     this.stop();
-  }
-
-  private setStepTime(step: Step): void {
-    const time = this.stepTimes[step];
-    this.timeRemaining.set(time);
-    this.initialTime.set(time);
-  }
-
-  private stepTimes: Record<Step, number> = {
-    FIRSTROUND: 1500,
-    SHORTBREAK: 300,
-    SECONDROUND: 1500,
-    LONGBREAK: 900,
-  };
-
-  private nextStep(): void {
-    if (this.currentStep === 'LONGBREAK') {
-      this.reset();
-      return;
-    }
-    this.currentRound += 1;
-
-    const order: Step[] = ['FIRSTROUND', 'SHORTBREAK', 'SECONDROUND', 'LONGBREAK'];
-
-    const currentIndex = order.indexOf(this.currentStep);
-    this.currentStep = order[currentIndex + 1];
-
-    this.setStepTime(this.currentStep);
-    this.start();
   }
 
   start(): void {
@@ -120,6 +174,28 @@ export class PomodoroComponent implements OnInit {
     this.currentRound = 1;
   }
 
+  private setStepTime(step: Step): void {
+    const time = this.stepTimes[step];
+    this.timeRemaining.set(time);
+    this.initialTime.set(time);
+  }
+
+  private nextStep(): void {
+    if (this.currentStep === 'LONGBREAK') {
+      this.reset();
+      return;
+    }
+    this.currentRound += 1;
+
+    const order: Step[] = ['FIRSTROUND', 'SHORTBREAK', 'SECONDROUND', 'LONGBREAK'];
+
+    const currentIndex = order.indexOf(this.currentStep);
+    this.currentStep = order[currentIndex + 1];
+
+    this.setStepTime(this.currentStep);
+    this.start();
+  }
+
   readonly formattedTime = computed(() => {
     const time = this.timeRemaining();
     const minutes = Math.floor(time / 60);
@@ -131,5 +207,9 @@ export class PomodoroComponent implements OnInit {
 
   get classes() {
     return ['timer', this.isRunning() ? `with-animation` : ''];
+  }
+
+  ngOnDestroy(): void {
+    this.pomoItemBody = new PomodoroTodo();
   }
 }

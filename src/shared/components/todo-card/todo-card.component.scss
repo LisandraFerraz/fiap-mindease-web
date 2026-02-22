@@ -14,9 +14,21 @@
   transition: ease 0.2s;
 
   &:hover {
-    cursor: pointer;
     opacity: 60%;
-    text-decoration: line-through;
+  }
+
+  &:active {
+    box-shadow: 0 0 4px v.$grey;
+  }
+
+  span {
+    width: 100%;
+
+    &.completed,
+    &:hover {
+      cursor: pointer;
+      text-decoration: line-through;
+    }
   }
 
   button {
