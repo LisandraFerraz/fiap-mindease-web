@@ -3,6 +3,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { AuthGuard } from '../core/auth-guard.service';
 import { KanbanComponent } from './pages/kanban/kanban.component';
+import { ChecklistComponent } from './pages/checklist.component/checklist.component';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,11 @@ export const routes: Routes = [
   {
     path: 'kanban',
     component: KanbanComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'lista-de-tarefas',
+    component: ChecklistComponent,
     canActivate: [AuthGuard],
   },
   // to-do: not found page

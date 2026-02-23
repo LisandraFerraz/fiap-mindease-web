@@ -1,0 +1,37 @@
+<sidenav>
+  <div class="wrapper">
+    <span class="title"> Checklist </span>
+    <div class="container">
+      <div class="checklists-list">
+        <div class="header">
+          <button (click)="createChecklist()">
+            <mat-icon fontIcon="add" />
+          </button>
+          <span class="title">Lista de to-dos</span>
+        </div>
+        <div class="checklists-group">
+          @for (checklist of checklistsData; track checklist) {
+            <div class="checklist-btn">
+              <div>
+                <span [class]="['checklist-color-indicator', `${checklist.color}`]"></span>
+                <span>
+                  {{ checklist.name }}
+                </span>
+                <!-- <input
+                  [(ngModel)]="checklist.name"
+                  type="text"
+                  name="checklist_name"
+                  id="checklist_name"
+                /> -->
+              </div>
+              <button (click)="deleteChecklist(checklist.id)">
+                <mat-icon fontIcon="delete" />
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="content"></div>
+    </div>
+  </div>
+</sidenav>

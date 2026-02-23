@@ -28,7 +28,7 @@ export class Sidenav {
     return [
       {
         name: 'Pomodoro',
-        route: '',
+        route: 'pomodoro',
         icon: 'timer',
         isActive: this.checkActiveRoute('pomodoro'),
       },

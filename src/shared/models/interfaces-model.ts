@@ -1,5 +1,5 @@
 export type kanbanStatus = 'BACKLOG' | 'AFAZER' | 'ANDAMENTO' | 'CONCLUIDO';
-export type stickyNoteColor = 'BLUE' | 'YELLOW' | 'RED' | 'GREEN';
+export type stickyNoteColor = 'BLUE' | 'YELLOW' | 'RED' | 'GREEN' | 'ORANGE';
 
 export enum kanbanPriority {
   BAIXO = 'baixo',
@@ -43,9 +43,14 @@ export interface IStickyNote {
   color: stickyNoteColor;
 }
 
-export interface IChecklist {
+export interface IChecklistResponse {
+  checklist: Checklist[];
+}
+
+export class Checklist {
   id: string;
   name: string;
+  color: stickyNoteColor;
   data: IChecklistItem[];
 }
 

@@ -31,7 +31,6 @@ export class KanbanComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.listKanbanItems();
-    this.openModal('BACKLOG');
   }
 
   private listKanbanItems() {

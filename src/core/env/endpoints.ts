@@ -2,7 +2,6 @@ export const endpoints = {
   register: '/user/register',
   login: '/auth/login',
 
-  checklist: '/tools/:id/checklist',
   stickyNotes: '/tools/:id/sticky-note',
 
   pomodoro: '/tools/:id/pomodoro',
@@ -14,4 +13,9 @@ export const endpoints = {
   addKanbanTask: '/tools/:id/kanban/novo-kanban-item',
   deleteKanbanTask: '/tools/:id/kanban/deleta-kanban-item',
   atualizaKanbanTask: '/tools/:id/kanban/atualiza-kanban-item',
+
+  checklists: '/tools/:id/checklist',
+  createChecklist: '/tools/:id/checklist/nova-checklist',
+  atualizaChecklist: '/tools/:id/checklist/atualiza-checklist',
+  deleteChecklist: '/tools/:id/checklist/deleta-checklist',
 };
