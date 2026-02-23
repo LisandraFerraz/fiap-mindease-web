@@ -8,14 +8,10 @@ export const apiInterceptor: HttpInterceptorFn = (req, next) => {
 
   const tools_id = sessionStorage.getItem('platToolsId') || '';
 
-  console.log(tools_id);
-
   let endpoindUrl = req.url;
 
   if (tools_id) {
-    console.log(tools_id);
     if (endpoindUrl.includes(':id')) {
-      console.log('endpoindUrl :: ', endpoindUrl);
       endpoindUrl = req.url.replace(':id', tools_id);
     }
   } else {

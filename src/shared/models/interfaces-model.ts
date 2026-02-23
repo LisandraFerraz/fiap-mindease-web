@@ -27,13 +27,13 @@ export interface IKanbanColumns {
   done: IKanbanColumn;
 }
 
-export interface IKanbanTodo {
-  id: string;
-  title: string;
-  status: kanbanStatus;
-  priority: keyof typeof kanbanPriority;
-  dueDate: string;
-  description: string;
+export class IKanbanTodo {
+  id: string = '';
+  title: string = '';
+  status: kanbanStatus = 'AFAZER';
+  priority: keyof typeof kanbanPriority = 'BAIXO';
+  dueDate: string = '';
+  description: string = '';
 }
 
 export interface IStickyNote {

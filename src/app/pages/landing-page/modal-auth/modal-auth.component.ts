@@ -32,7 +32,6 @@ export class ModalAuthComponent {
 
   changeLayout() {
     this.loginLayout = !this.loginLayout;
-    console.log(this.loginLayout);
   }
 
   sendReq() {

@@ -5,7 +5,7 @@
         <mat-icon [class.openMenu]="!isSidenavOpened()" fontIcon="menu_open'" />
       </button>
     </span>
-    @if (isSidenavOpened()) {
+    @if (!isSidenavOpened()) {
       <div class="sidenav">
         <div class="top">
           <em class="icone"></em>
@@ -37,7 +37,7 @@
     }
   </div>
 
-  <div [class]="[isSidenavOpened() ? 'content' : 'content-focused']" style="width: 100%">
+  <div [class]="[!isSidenavOpened() ? 'content' : 'content-focused']" style="width: 100%">
     <ng-content />
   </div>
 </div>

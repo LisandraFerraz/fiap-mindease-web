@@ -4,9 +4,9 @@
   background-color: v.$all_white;
   border-radius: 15px;
   box-shadow: 0 0 4px v.$grey_undertone;
-  padding: 20px;
+  padding: 25px 20px;
+  min-width: 275px;
   max-height: 160px;
-
   color: v.$grey;
 
   .top {
@@ -49,7 +49,7 @@
 
     span {
       text-transform: capitalize;
-      padding: 2px 40px;
+      padding: 5px 45px;
       border-radius: 100px;
       font-size: 0.8rem;
       font-weight: 600;

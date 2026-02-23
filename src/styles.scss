@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'variables' as v;
 
 body,
@@ -14,4 +15,32 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+:root {
+  @include mat.datepicker-overrides(
+    (
+      calendar-container-background-color: #f6f6f6,
+    )
+  );
+}
+.mdc-text-field--filled,
+.mdc-text-field--filled:hover {
+  background-color: #f6f6f6 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  height: 50px !important;
+  line-height: 0 !important;
+  font-size: 0.8rem !important;
+}
+.mat-mdc-text-field-wrapper:hover .mat-mdc-form-field-focus-overlay {
+  background-color: #f6f6f6 !important;
+}
+
+.mdc-text-field {
+  position: static !important;
+}
+
+.cdk-drop-list-dragging {
+  cursor: move;
 }

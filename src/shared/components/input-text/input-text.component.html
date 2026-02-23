@@ -1,4 +1,10 @@
 <div>
   <label [for]="inputId">{{ label }}</label>
-  <input (change)="handleChange($event)" [id]="inputId" [type]="type" [placeholder]="placeholder" />
+  <input
+    (change)="handleChange($event)"
+    [attr.value]="value"
+    [id]="inputId"
+    [type]="type"
+    [placeholder]="placeholder"
+  />
 </div>

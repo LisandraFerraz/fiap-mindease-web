@@ -9,7 +9,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalKanbanItemComponent } from './modal-kanban-item/modal-kanban-item.component/modal-kanban-item.component';
 import {
   CdkDrag,
-  CdkDragDrop,
   CdkDropList,
   DragDropModule,
   moveItemInArray,
@@ -32,6 +31,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.listKanbanItems();
+    this.openModal('BACKLOG');
   }
 
   private listKanbanItems() {
@@ -64,7 +64,6 @@ export class KanbanComponent implements OnInit, OnDestroy {
       status: newColumnId,
     } as IKanbanTodo;
 
-    console.log(body);
     this.kanbanService.updateKanbanItem(body).subscribe({
       error: (error) => {
         console.error('listKanbanItems :: ', error);
@@ -93,10 +92,14 @@ export class KanbanComponent implements OnInit, OnDestroy {
     }
   }
 
-  openModal(data?: IKanbanTodo) {
-    this.dialog.open(ModalKanbanItemComponent, {
-      data: data ? { data, isNew: false } : { isNew: true },
-    });
+  openModal(columnId?: string, data?: IKanbanTodo) {
+    this.dialog
+      .open(ModalKanbanItemComponent, {
+        data: data ? { data } : { columnName: columnId },
+        width: '900px',
+      })
+      .afterClosed()
+      .subscribe(() => this.listKanbanItems());
   }
 
   get connectedLists(): string[] {

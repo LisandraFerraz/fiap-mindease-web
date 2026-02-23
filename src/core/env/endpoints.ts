@@ -11,7 +11,7 @@ export const endpoints = {
   atualizaPomodoroTask: '/tools/:id/pomodoro/atualiza-pomodoro-todo',
 
   kanban: '/tools/:id/kanban',
-  addKanbanTask: '/tools/:id/kanban/novo-kanban-todo',
+  addKanbanTask: '/tools/:id/kanban/novo-kanban-item',
   deleteKanbanTask: '/tools/:id/kanban/deleta-kanban-item',
   atualizaKanbanTask: '/tools/:id/kanban/atualiza-kanban-item',
 };

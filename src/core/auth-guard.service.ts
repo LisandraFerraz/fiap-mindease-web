@@ -10,7 +10,6 @@ export class AuthGuard {
   private readonly accessToken = sessionStorage.getItem('accessToken');
 
   canActivate(): boolean {
-    console.log('AuthGuard :: ', this.accessToken);
     if (!this.accessToken) {
       this.route.navigateByUrl('/');
       return false;

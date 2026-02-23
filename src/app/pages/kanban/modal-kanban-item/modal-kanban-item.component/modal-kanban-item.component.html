@@ -1,1 +1,44 @@
-<p>modal-kanban-item.component works!</p>
+<me-modal (clickConfirm)="handleConfirm()">
+  <div class="container">
+    <me-input-text
+      type="text"
+      label="título"
+      inputId="titulo"
+      placeholder="Digite aqui..."
+      [value]="bodyItem.title"
+      (changeEvent)="bodyItem.title = $event"
+    />
+    <me-input-text
+      type="text"
+      label="descrição"
+      inputId="descricao"
+      placeholder="Adicione detalhes"
+      [value]="bodyItem.description"
+      (changeEvent)="bodyItem.description = $event"
+    />
+    <div class="row">
+      <div class="prioSelector input-group">
+        <label for="priority">Prioridade</label>
+        <select [(ngModel)]="bodyItem.priority" name="priority" id="priority">
+          <option value="BAIXO">Baixo</option>
+          <option value="MEDIO">Médio</option>
+          <option value="ALTO">Alto</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="priority">vencimento</label>
+        <mat-form-field>
+          <input
+            placeholder="dd-mm-aaaa"
+            [(ngModel)]="bodyItem.dueDate"
+            [min]="minDate"
+            matInput
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</me-modal>

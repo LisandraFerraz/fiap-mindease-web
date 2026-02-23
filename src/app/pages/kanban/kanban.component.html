@@ -10,9 +10,10 @@
           [cdkDropListData]="kanbanData.items"
           [cdkDropListConnectedTo]="connectedLists"
           (cdkDropListDropped)="drop($event)"
+          cdkDropListSortingDisabled
         >
           <div class="header">
-            <button (openModal)="openModal()">
+            <button (click)="openModal(kanbanData.id)">
               <mat-icon fontIcon="add" />
             </button>
             <span>{{ `${kanbanData.title} (${kanbanData.items.length})` }}</span>
@@ -27,11 +28,9 @@
                   [priority]="item.priority"
                   [description]="item.description"
                   (deleteItem)="deleteKanbanItem(item.id)"
-                  (openModal)="openModal(item)"
+                  (openModal)="openModal('', item)"
                 />
               }
-            } @else {
-              <span></span>
             }
           </div>
         </div>
