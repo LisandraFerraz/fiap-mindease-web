@@ -15,7 +15,7 @@
   }
 
   .container {
-    width: 100%;
+    // width: 100%;
     height: 100%;
     padding: 10px 5px;
 
@@ -25,6 +25,10 @@
 
     overflow-y: hidden;
     overflow-x: auto;
+
+    @media screen and (max-width: 940px) {
+      flex-direction: column;
+    }
 
     .checklists-list {
       width: max-content;
@@ -107,13 +111,26 @@
             }
           }
         }
+
+        @media screen and (max-width: 940px) {
+          width: 100%;
+          height: 200px;
+          flex-direction: row;
+          align-items: start;
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+      }
+
+      @media screen and (max-width: 940px) {
+        width: auto;
+        height: fit-content;
       }
     }
 
     .content {
       background-color: v.$soft_white;
       width: 100%;
-      height: 100%;
       padding: 35px 25px;
 
       overflow: hidden;
@@ -179,6 +196,13 @@
         flex-direction: column;
         gap: 20px;
         width: 100%;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      @media screen and (max-width: 940px) {
+        width: auto;
       }
     }
   }
