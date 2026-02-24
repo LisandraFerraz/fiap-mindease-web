@@ -2,11 +2,86 @@
 @import 'accent_colors';
 
 .selector {
+  width: 100px;
+  background-color: v.$all_white;
+  width: 80px;
+  position: relative;
+
   button {
-    padding: 10px;
-    height: 30px;
-    width: 30px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    cursor: pointer;
+    width: 100%;
+    transition: ease 0.2s;
+
+    &:not(:first-child) {
+      border-top: 0.8px solid v.$grey_undertone;
+    }
+
+    &:hover {
+      opacity: 80%;
+      background-color: v.$soft_white;
+    }
+  }
+
+  .option {
+    height: 25px;
+    width: 25px;
     border-radius: 100px;
+    cursor: pointer;
+    display: block;
+    margin-left: 10px;
+  }
+
+  .option-selector {
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 0 4px v.$grey_undertone;
+
+    &::after {
+      position: absolute;
+      right: 10px;
+      transform: scale(0.8);
+      pointer-events: none;
+      color: #555;
+    }
+  }
+
+  .option-selected {
+    &::after {
+      content: '▼';
+      top: 25%;
+    }
+  }
+
+  .option-selected-inactive {
+    &::after {
+      content: '◀';
+      top: 15%;
+    }
+  }
+
+  .expanded {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: v.$all_white;
     border: 1px solid v.$grey_undertone;
+    position: absolute;
+    width: 80px;
+    z-index: 2;
+    box-shadow: 0 0 8px rgb(v.$grey_undertone, 50%);
+
+    > button {
+      .option {
+        margin-left: 35%;
+      }
+    }
+  }
+
+  .not-expanded {
+    display: none;
   }
 }

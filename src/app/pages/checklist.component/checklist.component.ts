@@ -40,7 +40,7 @@ export class ChecklistComponent implements OnInit {
 
   checklistActive: Checklist;
 
-  isEditOff = signal(false);
+  isEditOff = signal(true);
 
   ngOnInit(): void {
     this.listChecklists();
@@ -76,21 +76,21 @@ export class ChecklistComponent implements OnInit {
     });
   }
 
-  updateChecklistName(event: Event) {
-    const fieldValue = (event.target as HTMLInputElement).value;
+  updateChecklistDetails(field: string, event: any) {
+    const isFieldName = field === 'name';
+    const fieldValue = isFieldName ? (event.target as HTMLInputElement).value : event;
 
     if (fieldValue) {
       let body = {
-        name: fieldValue,
-      };
+        [field]: fieldValue,
+      } as Partial<Checklist>;
 
       this.checklistService.atualizaChecklist(this.checklistActive.id, body).subscribe({
         next: (res: IChecklistResponse) => {
           this.updateChanges(res.checklist);
-          this.updateEdit();
+          if (isFieldName) this.updateEdit();
         },
         error: (error) => {
-          console.log('AADASFS');
           console.error(error);
           this.toastNotif.toastError('Não foi possível recuperar as checklists.');
         },

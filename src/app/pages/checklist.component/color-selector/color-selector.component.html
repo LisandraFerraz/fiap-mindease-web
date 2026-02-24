@@ -1,7 +1,17 @@
-<div class="selector" name="color-pick" id="color-pick">
-  @for (color of colors; track color) {
-    <button [class]="['option', `${color}`]" (click)="handleSelect(color)">
-      <!-- <span [class]="`${color}`">{{ ` ` }}</span> -->
-    </button>
-  }
+<div #selector class="selector" name="color-pick" id="color-pick">
+  <button
+    (click)="handleSetActiveColor()"
+    [class]="['option-selector', expanded() ? 'option-selected' : 'option-selected-inactive']"
+  >
+    <span [class]="['option', `${activeColor}`]"></span>
+  </button>
+  <div [class]="expanded() ? 'expanded' : 'not-expanded'">
+    @for (color of colors; track color) {
+      @if (color !== activeColor) {
+        <button (click)="handleSelect(color)">
+          <span [class]="['option', `${color}`]"></span>
+        </button>
+      }
+    }
+  </div>
 </div>

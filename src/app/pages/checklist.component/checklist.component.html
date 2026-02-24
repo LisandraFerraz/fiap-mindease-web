@@ -29,16 +29,21 @@
         @if (checklistActive) {
           <span [class]="['top-border', `${checklistActive.color}`]"></span>
           <div class="content-header">
-            <button (click)="updateEdit()">
-              <mat-icon fontIcon="edit" />
-            </button>
-            <input
-              [disabled]="isEditOff()"
-              [value]="checklistActive.name"
-              (change)="updateChecklistName($event)"
-              type="text"
+            <div class="checklist-name-input">
+              <button (click)="updateEdit()">
+                <mat-icon fontIcon="edit" />
+              </button>
+              <input
+                [disabled]="isEditOff()"
+                [value]="checklistActive.name"
+                (change)="updateChecklistDetails('name', $event)"
+                type="text"
+              />
+            </div>
+            <color-selector
+              [activeColor]="checklistActive.color"
+              (selectColor)="updateChecklistDetails('color', $event)"
             />
-            <color-selector />
           </div>
           <div class="items-list">
             <input-add-task [(value)]="checkItemBody.description" (addTask)="addChecklistItem()" />
