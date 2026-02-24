@@ -5,8 +5,7 @@
       label="título"
       inputId="titulo"
       placeholder="Digite aqui..."
-      [value]="bodyItem.title"
-      (changeEvent)="bodyItem.title = $event"
+      [(value)]="bodyItem.title"
     />
     <me-input-text
       type="text"
@@ -14,7 +13,6 @@
       inputId="descricao"
       placeholder="Adicione detalhes"
       [value]="bodyItem.description"
-      (changeEvent)="bodyItem.description = $event"
     />
     <div class="row">
       <div class="prioSelector input-group">

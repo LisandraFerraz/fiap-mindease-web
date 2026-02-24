@@ -1,8 +1,8 @@
 <div>
   <label [for]="inputId">{{ label }}</label>
   <input
-    (change)="handleChange($event)"
-    [attr.value]="value"
+    (input)="handleChange($event)"
+    [value]="value"
     [id]="inputId"
     [type]="type"
     [placeholder]="placeholder"

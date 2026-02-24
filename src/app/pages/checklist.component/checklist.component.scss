@@ -68,31 +68,25 @@
           box-shadow: 0 0 4px v.$grey_undertone;
           transition: ease 0.2s;
           min-width: 300px;
-          // width: 100%;
+
           padding: 20px 15px;
           border-radius: 15px;
           display: flex;
           align-items: center;
           justify-content: space-between;
 
-          &:hover {
-            opacity: 80%;
-          }
-
-          > div {
+          > button {
             display: flex;
             align-items: center;
             gap: 15px;
 
             color: v.$grey;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9rem;
-            // input {
-            //   color: v.$grey;
-            //   font-weight: 600;
-            //   outline: none;
-            //   border: none;
-            // }
+
+            &:hover {
+              opacity: 80%;
+            }
           }
 
           .checklist-color-indicator {
@@ -117,10 +111,10 @@
     }
 
     .content {
-      width: max-content;
       background-color: v.$soft_white;
       width: 100%;
       height: 100%;
+      padding: 25px;
 
       display: flex;
       flex-direction: column;
@@ -129,6 +123,13 @@
       padding: 0 25px;
       border-radius: 15px;
       box-shadow: 0 0 4px v.$grey_undertone;
+
+      .items-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
     }
   }
 }

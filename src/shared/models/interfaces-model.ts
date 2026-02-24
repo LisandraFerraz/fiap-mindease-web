@@ -51,11 +51,11 @@ export class Checklist {
   id: string;
   name: string;
   color: stickyNoteColor;
-  data: IChecklistItem[];
+  data: ChecklistItem[];
 }
 
-export interface IChecklistItem {
-  id: string;
-  description: string;
-  completed: boolean;
+export class ChecklistItem {
+  id: string = '';
+  description: string = '';
+  completed: boolean = false;
 }

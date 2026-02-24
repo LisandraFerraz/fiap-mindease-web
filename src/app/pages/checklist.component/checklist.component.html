@@ -12,18 +12,12 @@
         <div class="checklists-group">
           @for (checklist of checklistsData; track checklist) {
             <div class="checklist-btn">
-              <div>
+              <button (click)="setChecklistActive(checklist)">
                 <span [class]="['checklist-color-indicator', `${checklist.color}`]"></span>
                 <span>
                   {{ checklist.name }}
                 </span>
-                <!-- <input
-                  [(ngModel)]="checklist.name"
-                  type="text"
-                  name="checklist_name"
-                  id="checklist_name"
-                /> -->
-              </div>
+              </button>
               <button (click)="deleteChecklist(checklist.id)">
                 <mat-icon fontIcon="delete" />
               </button>
@@ -31,7 +25,28 @@
           }
         </div>
       </div>
-      <div class="content"></div>
+      <div class="content">
+        @if (checklistActive) {
+          <div class="content-header">
+            <input
+              [(ngModel)]="checklistActive.name"
+              (change)="updateChecklistName($event)"
+              type="text"
+            />
+          </div>
+          <div class="items-list">
+            <input-add-task [(value)]="checkItemBody.description" (addTask)="addChecklistItem()" />
+            @for (item of checklistActive.data; track item) {
+              <todo-card
+                [isCompleted]="item.completed"
+                (deleteItem)="deleteChecklistItem(item.id)"
+                (markAs)="atualizaChecklistItem(item)"
+                [description]="item.description"
+              />
+            }
+          </div>
+        }
+      </div>
     </div>
   </div>
 </sidenav>

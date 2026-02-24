@@ -19,7 +19,7 @@
     </div>
 
     <div class="to-do-list">
-      <input-add-task (changeEvent)="pomoItemBody.description = $event" (addTask)="addTask()" />
+      <input-add-task [(value)]="pomoItemBody.description" (addTask)="addTask()" />
       @for (item of pomodoroData; track item.id) {
         <todo-card
           [isCompleted]="item.completed"

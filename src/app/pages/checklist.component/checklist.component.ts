@@ -1,11 +1,10 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { InputAddTask } from '@components/input-add-task/input-add-task.component';
-import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { TodoCardComponent } from '@components/todo-card/todo-card.component';
 import { ChecklistService } from './checklist.service';
-import { Checklist, IChecklistResponse } from '@models/interfaces-model';
+import { Checklist, ChecklistItem, IChecklistResponse } from '@models/interfaces-model';
 import { FormsModule } from '@angular/forms';
 import { v4 as generateUID } from 'uuid';
 import { DatePipe } from '@angular/common';
@@ -14,14 +13,7 @@ import { ToastNotification } from '@services/toast-notification.service';
 
 @Component({
   selector: 'app-checklist.component',
-  imports: [
-    Sidenav,
-    MEInputTextComponent,
-    InputAddTask,
-    TodoCardComponent,
-    FormsModule,
-    MatIconModule,
-  ],
+  imports: [Sidenav, InputAddTask, TodoCardComponent, FormsModule, MatIconModule],
   providers: [provideNativeDateAdapter(), DatePipe],
   templateUrl: './checklist.component.html',
   styleUrl: './checklist.component.scss',
@@ -35,8 +27,10 @@ export class ChecklistComponent implements OnInit {
   checklistsData: Checklist[] = [];
 
   checklistBody = new Checklist();
-
+  checkItemBody = new ChecklistItem();
   todaysDate = new Date();
+
+  checklistActive: Checklist;
 
   ngOnInit(): void {
     this.listChecklists();
@@ -72,6 +66,28 @@ export class ChecklistComponent implements OnInit {
     });
   }
 
+  updateChecklistName(event: Event) {
+    const fieldValue = (event.target as HTMLInputElement).value;
+
+    if (fieldValue) {
+      let body = {
+        name: fieldValue,
+      };
+
+      this.checklistService.atualizaChecklist(this.checklistActive.id, body).subscribe({
+        next: (res: IChecklistResponse) => {
+          this.setChecklistActive(res.checklist[0]);
+          this.updateChanges(res.checklist);
+        },
+        error: (error) => {
+          console.log('AADASFS');
+          console.error(error);
+          this.toastNotif.toastError('Não foi possível recuperar as checklists.');
+        },
+      });
+    }
+  }
+
   deleteChecklist(checkId: string) {
     this.checklistService.deletaChecklist(checkId).subscribe({
       next: (res: IChecklistResponse) => {
@@ -84,8 +100,80 @@ export class ChecklistComponent implements OnInit {
     });
   }
 
+  deleteChecklistItem(id: string) {
+    this.checklistService.deletaChecklistItem(this.checklistActive.id, id).subscribe({
+      next: (res: IChecklistResponse) => {
+        this.updateChanges(res.checklist);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError('Não foi possível apagar a tarefa.');
+      },
+    });
+  }
+
+  atualizaChecklistItem(task: ChecklistItem) {
+    const body = {
+      ...task,
+      completed: !task.completed,
+    };
+    this.checklistService.atualizaChecklistItem(this.checklistActive.id, body).subscribe({
+      next: (res: IChecklistResponse) => {
+        this.updateChanges(res.checklist);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError('Não foi possível apagar a tarefa.');
+      },
+    });
+  }
+
+  addChecklistItem() {
+    const body: ChecklistItem = {
+      ...this.checkItemBody,
+      id: generateUID(),
+    };
+
+    this.checklistService.addChecklistItem(this.checklistActive.id, body).subscribe({
+      next: (res: IChecklistResponse) => {
+        this.updateChanges(res.checklist);
+
+        const findActive = res.checklist.find(
+          (cl) => cl.id === this.checklistActive.id,
+        ) as Checklist;
+
+        this.setChecklistActive(findActive);
+
+        this.cd.detectChanges();
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError('Não foi possível criar o item.');
+      },
+    });
+  }
+
   private updateChanges(data: Checklist[]) {
     this.checklistsData = data;
+
+    if (this.checklistActive) {
+      const findActive = data.find((cl) => cl.id === this.checklistActive.id) as Checklist;
+
+      findActive ? this.setChecklistActive(findActive) : this.setChecklistActive(data[0]);
+    } else {
+      this.setChecklistActive(data[0]);
+    }
+
     this.cd.detectChanges();
+  }
+
+  setChecklistActive(checklist: Checklist) {
+    this.checklistActive = checklist;
+    this.cd.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.checklistBody = new Checklist();
+    this.checkItemBody = new ChecklistItem();
   }
 }

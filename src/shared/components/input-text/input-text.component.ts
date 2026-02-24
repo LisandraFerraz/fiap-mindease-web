@@ -8,23 +8,18 @@ import { getMinDate } from '../../../app/pages/kanban/modal-kanban-item/modal-ka
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss',
 })
-export class MEInputTextComponent implements OnInit {
+export class MEInputTextComponent {
   @Input() type: 'text' | 'password' | 'date' = 'text';
-  @Input() value: string = '';
   @Input() label = '';
   @Input() inputId = '';
   @Input() placeholder = '';
   @Input() minDate = '';
-  @Output() changeEvent = new EventEmitter<string>();
-
-  ngOnInit(): void {
-    if (this.type === 'date') {
-      document.getElementById('vencimento')!.setAttribute('min', getMinDate());
-    }
-  }
+  @Input() value: string = '';
+  @Output() valueChange = new EventEmitter<string>();
 
   handleChange(event: Event) {
     const fieldValue = (event.target as HTMLInputElement).value;
-    this.changeEvent.emit(fieldValue);
+    this.value = fieldValue;
+    this.valueChange.emit(fieldValue);
   }
 }

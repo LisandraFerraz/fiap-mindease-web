@@ -1,6 +1,6 @@
 import {
   Checklist,
-  IChecklistItem,
+  ChecklistItem,
   IChecklistResponse,
 } from './../../../shared/models/interfaces-model';
 import { HttpClient } from '@angular/common/http';
@@ -22,14 +22,30 @@ export class ChecklistService {
   }
 
   atualizaChecklist(checklistId: string, body: Partial<Checklist>) {
-    return this.http.patch<IChecklistResponse>(`${endpoints.createChecklist}/${checklistId}`, body);
+    return this.http.patch<IChecklistResponse>(
+      `${endpoints.checklists}/atualiza-checklist/${checklistId}`,
+      body,
+    );
   }
 
   deletaChecklist(checkId: string) {
     return this.http.delete<IChecklistResponse>(`${endpoints.deleteChecklist}/${checkId}`);
   }
 
-  addChecklistItem(checkId: string, body: IChecklistItem) {
+  addChecklistItem(checkId: string, body: ChecklistItem) {
     return this.http.post<IChecklistResponse>(`${endpoints.checklists}/${checkId}/novo-item`, body);
+  }
+
+  atualizaChecklistItem(checklistId: string, body: ChecklistItem) {
+    return this.http.patch<IChecklistResponse>(
+      `${endpoints.atualizaChecklist}/${checklistId}/item/${body.id}`,
+      body,
+    );
+  }
+
+  deletaChecklistItem(checklistId: string, id: string) {
+    return this.http.delete<IChecklistResponse>(
+      `${endpoints.deleteChecklist}/${checklistId}/item/${id}`,
+    );
   }
 }

@@ -14,14 +14,14 @@
       @if (loginLayout) {
         <div animate.enter="fadein">
           <me-input-text
-            (changeEvent)="loginBody.email = $event"
+            [(value)]="loginBody.email"
             placeholder="seu@email.com"
             type="text"
             label="e-mail"
             inputId="email"
           />
           <me-input-text
-            (changeEvent)="loginBody.password = $event"
+            [(value)]="loginBody.password"
             placeholder="******"
             type="password"
             label="senha"
@@ -31,14 +31,14 @@
       } @else {
         <div animate.enter="fadein">
           <me-input-text
-            (changeEvent)="registerBody.nome = $event"
+            [(value)]="registerBody.nome"
             placeholder="seu nome"
             type="text"
             label="nome"
             inputId="name"
           />
           <me-input-text
-            (changeEvent)="registerBody.email = $event"
+            [(value)]="registerBody.email"
             placeholder="seu@email.com"
             type="text"
             label="e-mail"
@@ -46,14 +46,14 @@
           />
           <div class="row">
             <me-input-text
-              (changeEvent)="registerBody.password = $event"
+              [(value)]="registerBody.password"
               placeholder="******"
               type="password"
               label="senha"
               inputId="password"
             />
             <me-input-text
-              (changeEvent)="confirmPass = $event"
+              [(value)]="confirmPass"
               placeholder="******"
               type="password"
               label="repetir senha"
