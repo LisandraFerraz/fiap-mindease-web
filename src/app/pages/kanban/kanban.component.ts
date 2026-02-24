@@ -6,7 +6,7 @@ import { ToastNotification } from '@services/toast-notification.service';
 import { MatIcon } from '@angular/material/icon';
 import { KanbanCardComponent } from '@components/kanban-card/kanban-card.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalKanbanItemComponent } from './modal-kanban-item/modal-kanban-item.component/modal-kanban-item.component';
+import { ModalKanbanItemComponent } from './modal-kanban-item/modal-kanban-item.component';
 import {
   CdkDrag,
   CdkDropList,

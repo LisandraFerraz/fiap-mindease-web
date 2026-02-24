@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { ModalTemplateComponent } from '@components/modal-template/modal-template.component';
 import { IKanbanTodo, kanbanPriority, kanbanStatus } from '@models/interfaces-model';
-import { KanbanService } from '../../kanban.service';
+import { KanbanService } from '../kanban.service';
 import { ToastNotification } from '@services/toast-notification.service';
 import { v4 as generateUID } from 'uuid';
 import { MatDatepickerModule } from '@angular/material/datepicker';

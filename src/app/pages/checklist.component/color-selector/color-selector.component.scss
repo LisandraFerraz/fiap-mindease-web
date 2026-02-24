@@ -1,0 +1,12 @@
+@use 'variables' as v;
+@import 'accent_colors';
+
+.selector {
+  button {
+    padding: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 100px;
+    border: 1px solid v.$grey_undertone;
+  }
+}

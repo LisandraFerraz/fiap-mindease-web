@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { InputAddTask } from '@components/input-add-task/input-add-task.component';
 import { Sidenav } from '@components/sidenav/sidenav.component';
@@ -10,10 +10,18 @@ import { v4 as generateUID } from 'uuid';
 import { DatePipe } from '@angular/common';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ToastNotification } from '@services/toast-notification.service';
+import { ColorSelectorComponent } from './color-selector/color-selector.component';
 
 @Component({
   selector: 'app-checklist.component',
-  imports: [Sidenav, InputAddTask, TodoCardComponent, FormsModule, MatIconModule],
+  imports: [
+    Sidenav,
+    InputAddTask,
+    TodoCardComponent,
+    ColorSelectorComponent,
+    FormsModule,
+    MatIconModule,
+  ],
   providers: [provideNativeDateAdapter(), DatePipe],
   templateUrl: './checklist.component.html',
   styleUrl: './checklist.component.scss',
@@ -31,6 +39,8 @@ export class ChecklistComponent implements OnInit {
   todaysDate = new Date();
 
   checklistActive: Checklist;
+
+  isEditOff = signal(false);
 
   ngOnInit(): void {
     this.listChecklists();
@@ -76,8 +86,8 @@ export class ChecklistComponent implements OnInit {
 
       this.checklistService.atualizaChecklist(this.checklistActive.id, body).subscribe({
         next: (res: IChecklistResponse) => {
-          this.setChecklistActive(res.checklist[0]);
           this.updateChanges(res.checklist);
+          this.updateEdit();
         },
         error: (error) => {
           console.log('AADASFS');
@@ -170,6 +180,10 @@ export class ChecklistComponent implements OnInit {
   setChecklistActive(checklist: Checklist) {
     this.checklistActive = checklist;
     this.cd.detectChanges();
+  }
+
+  updateEdit() {
+    this.isEditOff.update((off) => !off);
   }
 
   ngOnDestroy(): void {

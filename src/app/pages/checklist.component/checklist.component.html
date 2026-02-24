@@ -27,12 +27,18 @@
       </div>
       <div class="content">
         @if (checklistActive) {
+          <span [class]="['top-border', `${checklistActive.color}`]"></span>
           <div class="content-header">
+            <button (click)="updateEdit()">
+              <mat-icon fontIcon="edit" />
+            </button>
             <input
-              [(ngModel)]="checklistActive.name"
+              [disabled]="isEditOff()"
+              [value]="checklistActive.name"
               (change)="updateChecklistName($event)"
               type="text"
             />
+            <color-selector />
           </div>
           <div class="items-list">
             <input-add-task [(value)]="checkItemBody.description" (addTask)="addChecklistItem()" />

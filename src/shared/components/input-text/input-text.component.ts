@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { getMinDate } from '../../../app/pages/kanban/modal-kanban-item/modal-kanban-item.component/utils/format-date';
+import { getMinDate } from '../../../app/pages/kanban/modal-kanban-item/utils/format-date';
 
 @Component({
   selector: 'me-input-text',

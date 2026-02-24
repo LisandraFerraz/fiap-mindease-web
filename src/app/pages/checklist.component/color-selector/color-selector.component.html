@@ -1,0 +1,7 @@
+<div class="selector" name="color-pick" id="color-pick">
+  @for (color of colors; track color) {
+    <button [class]="['option', `${color}`]" (click)="handleSelect(color)">
+      <!-- <span [class]="`${color}`">{{ ` ` }}</span> -->
+    </button>
+  }
+</div>
