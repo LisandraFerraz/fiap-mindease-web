@@ -1,0 +1,57 @@
+@use 'variables' as v;
+@import 'accent_colors';
+
+.card {
+  width: 325px;
+  height: 160px;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  position: relative;
+  height: 220px;
+  box-shadow: 0 0 4px v.$grey_undertone;
+
+  .header {
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+
+    input,
+    button {
+      background-color: transparent;
+      color: v.$grey;
+      border: none;
+      outline: none;
+      font-weight: 600;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .card-content {
+    padding: 0 25px;
+    display: flex;
+
+    textarea {
+      flex: 1;
+      resize: none;
+      color: v.$grey;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+  }
+
+  ::before {
+    content: '';
+    position: absolute;
+    background-color: #575757;
+    opacity: 10%;
+    top: 0;
+    right: 0;
+    height: 10px;
+    width: 375px;
+  }
+}

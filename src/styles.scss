@@ -17,6 +17,10 @@ ul {
   list-style: none;
 }
 
+* {
+  font-family: 'Inter', sans-serif;
+}
+
 :root {
   @include mat.datepicker-overrides(
     (

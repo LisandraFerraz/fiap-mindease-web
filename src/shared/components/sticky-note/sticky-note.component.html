@@ -1,4 +1,4 @@
-<div class="card">
+<div [class]="['card', `BG-${noteContent.color}`]">
   <div class="header">
     <input
       [value]="noteContent.title"
@@ -6,9 +6,7 @@
       type="text"
       class="card-title"
     />
-    <button (click)="handleDeleteNote()">
-      <mat-icon fontIcon="close" />
-    </button>
+    <button (click)="handleDeleteNote()">x</button>
   </div>
 
   <div class="card-content">
