@@ -1,34 +1,41 @@
 import { Routes } from '@angular/router';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { AuthGuard } from '../core/auth-guard.service';
-import { KanbanComponent } from './pages/kanban/kanban.component';
-import { ChecklistComponent } from './pages/checklist.component/checklist.component';
-import { StickyNotesComponent } from './pages/sticky-notes/sticky-notes.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
+    loadComponent: () =>
+      import('./pages/landing-page/landing-page.component').then((m) => m.LandingPageComponent),
   },
   {
     path: 'pomodoro',
-    component: PomodoroComponent,
+    loadComponent: () =>
+      import('./pages/pomodoro/pomodoro.component').then((m) => m.PomodoroComponent),
     canActivate: [AuthGuard],
   },
   {
     path: 'kanban',
-    component: KanbanComponent,
+    loadComponent: () => import('./pages/kanban/kanban.component').then((m) => m.KanbanComponent),
+    loadChildren: () =>
+      import('./pages/kanban/modal-kanban-item/modal-kanban-item.component').then(
+        (m) => m.ModalKanbanItemComponent,
+      ),
     canActivate: [AuthGuard],
   },
   {
     path: 'lista-de-tarefas',
-    component: ChecklistComponent,
+    loadComponent: () =>
+      import('./pages/checklist/checklist.component').then((m) => m.ChecklistComponent),
+    loadChildren: () =>
+      import('./pages/checklist/color-selector/color-selector.component').then(
+        (m) => m.ColorSelectorComponent,
+      ),
     canActivate: [AuthGuard],
   },
   {
     path: 'post-its',
-    component: StickyNotesComponent,
+    loadComponent: () =>
+      import('./pages/sticky-notes/sticky-notes.component').then((m) => m.StickyNotesComponent),
     canActivate: [AuthGuard],
   },
   // to-do: not found page
