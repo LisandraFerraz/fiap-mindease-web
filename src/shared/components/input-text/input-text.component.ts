@@ -13,7 +13,6 @@ export class MEInputTextComponent {
   @Input() label = '';
   @Input() inputId = '';
   @Input() placeholder = '';
-  @Input() minDate = '';
   @Input() value: string = '';
   @Output() valueChange = new EventEmitter<string>();
 

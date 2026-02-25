@@ -36,11 +36,20 @@ export class IKanbanTodo {
   description: string = '';
 }
 
-export interface IStickyNote {
-  id: string;
-  description: string;
-  createdAt: string;
-  color: stickyNoteColor;
+export interface IStickyNotesResponse {
+  stickyNotes: StickyNotesGroup[];
+}
+export class StickyNotesGroup {
+  id: string = '';
+  groupName: string = '';
+  data: StickyNote[] = [];
+}
+
+export class StickyNote {
+  id: string = '';
+  description: string = '';
+  title: string = '';
+  color: stickyNoteColor = 'BLUE';
 }
 
 export interface IChecklistResponse {

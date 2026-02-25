@@ -1,0 +1,53 @@
+<sidenav>
+  <div class="wrapper">
+    <span class="title"> Post-its </span>
+    <div class="container">
+      <div class="header">
+        <div class="sticky-groups-opt">
+          @for (group of listaStickyNotesGroup; track group) {
+            <input
+              [(ngModel)]="group.groupName"
+              (dblclick)="setIsEditable()"
+              (change)="updateStickyNoteName(group.id, group.groupName)"
+              type="text"
+              [class]="[
+                'group-selector',
+                group.id === activeStickyNoteGroup.id ? 'group-active-selector' : '',
+              ]"
+              (click)="setActiveGroup(group)"
+            />
+          }
+
+          <button (click)="createStickyNoteGroup()" class="group-add-btn">
+            <mat-icon fontIcon="add" />
+          </button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <div class="search-group">
+          <me-input-text
+            type="text"
+            inputId="search"
+            placeholder="Pesquisar anotação..."
+            [(value)]="keywordSeach"
+          />
+          <mat-icon fontIcon="search" />
+        </div>
+        <button (click)="addStickyNote()" class="group-add-btn">
+          <mat-icon fontIcon="add" />
+        </button>
+      </div>
+      <div class="notes-grid">
+        @if (activeStickyNoteGroup) {
+          @for (note of activeStickyNoteGroup.data; track note) {
+            <sticky-note
+              (deleteNote)="deleteStickyNote(note.id)"
+              (updateNote)="updateStickyNote($event, note.id)"
+              [noteContent]="note"
+            />
+          }
+        }
+      </div>
+    </div>
+  </div>
+</sidenav>

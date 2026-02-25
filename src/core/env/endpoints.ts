@@ -2,8 +2,6 @@ export const endpoints = {
   register: '/user/register',
   login: '/auth/login',
 
-  stickyNotes: '/tools/:id/sticky-note',
-
   pomodoro: '/tools/:id/pomodoro',
   addPomodoroTask: '/tools/:id/pomodoro/novo-pomodoro-todo',
   deletePomodoroTask: '/tools/:id/pomodoro/deleta-pomodoro-todo',
@@ -18,4 +16,8 @@ export const endpoints = {
   createChecklist: '/tools/:id/checklist/nova-checklist',
   atualizaChecklist: '/tools/:id/checklist/atualiza-checklist',
   deleteChecklist: '/tools/:id/checklist/deleta-checklist',
+
+  stickyNotes: '/tools/:id/sticky-notes',
+  createStickyNotesGroup: '/tools/:id/sticky-notes/novo-sticky-note-group',
+  deleteStickyNotesGroup: '/tools/:id/sticky-notes/deleta-sticky-note',
 };

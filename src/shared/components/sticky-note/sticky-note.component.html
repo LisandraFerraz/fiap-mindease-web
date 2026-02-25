@@ -1,3 +1,22 @@
-<p>
-  MEStickyNote works!
-</p>
+<div class="card">
+  <div class="header">
+    <input
+      [value]="noteContent.title"
+      (change)="handleEditNote('title', $event)"
+      type="text"
+      class="card-title"
+    />
+    <button (click)="handleDeleteNote()">
+      <mat-icon fontIcon="close" />
+    </button>
+  </div>
+
+  <div class="card-content">
+    <textarea
+      [value]="noteContent.description"
+      (change)="handleEditNote('description', $event)"
+      name="description"
+      id="description"
+    ></textarea>
+  </div>
+</div>

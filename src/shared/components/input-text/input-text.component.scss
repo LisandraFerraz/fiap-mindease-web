@@ -20,6 +20,7 @@ div {
     padding: 0 15px;
     transition: ease 0.2s;
     font-size: 0.8rem;
+    color: v.$grey;
 
     &[type='date'] {
       cursor: pointer;
