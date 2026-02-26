@@ -11,8 +11,4 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 })
 export class InterfaceOptionsComponent {
   @Input() componentData: IPreferenciasOptions;
-
-  ngOnInit(): void {
-    console.log(this.componentData);
-  }
 }

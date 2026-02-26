@@ -7,7 +7,7 @@
           <span>Antes de alterar seus dados, confirme sua senha atual abaixo.</span>
           <me-input-text [(value)]="passConfirm" placeholder="Digite aqui..." />
           <div class="row">
-            <me-button label="Confirmar" (clicked)="activateSection()" />
+            <me-button label="Confirmar" (clicked)="verificaSenha()" />
           </div>
         </section>
       }
@@ -30,7 +30,7 @@
             <me-input-text [(value)]="passConfirm" placeholder="Digite aqui..." />
           </div>
           <div class="row">
-            <me-button label="Salvar" (clicked)="activateSection()" />
+            <me-button label="Salvar" (clicked)="verificaSenha()" />
           </div>
         </section>
       }

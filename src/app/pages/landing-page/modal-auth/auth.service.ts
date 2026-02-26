@@ -46,4 +46,13 @@ export class AuthService {
   register(data: UsuarioRegister) {
     return this.http.post<IRegisterResponse>(`${endpoints.register}`, data);
   }
+
+  verificaSenha(pass: string) {
+    const userId = sessionStorage.getItem('usuarioId');
+    const passBody = {
+      password: pass,
+      usuarioId: userId,
+    };
+    return this.http.post<{ result: string }>(`${endpoints.verificaSenha}`, passBody);
+  }
 }

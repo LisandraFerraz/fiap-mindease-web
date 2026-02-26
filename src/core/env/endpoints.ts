@@ -1,6 +1,7 @@
 export const endpoints = {
   register: '/user/register',
   login: '/auth/login',
+  verificaSenha: '/auth/verifica-senha',
 
   pomodoro: '/tools/:id/pomodoro',
   addPomodoroTask: '/tools/:id/pomodoro/novo-pomodoro-todo',
