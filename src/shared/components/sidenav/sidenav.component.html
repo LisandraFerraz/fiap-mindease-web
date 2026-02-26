@@ -1,10 +1,10 @@
 <div class="container">
   <div class="sidenav-wrapper">
-    <span [class]="['btn-nav', isSidenavOpened() ? 'btn-close' : 'btn-open']">
+    <div [class]="['btn-nav', isSidenavOpened() ? 'btn-close' : 'btn-open']">
       <button (click)="setNavVisible()">
         <mat-icon [class.openMenu]="isSidenavOpened()" fontIcon="menu_open'" />
       </button>
-    </span>
+    </div>
     @if (isSidenavOpened()) {
       <div class="sidenav">
         <div class="top">
@@ -24,12 +24,16 @@
             </ul>
           </div>
           <span class="divisor"></span>
-          <div class="bottom">
+          <div class="bottom items">
             <span>
-              <a href="">
+              <a href="preferencias">
                 <mat-icon fontIcon="settings" />
                 Preferências</a
               >
+            </span>
+            <span (click)="logout()">
+              <mat-icon fontIcon="logout" />
+              Logout
             </span>
           </div>
         </div>

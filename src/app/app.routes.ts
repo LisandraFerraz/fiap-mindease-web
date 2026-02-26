@@ -16,26 +16,25 @@ export const routes: Routes = [
   {
     path: 'kanban',
     loadComponent: () => import('./pages/kanban/kanban.component').then((m) => m.KanbanComponent),
-    loadChildren: () =>
-      import('./pages/kanban/modal-kanban-item/modal-kanban-item.component').then(
-        (m) => m.ModalKanbanItemComponent,
-      ),
     canActivate: [AuthGuard],
   },
   {
     path: 'lista-de-tarefas',
     loadComponent: () =>
       import('./pages/checklist/checklist.component').then((m) => m.ChecklistComponent),
-    loadChildren: () =>
-      import('./pages/checklist/color-selector/color-selector.component').then(
-        (m) => m.ColorSelectorComponent,
-      ),
+
     canActivate: [AuthGuard],
   },
   {
     path: 'post-its',
     loadComponent: () =>
       import('./pages/sticky-notes/sticky-notes.component').then((m) => m.StickyNotesComponent),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'preferencias',
+    loadComponent: () =>
+      import('./pages/preferencias/preferencias.component').then((m) => m.PreferenciasComponent),
     canActivate: [AuthGuard],
   },
   // to-do: not found page

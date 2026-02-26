@@ -1,0 +1,21 @@
+@use 'variables' as v;
+
+.options-header {
+  width: 100%;
+  border-bottom: 1px solid v.$grey_undertone;
+  color: v.$grey;
+
+  .title {
+    font-weight: 600;
+    font-size: 1.125rem;
+  }
+  .subtitle {
+    margin: 15px 0 25px 0;
+    font-weight: 300;
+    font-size: 1rem;
+  }
+}
+
+.content {
+  margin-top: 25px;
+}

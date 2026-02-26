@@ -11,7 +11,6 @@ import { kanbanPriority, stickyNoteColor } from '@models/interfaces-model';
 
 @Component({
   selector: 'color-selector',
-  imports: [],
   templateUrl: './color-selector.component.html',
   styleUrl: './color-selector.component.scss',
 })

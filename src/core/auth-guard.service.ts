@@ -12,7 +12,7 @@ export class AuthGuard {
   canActivate(): boolean {
     if (!this.accessToken) {
       this.route.navigateByUrl('/');
-      return false;
+      false;
     }
     return true;
   }

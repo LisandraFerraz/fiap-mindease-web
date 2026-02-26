@@ -90,7 +90,8 @@
         }
 
         .active-route {
-          a {
+          a,
+          span {
             color: v.$grey;
             &:hover {
               opacity: 1;
@@ -100,7 +101,8 @@
           border-right: 4px solid v.$grey;
         }
 
-        a {
+        a,
+        span {
           display: inline-block;
           color: v.$grey_soft;
           font-size: 0.8rem;
@@ -116,6 +118,7 @@
           &:hover {
             opacity: 80%;
             border-right: 4px solid v.$grey_undertone;
+            cursor: pointer;
           }
         }
 
@@ -134,7 +137,7 @@
   }
 
   .content {
-    padding: 25px 45px 45px 315px;
+    padding: 25px 45px 45px 335px;
     overflow-x: hidden;
 
     @media screen and (max-width: 940px) {

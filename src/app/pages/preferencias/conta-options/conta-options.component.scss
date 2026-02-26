@@ -1,0 +1,48 @@
+@use 'variables' as v;
+
+.wrapper {
+  max-width: 600px;
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    > section {
+      p {
+        color: v.$grey;
+        font-weight: 600;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+      }
+      span {
+        display: inline-block;
+        color: v.$grey;
+        font-weight: 300;
+        font-size: 1rem;
+        margin-bottom: 15px;
+      }
+
+      .input {
+        padding-top: 25px;
+      }
+
+      li {
+        color: v.$grey;
+        font-weight: 300;
+
+        &:last-child {
+          margin-bottom: 25px;
+        }
+      }
+    }
+    // div:last-child {
+    //   margin-top: 35px;
+    // }
+  }
+}
+.row {
+  margin-top: 25px;
+  text-align: end;
+}

@@ -1,0 +1,19 @@
+<sidenav>
+  <div class="wrapper">
+    <span class="title"> Configurações do aplicativo </span>
+    <div class="options">
+      @for (preferencia of preferenciasConteudo; track preferencia) {
+        <button
+          [class.active-template-btn]="activeTemplate === preferencia.component"
+          (click)="selectConfigTemplate(preferencia.component, preferencia)"
+        >
+          {{ preferencia.navTitle }}
+        </button>
+      }
+    </div>
+
+    <div class="content">
+      <ng-container #config_template_selected></ng-container>
+    </div>
+  </div>
+</sidenav>

@@ -22,7 +22,7 @@ export class Sidenav {
 
   isFocusOn = this.focusMode.focusOn;
 
-  isSidenavOpened = signal(false);
+  isSidenavOpened = signal(true);
 
   get navItems(): INavItems[] {
     return [
@@ -65,5 +65,10 @@ export class Sidenav {
 
   isNavVisible() {
     return !this.isFocusOn() && this.isSidenavOpened();
+  }
+
+  logout() {
+    sessionStorage.clear();
+    this.route.navigate(['/']);
   }
 }
