@@ -18,6 +18,10 @@
             />
           }
 
+          @if (!listaStickyNotesGroup.length) {
+            <p class="empty-message">Criar novo grupo</p>
+          }
+
           <button (click)="createStickyNoteGroup()" class="group-add-btn">
             <mat-icon fontIcon="add" />
           </button>

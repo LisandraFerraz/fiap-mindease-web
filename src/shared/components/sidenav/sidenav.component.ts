@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { FocusModeService } from '../../services/focus-mode.service';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 interface INavItems {
   name: string;
@@ -12,7 +13,7 @@ interface INavItems {
 
 @Component({
   selector: 'sidenav',
-  imports: [MatIconModule],
+  imports: [MatIconModule, LoadingBarHttpClientModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
 })
