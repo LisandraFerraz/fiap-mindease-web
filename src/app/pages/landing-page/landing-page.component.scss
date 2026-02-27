@@ -1,12 +1,11 @@
 @use 'animations/enter-leave.animation' as *;
-@use 'variables' as v;
 
 .container {
   background-image: url('./../../../assets/landing-bg.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
-  color: v.$grey;
+  color: var(--text-color-dark);
 
   .content {
     display: flex;

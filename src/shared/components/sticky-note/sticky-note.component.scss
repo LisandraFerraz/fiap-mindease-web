@@ -1,4 +1,3 @@
-@use 'variables' as v;
 @import 'accent_colors';
 
 .card {
@@ -9,7 +8,7 @@
   overflow: hidden;
   position: relative;
   height: 220px;
-  box-shadow: 0 0 4px v.$grey_undertone;
+  box-shadow: 0 0 4px var(--shadow-grey-color);
 
   .header {
     padding: 25px;
@@ -19,7 +18,7 @@
     input,
     button {
       background-color: transparent;
-      color: v.$grey;
+      color: var(--text-color-dark);
       border: none;
       outline: none;
       font-weight: 600;
@@ -37,7 +36,7 @@
     textarea {
       flex: 1;
       resize: none;
-      color: v.$grey;
+      color: var(--text-color-dark);
       background-color: transparent;
       border: none;
       outline: none;

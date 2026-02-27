@@ -1,11 +1,9 @@
-@use 'variables' as v;
-
 .card {
   padding: 0 25px;
-  color: v.$grey_soft;
+  color: var(--text-color-light);
   font-weight: 600;
-  border: 1px solid v.$grey_undertone;
-  background-color: v.$all_white;
+  border: 1px solid var(--border-color-light);
+  background-color: var(--bg-color-base);
   border-radius: 10px;
   height: 45px;
   display: flex;
@@ -19,7 +17,7 @@
   }
 
   &:active {
-    box-shadow: 0 0 4px v.$grey;
+    box-shadow: 0 0 4px var(--shadow-dark-grey-color);
   }
 
   span {
@@ -38,7 +36,7 @@
     input[type='checkbox'] {
       height: 18px;
       width: 18px;
-      accent-color: v.$grey_soft;
+      accent-color: var(--text-color-light);
     }
   }
 
@@ -47,12 +45,12 @@
     border: none;
     outline: none;
     height: 25px;
-    color: v.$grey_soft;
+    color: var(--text-color-light);
     transition: ease 0.2s;
     cursor: pointer;
 
     &:hover {
-      color: v.$dark_red;
+      color: var(--color-dark-red);
     }
   }
 }

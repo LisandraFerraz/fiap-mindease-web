@@ -1,13 +1,11 @@
-@use 'variables' as v;
-
 .card {
-  background-color: v.$all_white;
+  background-color: var(--bg-color-base);
   border-radius: 15px;
-  box-shadow: 0 0 4px v.$grey_undertone;
+  box-shadow: 0 0 4px var(--shadow-grey-color);
   padding: 25px 20px;
   min-width: 275px;
   max-height: 160px;
-  color: v.$grey;
+  color: var(--text-color-dark);
 
   .top {
     display: flex;
@@ -22,16 +20,16 @@
       outline: none;
       border: none;
       transform: scale(0.8);
-      color: v.$grey_soft;
+      color: var(--text-color-light);
       transition: ease 0.2s;
 
       &:hover {
         cursor: pointer;
-        color: v.$grey;
+        color: var(--text-color-dark);
       }
 
       :first-child:hover {
-        color: v.$dark_red;
+        color: var(--color-dark-red);
       }
     }
   }
@@ -56,18 +54,18 @@
     }
 
     .BAIXO {
-      background-color: v.$light_green;
-      color: v.$dark_green;
+      background-color: var(--color-light-green);
+      color: var(--color-dark-green);
     }
 
     .MEDIO {
-      background-color: v.$light_yellow;
-      color: v.$dark_yellow;
+      background-color: var(--color-light-yellow);
+      color: var(--color-dark-yellow);
     }
 
     .ALTO {
-      background-color: v.$light_red;
-      color: v.$dark_red;
+      background-color: var(--color-light-red);
+      color: var(--color-dark-red);
     }
   }
 }

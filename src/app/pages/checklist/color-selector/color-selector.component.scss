@@ -1,9 +1,8 @@
-@use 'variables' as v;
 @import 'accent_colors';
 
 .selector {
   width: 100px;
-  background-color: v.$all_white;
+  background-color: var(--bg-color-base);
   width: 80px;
   position: relative;
 
@@ -17,12 +16,12 @@
     transition: ease 0.2s;
 
     &:not(:first-child) {
-      border-top: 0.8px solid v.$grey_undertone;
+      border-top: 0.8px solid var(--border-color-light);
     }
 
     &:hover {
       opacity: 80%;
-      background-color: v.$soft_white;
+      background-color: var(--bg-color-container);
     }
   }
 
@@ -38,7 +37,7 @@
   .option-selector {
     position: relative;
     display: inline-block;
-    box-shadow: 0 0 4px v.$grey_undertone;
+    box-shadow: 0 0 4px var(--shadow-grey-color);
 
     &::after {
       position: absolute;
@@ -67,12 +66,12 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    background-color: v.$all_white;
-    border: 1px solid v.$grey_undertone;
+    background-color: var(--bg-color-base);
+    border: 1px solid var(--border-color-light);
     position: absolute;
     width: 80px;
     z-index: 2;
-    box-shadow: 0 0 8px rgb(v.$grey_undertone, 50%);
+    box-shadow: 0 0 8px rgb(var(--shadow-grey-color), 50%);
 
     > button {
       .option {

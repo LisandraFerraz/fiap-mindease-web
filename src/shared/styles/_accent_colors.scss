@@ -1,21 +1,21 @@
 .BLUE {
-  background-color: v.$accent_blue;
+  background-color: var(--color-accent-blue);
 }
 
 .YELLOW {
-  background-color: v.$accent_yellow;
+  background-color: var(--color-accent-yellow);
 }
 
 .RED {
-  background-color: v.$accent_red;
+  background-color: var(--color-accent-red);
 }
 
 .GREEN {
-  background-color: v.$accent_green;
+  background-color: var(--color-accent-green);
 }
 
 .ORANGE {
-  background-color: v.$accent_orange;
+  background-color: var(--color-accent-orange);
 }
 
 // BG CLARO //
@@ -25,17 +25,17 @@
 }
 
 .BG-YELLOW {
-  background-color: v.$light_yellow;
+  background-color: var(--color-light-yellow);
 }
 
 .BG-RED {
-  background-color: v.$light_red;
+  background-color: var(--color-light-red);
 }
 
 .BG-GREEN {
-  background-color: v.$light_green;
+  background-color: var(--color-light-green);
 }
 
 .BG-ORANGE {
-  background-color: v.$light_green;
+  background-color: var(--color-light-green);
 }

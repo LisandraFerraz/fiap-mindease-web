@@ -1,5 +1,3 @@
-@use 'variables' as v;
-
 .wrapper {
   height: 100%;
   gap: 35px;
@@ -7,7 +5,7 @@
   flex-direction: column;
 
   > span.title {
-    color: v.$grey;
+    color: var(--text-color-dark);
     font-weight: 600;
     font-size: 1.2rem;
     padding-top: 60px;
@@ -21,12 +19,12 @@
     button {
       outline: none;
       border: none;
-      box-shadow: 0 0 8px v.$grey_undertone;
+      box-shadow: 0 0 8px var(--shadow-grey-color);
       font-weight: 600;
       padding: 10px;
       min-width: 150px;
-      background-color: v.$all_white;
-      color: v.$grey_soft;
+      background-color: var(--bg-color-base);
+      color: var(--text-color-light);
       opacity: 80%;
       border-radius: 10px;
       font-size: 1rem;
@@ -39,8 +37,8 @@
     }
 
     button.active-template-btn {
-      background-color: v.$baby_blue;
-      color: v.$grey;
+      background-color: var(--color-baby-blue);
+      color: var(--text-color-dark);
       opacity: 1;
     }
   }

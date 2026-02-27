@@ -1,22 +1,21 @@
 @use 'animations/enter-leave.animation' as *;
-@use 'variables' as v;
 
 div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  border: 2px dashed v.$grey_undertone;
+  border: 2px dashed var(--border-color-light);
   border-radius: 10px;
   height: 45px;
   padding: 0 15px;
   transition: ease 0.2s;
-  background-color: v.$all_white;
+  background-color: var(--bg-color-base);
   position: relative;
   padding: 0 25px;
 
   &:focus-within {
-    box-shadow: 0 0 8px v.$grey_undertone;
+    box-shadow: 0 0 8px var(--shadow-grey-color);
   }
 }
 
@@ -24,10 +23,10 @@ input {
   width: 100%;
   outline: none;
   border: none;
-  color: v.$grey;
+  color: var(--text-color-dark);
 
   &::placeholder {
-    color: v.$grey_undertone;
+    color: var(--text-color-opacity);
   }
 }
 
@@ -38,16 +37,16 @@ button {
   height: 25px;
 
   .icon {
-    color: v.$grey_soft;
+    color: var(--text-color-light);
     transition: 0.2s ease;
 
     &:hover {
-      color: v.$grey;
+      color: var(--text-color-dark);
       cursor: pointer;
     }
   }
 }
 button:disabled:hover {
   cursor: not-allowed;
-  color: v.$grey_soft !important;
+  color: var(--text-color-light) !important;
 }

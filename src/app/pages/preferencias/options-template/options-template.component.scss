@@ -1,10 +1,9 @@
 @use 'animations/enter-leave.animation' as *;
-@use 'variables' as v;
 
 .options-header {
   width: 100%;
-  border-bottom: 1px solid v.$grey_undertone;
-  color: v.$grey;
+  border-bottom: 1px solid var(--border-color-light);
+  color: var(--text-color-dark);
 
   .title {
     font-weight: 600;

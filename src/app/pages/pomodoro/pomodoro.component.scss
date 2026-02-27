@@ -1,7 +1,5 @@
-@use 'variables' as v;
-
 .container {
-  color: v.$grey;
+  color: var(--text-color-dark);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -50,7 +48,7 @@
         left: -50%;
 
         background-image: url('./../../../assets/pomodoro-bg.svg');
-        filter: drop-shadow(0 0 85px v.$dark_blue_shadow);
+        filter: drop-shadow(0 0 85px var(--shadow-dark-blue-color));
 
         background-size: contain;
         background-repeat: no-repeat;
