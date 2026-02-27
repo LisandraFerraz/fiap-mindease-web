@@ -18,7 +18,8 @@
     "paths": {
       "@components/*": ["./src/shared/components/*"],
       "@services/*": ["./src/shared/services/*"],
-      "@models/*": ["./src/shared/models/*"],
+      "@models/*": ["./src/shared/utils/models/*"],
+      "@types/*": ["./src/shared/utils/types/*"],
       "@core/*": ["./src/core/*"]
     }
   },

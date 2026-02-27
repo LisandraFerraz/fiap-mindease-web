@@ -3,7 +3,6 @@ import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, inject } from 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { ModalTemplateComponent } from '@components/modal-template/modal-template.component';
-import { IKanbanTodo, kanbanPriority, kanbanStatus } from '@models/interfaces-model';
 import { KanbanService } from '../kanban.service';
 import { ToastNotification } from '@services/toast-notification.service';
 import { v4 as generateUID } from 'uuid';
@@ -12,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { DatePipe } from '@angular/common';
+import { IKanbanTodo, kanbanPriority } from '@models/interfaces-model';
 
 @Component({
   imports: [

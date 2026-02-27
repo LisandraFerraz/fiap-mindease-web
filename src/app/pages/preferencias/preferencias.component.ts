@@ -1,21 +1,12 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  inject,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { IPreferenciasOptions, PreferenciasOptions } from './utils/preferencias-options';
 import { ConfigTemplates, TemplateSelectorMap } from './utils/template-selector-map';
 
 @Component({
   selector: 'app-preferencias.component',
-  imports: [MatSlideToggleModule, MEInputTextComponent, Sidenav],
+  imports: [MatSlideToggleModule, Sidenav],
   templateUrl: './preferencias.component.html',
   styleUrl: './preferencias.component.scss',
 })
@@ -23,11 +14,9 @@ export class PreferenciasComponent implements OnInit, OnDestroy {
   @ViewChild('config_template_selected', { read: ViewContainerRef, static: true })
   configTemplate: ViewContainerRef;
 
-  // private readonly cd = inject(ChangeDetectorRef);
-
   readonly preferenciasConteudo: IPreferenciasOptions[] = PreferenciasOptions;
 
-  activeTemplate: keyof typeof ConfigTemplates = 'conta-options';
+  activeTemplate: keyof typeof ConfigTemplates = 'interface-options';
 
   ngOnInit(): void {
     this.selectConfigTemplate(this.activeTemplate, this.preferenciasConteudo[1]);

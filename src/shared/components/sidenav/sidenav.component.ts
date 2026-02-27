@@ -23,7 +23,7 @@ export class Sidenav {
 
   isFocusOn = this.focusMode.focusOn;
 
-  isSidenavOpened = signal(true);
+  isSidenavOpened = signal(false);
 
   get navItems(): INavItems[] {
     return [

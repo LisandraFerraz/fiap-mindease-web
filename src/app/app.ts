@@ -8,5 +8,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.scss',
 })
 export class App {
+  constructor() {}
+
   protected readonly title = signal('fiap-mindease-web');
 }

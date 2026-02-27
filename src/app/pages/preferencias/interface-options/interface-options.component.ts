@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { OptionsTemplateComponent } from '../options-template/options-template.component';
 import { IPreferenciasOptions } from '../utils/preferencias-options';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ThemeModeService } from '@services/theme-service/theme-mode.service';
 
 @Component({
   selector: 'interface-options',
@@ -11,4 +12,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 })
 export class InterfaceOptionsComponent {
   @Input() componentData: IPreferenciasOptions;
+
+  themeMode = inject(ThemeModeService);
+
+  ngOnInit(): void {}
+
+  toggleTheme() {
+    this.themeMode.setTheme();
+  }
 }

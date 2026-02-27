@@ -1,8 +1,4 @@
-import {
-  Checklist,
-  ChecklistItem,
-  IChecklistResponse,
-} from './../../../shared/models/interfaces-model';
+import { Checklist, ChecklistItem, IChecklistResponse } from '@models/interfaces-model';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { endpoints } from '@core/env/endpoints';

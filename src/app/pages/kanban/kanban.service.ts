@@ -1,4 +1,4 @@
-import { IKanbanColumn, IKanbanTodo } from '@models//interfaces-model';
+import { IKanbanColumn, IKanbanTodo } from '@models/interfaces-model';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { endpoints } from '@core/env/endpoints';

@@ -1,6 +1,3 @@
-export type kanbanStatus = 'BACKLOG' | 'AFAZER' | 'ANDAMENTO' | 'CONCLUIDO';
-export type stickyNoteColor = 'BLUE' | 'YELLOW' | 'RED' | 'GREEN' | 'ORANGE';
-
 export enum kanbanPriority {
   BAIXO = 'baixo',
   MEDIO = 'médio',

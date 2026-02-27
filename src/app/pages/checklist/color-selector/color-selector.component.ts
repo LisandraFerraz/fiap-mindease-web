@@ -7,7 +7,7 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { kanbanPriority, stickyNoteColor } from '@models/interfaces-model';
+import { kanbanPriority } from '@models/interfaces-model';
 
 @Component({
   selector: 'color-selector',

@@ -32,7 +32,7 @@
             ],
             "styles": ["src/styles.scss", "@angular/material/prebuilt-themes/azure-blue.css"],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/shared/styles"]
+              "includePaths": ["src/shared/styles", "src/shared/styles/themes"]
             }
           },
           "configurations": {
