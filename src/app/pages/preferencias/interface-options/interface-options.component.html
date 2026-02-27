@@ -6,7 +6,7 @@
     </div>
     <div>
       <span>Modo escuro</span>
-      <mat-slide-toggle (change)="toggleTheme()" />
+      <mat-slide-toggle [checked]="currentTheme === 'dark-mode'" (change)="changeTheme()" />
     </div>
   </div>
 </options-template>

@@ -14,10 +14,9 @@ export class InterfaceOptionsComponent {
   @Input() componentData: IPreferenciasOptions;
 
   themeMode = inject(ThemeModeService);
+  currentTheme = this.themeMode.theme();
 
-  ngOnInit(): void {}
-
-  toggleTheme() {
-    this.themeMode.setTheme();
+  changeTheme() {
+    this.themeMode.toggleTheme();
   }
 }
