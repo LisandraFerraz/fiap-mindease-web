@@ -14,6 +14,13 @@
 
       @if (passwordConfirmed()) {
         <section>
+          <p>Alterar e-mail</p>
+          <div>
+            <me-input-text [(value)]="userBody.email" placeholder="Digite aqui..." />
+          </div>
+        </section>
+
+        <section>
           <p>Alterar senha</p>
           <span>Infrome uma senha com:</span>
           <ul>
@@ -21,16 +28,9 @@
             <li>- Deve conter pelo menos 1 (um) número</li>
             <li>- Deve conter pelo menos 1 (um) caractere especial</li>
           </ul>
-          <me-input-text [(value)]="passConfirm" placeholder="Digite aqui..." />
-        </section>
-
-        <section>
-          <p>Alterar e-mail</p>
-          <div>
-            <me-input-text [(value)]="passConfirm" placeholder="Digite aqui..." />
-          </div>
+          <me-input-text [(value)]="userBody.password" placeholder="Digite aqui..." />
           <div class="row">
-            <me-button label="Salvar" (clicked)="verificaSenha()" />
+            <me-button label="Salvar" (clicked)="updateUser()" />
           </div>
         </section>
       }

@@ -1,9 +1,11 @@
 import { AuthService } from './../../landing-page/modal-auth/auth.service';
 import { IPreferenciasOptions } from './../utils/preferencias-options';
-import { Component, inject, Input, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, OnInit, signal } from '@angular/core';
 import { OptionsTemplateComponent } from '../options-template/options-template.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { DefaultButtonComponent } from '@components/default-button/default-button.component';
+import { UsuarioLogin } from '@models/user-model';
+import { ToastNotification } from '@services/toast-notification.service';
 
 @Component({
   selector: 'conta-options',
@@ -11,14 +13,22 @@ import { DefaultButtonComponent } from '@components/default-button/default-butto
   templateUrl: './conta-options.component.html',
   styleUrl: './conta-options.component.scss',
 })
-export class ContaOptionsComponent {
+export class ContaOptionsComponent implements OnInit {
   private readonly authService = inject(AuthService);
+  private readonly toastNotif = inject(ToastNotification);
+  private readonly cd = inject(ChangeDetectorRef);
 
   @Input() componentData: IPreferenciasOptions;
 
   passwordConfirmed = signal(false);
-
   passConfirm: string = '';
+  userBody = new UsuarioLogin();
+  isPassValid = '';
+
+  ngOnInit(): void {
+    this.isPassValid = sessionStorage.getItem('validPassword') || '';
+    if (this.isPassValid == 'true') this.activateSection();
+  }
 
   activateSection() {
     this.passwordConfirmed.update((p) => (p = true));
@@ -27,13 +37,27 @@ export class ContaOptionsComponent {
   verificaSenha() {
     this.authService.verificaSenha(this.passConfirm).subscribe({
       next: (res: { result: string }) => {
-        console.log(res);
-
         const isValid = res.result === 'VALIDO';
         this.passwordConfirmed.update(() => isValid);
+
+        if (!this.isPassValid) sessionStorage.setItem('validPassword', 'true');
       },
       error: (error) => {
         console.error(error);
+      },
+    });
+  }
+
+  updateUser() {
+    this.authService.updateUser(this.userBody).subscribe({
+      next: (res) => {
+        this.toastNotif.toastSuccess(res.result);
+        this.userBody = new UsuarioLogin();
+
+        this.cd.detectChanges();
+      },
+      error: (err) => {
+        console.error(err);
       },
     });
   }

@@ -2,6 +2,7 @@ import {
   ChangeDetectorRef,
   Component,
   inject,
+  OnDestroy,
   OnInit,
   ViewChild,
   ViewContainerRef,
@@ -18,7 +19,7 @@ import { ConfigTemplates, TemplateSelectorMap } from './utils/template-selector-
   templateUrl: './preferencias.component.html',
   styleUrl: './preferencias.component.scss',
 })
-export class PreferenciasComponent implements OnInit {
+export class PreferenciasComponent implements OnInit, OnDestroy {
   @ViewChild('config_template_selected', { read: ViewContainerRef, static: true })
   configTemplate: ViewContainerRef;
 
@@ -42,5 +43,10 @@ export class PreferenciasComponent implements OnInit {
       const component = this.configTemplate.createComponent(findTemplate);
       component.setInput('componentData', data);
     }
+  }
+
+  ngOnDestroy(): void {
+    console.log('hsduahd');
+    sessionStorage.removeItem('validPassword');
   }
 }

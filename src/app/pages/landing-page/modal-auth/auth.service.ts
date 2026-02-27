@@ -55,4 +55,9 @@ export class AuthService {
     };
     return this.http.post<{ result: string }>(`${endpoints.verificaSenha}`, passBody);
   }
+
+  updateUser(data: Partial<UsuarioLogin>) {
+    const userid = sessionStorage.getItem('usuarioId');
+    return this.http.patch<{ result: string }>(`${endpoints.user}/${userid}`, data);
+  }
 }
