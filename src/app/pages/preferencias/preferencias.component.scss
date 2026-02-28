@@ -29,15 +29,16 @@
       border-radius: 10px;
       font-size: 1rem;
       transition: ease 0.2s;
+      opacity: 40%;
 
       &:hover {
         cursor: pointer;
-        opacity: 60%;
+        opacity: 1;
       }
     }
 
     button.active-template-btn {
-      background-color: var(--color-baby-blue);
+      background-color: var(--btn-bg-color-active);
       color: var(--text-color-dark);
       opacity: 1;
     }

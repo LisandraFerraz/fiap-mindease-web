@@ -3,6 +3,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { FocusModeService } from '../../services/focus-mode.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { SlicePipe } from '@angular/common';
+import { ThemeModeService } from '@services/theme-service/theme-mode.service';
 
 interface INavItems {
   name: string;
@@ -13,17 +15,18 @@ interface INavItems {
 
 @Component({
   selector: 'sidenav',
-  imports: [MatIconModule, LoadingBarHttpClientModule],
+  imports: [SlicePipe, MatIconModule, LoadingBarHttpClientModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
 })
 export class Sidenav {
   route = inject(Router);
   focusMode = inject(FocusModeService);
+  themeMode = inject(ThemeModeService);
 
   isFocusOn = this.focusMode.focusOn;
 
-  isSidenavOpened = signal(false);
+  isSidenavOpened = signal(true);
 
   get navItems(): INavItems[] {
     return [
@@ -51,6 +54,12 @@ export class Sidenav {
         icon: 'note',
         isActive: this.checkActiveRoute('post-its'),
       },
+      {
+        name: 'Preferências',
+        route: 'preferencias',
+        icon: 'settings',
+        isActive: this.checkActiveRoute('preferencias'),
+      },
     ];
   }
 
@@ -66,6 +75,11 @@ export class Sidenav {
 
   isNavVisible() {
     return !this.isFocusOn() && this.isSidenavOpened();
+  }
+
+  toggleTheme() {
+    console.log('el');
+    this.themeMode.toggleTheme();
   }
 
   logout() {

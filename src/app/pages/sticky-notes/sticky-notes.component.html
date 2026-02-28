@@ -5,17 +5,28 @@
       <div class="header">
         <div class="sticky-groups-opt">
           @for (group of listaStickyNotesGroup; track group) {
-            <input
-              [(ngModel)]="group.groupName"
-              (dblclick)="setIsEditable()"
-              (change)="updateStickyNoteName(group.id, group.groupName)"
-              type="text"
-              [class]="[
-                'group-selector',
-                group.id === activeStickyNoteGroup.id ? 'group-active-selector' : '',
-              ]"
-              (click)="setActiveGroup(group)"
-            />
+            <div class="sticky-groups-active-opt">
+              @if (group.id === activeStickyNoteGroup.id) {
+                <button
+                  class="group-add-btn"
+                  style="transform: scale(0.8)"
+                  (click)="deleteStickyNotesGroup()"
+                >
+                  <mat-icon fontIcon="close" />
+                </button>
+              }
+              <input
+                [(ngModel)]="group.groupName"
+                (dblclick)="setIsEditable()"
+                (change)="updateStickyNoteName(group.id, group.groupName)"
+                type="text"
+                [class]="[
+                  'group-selector',
+                  group.id === activeStickyNoteGroup.id ? 'group-active-selector' : '',
+                ]"
+                (click)="setActiveGroup(group)"
+              />
+            </div>
           }
 
           @if (!listaStickyNotesGroup.length) {

@@ -1,7 +1,8 @@
 @use 'animations/enter-leave.animation' as *;
 
 .container {
-  background-image: url('./../../../assets/landing-bg.png');
+  // background-image: url('./../../../assets/landing-bg.png');
+  background-image: var(--img-bg-lp-pattern);
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;

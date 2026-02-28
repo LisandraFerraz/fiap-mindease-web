@@ -110,6 +110,13 @@ export class StickyNotesComponent implements OnInit {
     );
   }
 
+  deleteStickyNotesGroup() {
+    this.subscribeObservable(
+      this.stickyService.deleteStickyNotesGroup(this.activeStickyNoteGroup.id),
+      'Não foi possível excluir o post-it.',
+    );
+  }
+
   updateChanges(data: StickyNotesGroup[]) {
     this.listaStickyNotesGroup = data;
 

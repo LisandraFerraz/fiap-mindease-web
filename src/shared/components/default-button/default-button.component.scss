@@ -21,12 +21,12 @@
 }
 
 .primary-btn {
-  background-color: #4f5162;
+  background-color: var(--btn-bg-color-primary);
   color: #fff;
 }
 
 .secondary-btn {
-  background-color: var(--bg-color-container);
+  background-color: var(--btn-bg-color-secondary);
   color: var(--text-color-light);
   box-shadow: 0 0 8px #00000034;
 }

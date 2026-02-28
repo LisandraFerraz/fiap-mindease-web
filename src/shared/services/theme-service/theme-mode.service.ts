@@ -12,8 +12,8 @@ export class ThemeModeService {
     effect(() => {
       localStorage.setItem('theme', this.theme());
 
-      document.body.classList.remove('light-mode', 'dark-mode');
-      document.body.classList.add(this.theme());
+      document.documentElement.classList.remove('light-mode', 'dark-mode');
+      document.documentElement.classList.add(this.theme());
     });
   }
 

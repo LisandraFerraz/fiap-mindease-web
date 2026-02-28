@@ -14,11 +14,15 @@ div {
     border: none;
     border-radius: 10px;
     height: 50px;
-    background-color: #f6f6f6;
+    background-color: var(--input-bg-color-primary);
     padding: 0 15px;
     transition: ease 0.2s;
     font-size: 0.8rem;
     color: var(--text-color-dark);
+
+    &::placeholder {
+      color: var(--text-color-opacity);
+    }
 
     &[type='date'] {
       cursor: pointer;
@@ -27,6 +31,7 @@ div {
     &:focus {
       outline: none;
       box-shadow: 0 0 8px #00000021;
+      background-color: var(--input-bg-color-bright);
     }
   }
 }

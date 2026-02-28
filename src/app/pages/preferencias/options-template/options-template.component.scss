@@ -3,16 +3,17 @@
 .options-header {
   width: 100%;
   border-bottom: 1px solid var(--border-color-light);
-  color: var(--text-color-dark);
 
   .title {
     font-weight: 600;
     font-size: 1.125rem;
+    color: var(--text-color-dark);
   }
   .subtitle {
     margin: 15px 0 25px 0;
     font-weight: 300;
     font-size: 1rem;
+    color: var(--text-color-light);
   }
 }
 

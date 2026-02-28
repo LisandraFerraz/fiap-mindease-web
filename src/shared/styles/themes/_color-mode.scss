@@ -1,7 +1,18 @@
 :root {
   --bg-color-base: #ffffff;
-  --bg-color-container: #fbfbfb;
+  --bg-color-container: #fff5f5;
   --bg-color-dark: #4f5162;
+
+  --bg-color-element-light: #ffffff;
+  --bg-color-element-contrast: #fff5f5;
+
+  --sidenv-bg-color: #ffffff;
+
+  --btn-bg-color-primary: #4f5162;
+  --btn-bg-color-secondary: #4f5162;
+
+  --input-btn-color-primary: #f6f6f6;
+  --btn-bg-color-active: #e8f0ff;
 
   --color-sky-blue: #b7d3f2;
   --color-baby-blue: #e8f0ff;
@@ -30,37 +41,54 @@
 
   --border-color-light: #cdcdcd;
   --border-color-dark: #4f5162;
+
+  --img-bg-lp-pattern: url(./../../../assets/landing-bg.png);
 }
 .dark-mode {
-  --bg-color-base: #3b393d;
+  --bg-color-base: #0a0a12;
   --bg-color-container: #7e7a7a;
   --bg-color-dark: #4f5162;
 
-  --color-sky-blue: #b7d3f2;
-  --color-baby-blue: #e8f0ff;
-  --color-dark-blue: #2f64c7;
-  --color-dark-green: #0f5310;
-  --color-light-green: #e1f7dd;
-  --color-dark-yellow: #81730c;
-  --color-light-yellow: #f7f4dd;
-  --color-dark-red: #4c1818;
-  --color-light-red: #f7e0dd;
-  --color-light-orange: #fbd6be;
+  --bg-color-element-light: #ffffff;
+  --bg-color-element-contrast: #0f0f1a;
 
-  --color-accent-blue: #b7d3f2;
+  --sidenv-bg-color: #0f0f1a;
+
+  --input-bg-color-primary: #3f3f51;
+  --input-bg-color-bright: #4e4e62;
+
+  --btn-bg-color-primary: #2e379c;
+  --btn-bg-color-secondary: #262630;
+  --btn-bg-color-primary-light: #414aaf;
+  --btn-bg-color-active: #3f3f51;
+
+  --color-sky-blue: #b7d3f2;
+  --color-dark-blue: #2f64c7;
+  --color-baby-blue: #4967b873;
+  --color-dark-green: #0f5310;
+  --color-light-green: #116225b2;
+  --color-dark-yellow: #81730c;
+  --color-light-yellow: #ece75fa4;
+  --color-dark-red: #4c1818;
+  --color-light-red: #4c1818cd;
+  --color-light-orange: #7a462bcd;
+
+  --color-accent-blue: #173251;
   --color-accent-yellow: #ffeaa4;
   --color-accent-red: #f1b9b9;
   --color-accent-green: #6db375;
   --color-accent-orange: #f3af81;
 
-  --text-color-dark: #4f5162;
-  --text-color-light: #888990;
-  --text-color-opacity: #cdcdcd;
+  --text-color-dark: #ffffff;
+  --text-color-light: #e7e5e5;
+  --text-color-opacity: #b1b1b1;
 
-  --shadow-grey-color: #cdcdcd;
+  --shadow-grey-color: #3d3a65;
   --shadow-dark-grey-color: #4f5162;
   --shadow-dark-blue-color: #2f64c7;
 
-  --border-color-light: #cdcdcd;
-  --border-color-dark: #4f5162;
+  --border-color-light: #272639;
+  --border-color-dark: #ffffff;
+
+  --img-bg-lp-pattern: url(./../../../assets/landing-bg.png);
 }
