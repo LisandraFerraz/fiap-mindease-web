@@ -5,12 +5,12 @@ import { effect, Injectable, signal } from '@angular/core';
 })
 export class ThemeModeService {
   public readonly theme = signal<ThemeMode>(
-    (localStorage.getItem('theme') as ThemeMode) ?? 'light-mode',
+    (sessionStorage.getItem('theme') as ThemeMode) ?? 'light-mode',
   );
 
   constructor() {
     effect(() => {
-      localStorage.setItem('theme', this.theme());
+      sessionStorage.setItem('theme', this.theme());
 
       document.documentElement.classList.remove('light-mode', 'dark-mode');
       document.documentElement.classList.add(this.theme());

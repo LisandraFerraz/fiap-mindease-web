@@ -47,7 +47,7 @@
         top: -150px;
         left: -50%;
 
-        background-image: url('./../../../assets/pomodoro-bg.svg');
+        background-image: var(--img-bg-pomodoro-pattern);
         filter: drop-shadow(0 0 85px var(--shadow-dark-blue-color));
 
         background-size: contain;
@@ -76,6 +76,10 @@
         outline: none;
         border: none;
         cursor: pointer;
+
+        .mat-icon {
+          color: var(--text-color-dark);
+        }
       }
 
       span:last-child {
@@ -107,7 +111,7 @@
 
   .time-options {
     position: absolute;
-    right: 0;
+    right: 125px;
     width: 180px;
     display: flex;
     flex-direction: column;
@@ -120,6 +124,7 @@
       flex-direction: row;
       justify-content: center;
       z-index: 2;
+      right: 0;
     }
   }
 }

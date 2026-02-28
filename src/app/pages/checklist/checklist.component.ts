@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ToastNotification } from '@services/toast-notification.service';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
+import { MEInputTextComponent } from '@components/input-text/input-text.component';
 
 @Component({
   selector: 'app-checklist.component',
@@ -21,6 +22,7 @@ import { ColorSelectorComponent } from './color-selector/color-selector.componen
     ColorSelectorComponent,
     FormsModule,
     MatIconModule,
+    MEInputTextComponent,
   ],
   providers: [provideNativeDateAdapter(), DatePipe],
   templateUrl: './checklist.component.html',

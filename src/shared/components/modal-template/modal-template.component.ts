@@ -1,9 +1,10 @@
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { DefaultButtonComponent } from '../default-button/default-button.component';
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'me-modal',
-  imports: [MatDialogModule, DefaultButtonComponent],
+  imports: [MatDialogModule, DefaultButtonComponent, MatIcon],
   templateUrl: './modal-template.component.html',
   styleUrl: './modal-template.component.scss',
 })

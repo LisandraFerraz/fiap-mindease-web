@@ -1,6 +1,14 @@
 import { AuthService } from './../../landing-page/modal-auth/auth.service';
 import { IPreferenciasOptions } from './../utils/preferencias-options';
-import { ChangeDetectorRef, Component, inject, Input, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  inject,
+  Input,
+  OnInit,
+  signal,
+  OnDestroy,
+} from '@angular/core';
 import { OptionsTemplateComponent } from '../options-template/options-template.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { DefaultButtonComponent } from '@components/default-button/default-button.component';
@@ -13,7 +21,7 @@ import { ToastNotification } from '@services/toast-notification.service';
   templateUrl: './conta-options.component.html',
   styleUrl: './conta-options.component.scss',
 })
-export class ContaOptionsComponent implements OnInit {
+export class ContaOptionsComponent implements OnInit, OnDestroy {
   private readonly authService = inject(AuthService);
   private readonly toastNotif = inject(ToastNotification);
   private readonly cd = inject(ChangeDetectorRef);
@@ -26,7 +34,8 @@ export class ContaOptionsComponent implements OnInit {
   isPassValid = '';
 
   ngOnInit(): void {
-    this.isPassValid = sessionStorage.getItem('validPassword') || '';
+    console.log('hi');
+    this.isPassValid = localStorage.getItem('validPassword') || '';
     if (this.isPassValid == 'true') this.activateSection();
   }
 
@@ -40,7 +49,7 @@ export class ContaOptionsComponent implements OnInit {
         const isValid = res.result === 'VALIDO';
         this.passwordConfirmed.update(() => isValid);
 
-        if (!this.isPassValid) sessionStorage.setItem('validPassword', 'true');
+        if (!this.isPassValid) localStorage.setItem('validPassword', 'true');
       },
       error: (error) => {
         console.error(error);
@@ -60,5 +69,9 @@ export class ContaOptionsComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem('validPassword');
   }
 }

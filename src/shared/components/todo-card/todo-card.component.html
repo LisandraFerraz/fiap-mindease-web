@@ -1,5 +1,5 @@
-<div class="card">
-  <span [class.completed]="isCompleted" (click)="handleClick()">
+<div [class.completed]="isCompleted" class="card">
+  <span (click)="handleClick()">
     <input id="description" [checked]="isCompleted" type="checkbox" />
     {{ description }}</span
   >

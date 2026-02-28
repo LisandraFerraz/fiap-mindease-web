@@ -21,5 +21,5 @@ export const endpoints = {
 
   stickyNotes: '/tools/:id/sticky-notes',
   createStickyNotesGroup: '/tools/:id/sticky-notes/novo-sticky-note-group',
-  deleteStickyNotesGroup: '/tools/:id/sticky-notes/deleta-sticky-note',
+  deleteStickyNotesGroup: '/tools/:id/sticky-notes/deleta-grupo-sticky-note',
 };

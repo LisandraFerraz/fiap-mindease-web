@@ -31,15 +31,19 @@
                 {{ navItems[4].name }}</a
               >
             </span>
+
             <span (click)="logout()">
               <mat-icon fontIcon="logout" />
               Logout
             </span>
-            <span (click)="toggleTheme()">
-              <mat-icon fontIcon="logout" />
-              Toggle theme
-            </span>
           </div>
+
+          <span class="divisor"> </span>
+
+          <span (click)="toggleTheme()">
+            <mat-icon fontIcon="contrast_circle" />
+            Toggle theme
+          </span>
         </div>
       </div>
     }

@@ -44,6 +44,7 @@
         padding: 35px 0;
         display: flex;
         align-items: center;
+        gap: 15px;
         justify-content: left;
         width: 100%;
         font-weight: 600;
@@ -56,6 +57,10 @@
           height: 25px;
           background-color: transparent;
           transition: ease 0.2s;
+
+          .mat-icon {
+            color: var(--text-color-dark);
+          }
 
           &:hover {
             cursor: pointer;

@@ -7,15 +7,16 @@ div {
 
   border: 2px dashed var(--border-color-light);
   border-radius: 10px;
+  background-color: var(--input-bg-color-primary);
   height: 45px;
   padding: 0 15px;
   transition: ease 0.2s;
-  background-color: var(--bg-color-base);
   position: relative;
   padding: 0 25px;
 
   &:focus-within {
     box-shadow: 0 0 8px var(--shadow-grey-color);
+    background-color: var(--input-bg-color-bright);
   }
 }
 
@@ -24,6 +25,7 @@ input {
   outline: none;
   border: none;
   color: var(--text-color-dark);
+  background-color: transparent;
 
   &::placeholder {
     color: var(--text-color-opacity);

@@ -111,9 +111,12 @@ export class StickyNotesComponent implements OnInit {
   }
 
   deleteStickyNotesGroup() {
+    const updateActive = () => this.setActiveGroup(this.listaStickyNotesGroup[0]);
+
     this.subscribeObservable(
       this.stickyService.deleteStickyNotesGroup(this.activeStickyNoteGroup.id),
       'Não foi possível excluir o post-it.',
+      updateActive,
     );
   }
 
@@ -134,9 +137,14 @@ export class StickyNotesComponent implements OnInit {
     this.cd.detectChanges();
   }
 
-  subscribeObservable(obs: Observable<IStickyNotesResponse>, errorMsg: string) {
+  subscribeObservable(
+    obs: Observable<IStickyNotesResponse>,
+    errorMsg: string,
+    todoSuccess?: () => void,
+  ) {
     obs.subscribe({
       next: (res: IStickyNotesResponse) => {
+        if (todoSuccess) todoSuccess();
         this.updateChanges(res.stickyNotes);
       },
       error: (error) => {

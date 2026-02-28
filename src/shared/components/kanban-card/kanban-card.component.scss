@@ -1,5 +1,5 @@
 .card {
-  background-color: var(--bg-color-element-light);
+  background-color: var(--input-bg-color-primary);
   border-radius: 15px;
   box-shadow: 0 0 4px var(--shadow-grey-color);
   padding: 25px 20px;
@@ -54,18 +54,18 @@
     }
 
     .BAIXO {
-      background-color: var(--color-light-green);
-      color: var(--color-dark-green);
+      background-color: var(--tag-bg-color-green);
+      color: var(--tag-text-color-green);
     }
 
     .MEDIO {
-      background-color: var(--color-light-yellow);
-      color: var(--color-dark-yellow);
+      background-color: var(--tag-bg-color-yellow);
+      color: var(--tag-text-color-yellow);
     }
 
     .ALTO {
-      background-color: var(--color-light-red);
-      color: var(--color-dark-red);
+      background-color: var(--tag-bg-color-red);
+      color: var(--tag-text-color-red);
     }
   }
 }

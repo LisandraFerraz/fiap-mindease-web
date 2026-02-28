@@ -1,6 +1,6 @@
 :root {
   --bg-color-base: #ffffff;
-  --bg-color-container: #fff5f5;
+  --bg-color-container: #fdfdfd;
   --bg-color-dark: #4f5162;
 
   --bg-color-element-light: #ffffff;
@@ -9,10 +9,19 @@
   --sidenv-bg-color: #ffffff;
 
   --btn-bg-color-primary: #4f5162;
-  --btn-bg-color-secondary: #4f5162;
+  --btn-bg-color-secondary: #f1f1f1;
 
   --input-btn-color-primary: #f6f6f6;
+
+  --input-bg-color-primary: #f6f6f6;
   --btn-bg-color-active: #e8f0ff;
+
+  --tag-bg-color-green: #e1f7dd;
+  --tag-text-color-green: #0f5310;
+  --tag-bg-color-yellow: #f7f4dd;
+  --tag-text-color-yellow: #81730c;
+  --tag-bg-color-red: #f7e0dd;
+  --tag-text-color-red: #4c1818;
 
   --color-sky-blue: #b7d3f2;
   --color-baby-blue: #e8f0ff;
@@ -43,13 +52,14 @@
   --border-color-dark: #4f5162;
 
   --img-bg-lp-pattern: url(./../../../assets/landing-bg.png);
+  --img-bg-pomodoro-pattern: url('./../../../assets/pomodoro-bg.svg');
 }
 .dark-mode {
   --bg-color-base: #0a0a12;
-  --bg-color-container: #7e7a7a;
+  --bg-color-container: #342d446e;
   --bg-color-dark: #4f5162;
 
-  --bg-color-element-light: #ffffff;
+  --bg-color-element-light: #342d446e;
   --bg-color-element-contrast: #0f0f1a;
 
   --sidenv-bg-color: #0f0f1a;
@@ -73,6 +83,13 @@
   --color-light-red: #4c1818cd;
   --color-light-orange: #7a462bcd;
 
+  --tag-bg-color-green: #44b115fb;
+  --tag-text-color-green: #202821;
+  --tag-bg-color-yellow: #bcbf0e;
+  --tag-text-color-yellow: #080805a4;
+  --tag-bg-color-red: #b02020;
+  --tag-text-color-red: #f7f5f5;
+
   --color-accent-blue: #173251;
   --color-accent-yellow: #ffeaa4;
   --color-accent-red: #f1b9b9;
@@ -85,10 +102,11 @@
 
   --shadow-grey-color: #3d3a65;
   --shadow-dark-grey-color: #4f5162;
-  --shadow-dark-blue-color: #2f64c7;
+  --shadow-dark-blue-color: #3d3a65;
 
   --border-color-light: #272639;
   --border-color-dark: #ffffff;
 
   --img-bg-lp-pattern: url(./../../../assets/landing-bg.png);
+  --img-bg-pomodoro-pattern: url('./../../../assets/dark-pomodoro-bg.svg');
 }

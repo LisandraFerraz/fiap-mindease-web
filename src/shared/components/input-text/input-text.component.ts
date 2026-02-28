@@ -14,6 +14,8 @@ export class MEInputTextComponent {
   @Input() inputId = '';
   @Input() placeholder = '';
   @Input() value: string = '';
+  @Input() disabled: boolean = false;
+  @Input() class: string = '';
   @Output() valueChange = new EventEmitter<string>();
 
   handleChange(event: Event) {

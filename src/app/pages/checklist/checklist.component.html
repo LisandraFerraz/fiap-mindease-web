@@ -33,12 +33,19 @@
               <button (click)="updateEdit()">
                 <mat-icon fontIcon="edit" />
               </button>
-              <input
+              <me-input-text
+                class="disabled"
+                [disabled]="isEditOff()"
+                [(value)]="checklistActive.name"
+                (valueChange)="updateChecklistDetails('name', $event)"
+                [inputId]="checklistActive.id"
+              />
+              <!-- <input
                 [disabled]="isEditOff()"
                 [value]="checklistActive.name"
                 (change)="updateChecklistDetails('name', $event)"
                 type="text"
-              />
+              /> -->
             </div>
             <color-selector
               [activeColor]="checklistActive.color"

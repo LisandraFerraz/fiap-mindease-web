@@ -1,6 +1,6 @@
 .container {
   background-color: var(--bg-color-base);
-  padding: 15px 45px;
+  padding: 25px 45px 15px 45px;
 
   .top {
     text-align: right;
@@ -9,6 +9,10 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
+
+      .mat-icon {
+        color: var(--text-color-dark);
+      }
     }
   }
 

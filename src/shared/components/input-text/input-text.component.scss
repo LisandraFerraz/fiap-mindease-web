@@ -28,6 +28,10 @@ div {
       cursor: pointer;
     }
 
+    &:disabled {
+      background-color: transparent !important;
+    }
+
     &:focus {
       outline: none;
       box-shadow: 0 0 8px #00000021;
