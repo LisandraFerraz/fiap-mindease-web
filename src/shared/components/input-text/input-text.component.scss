@@ -3,11 +3,15 @@ div {
   flex-direction: column;
   gap: 10px;
 
-  label {
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 0.7rem;
-    color: var(--text-color-dark);
+  .label {
+    display: block;
+
+    label {
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.7rem;
+      color: var(--text-color-dark);
+    }
   }
 
   input {
@@ -37,5 +41,15 @@ div {
       box-shadow: 0 0 8px #00000021;
       background-color: var(--input-bg-color-bright);
     }
+  }
+
+  .error-input {
+    box-shadow: 0 0 2px var(--text-color-error);
+  }
+
+  .error-msg {
+    font-size: 0.65rem;
+    color: var(--text-color-error);
+    font-weight: 500;
   }
 }

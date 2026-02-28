@@ -1,5 +1,5 @@
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DefaultButtonComponent } from '../default-button/default-button.component';
 import { MatIcon } from '@angular/material/icon';
 @Component({
@@ -10,6 +10,8 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class ModalTemplateComponent {
   constructor(private modal: MatDialog) {}
+
+  @Input() disabled: boolean = false;
 
   @Output() closeEvent = new EventEmitter<void>();
   @Output() clickConfirm = new EventEmitter<void>();

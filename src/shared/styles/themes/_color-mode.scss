@@ -43,6 +43,7 @@
   --text-color-dark: #4f5162;
   --text-color-light: #888990;
   --text-color-opacity: #cdcdcd;
+  --text-color-error: #a61818;
 
   --shadow-grey-color: #cdcdcd;
   --shadow-dark-grey-color: #4f5162;
@@ -99,6 +100,7 @@
   --text-color-dark: #ffffff;
   --text-color-light: #e7e5e5;
   --text-color-opacity: #b1b1b1;
+  --text-color-error: #f53232;
 
   --shadow-grey-color: #3d3a65;
   --shadow-dark-grey-color: #4f5162;
@@ -107,6 +109,6 @@
   --border-color-light: #272639;
   --border-color-dark: #ffffff;
 
-  --img-bg-lp-pattern: url(./../../../assets/landing-bg.png);
+  --img-bg-lp-pattern: url(./../../../assets/dark-landing-bg.png);
   --img-bg-pomodoro-pattern: url('./../../../assets/dark-pomodoro-bg.svg');
 }

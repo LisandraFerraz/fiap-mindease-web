@@ -1,4 +1,8 @@
-<me-modal animate.enter="fadein" (clickConfirm)="sendReq()">
+<me-modal
+  animate.enter="fadein"
+  [disabled]="isAuthValid === false || registerBody.password !== confirmPass"
+  (clickConfirm)="sendReq()"
+>
   <em class="icone"></em>
 
   <div class="modal-body">
@@ -15,13 +19,22 @@
         <div animate.enter="fadein">
           <me-input-text
             [(value)]="loginBody.email"
+            (valueChange)="checkValidation()"
+            [errorMsg]="loginBody.email && !checkEmailValid(loginBody.email) ? '(inválido)' : ''"
             placeholder="seu@email.com"
             type="text"
             label="e-mail"
             inputId="email"
+            [class]="[]"
           />
           <me-input-text
             [(value)]="loginBody.password"
+            (valueChange)="checkValidation()"
+            [errorMsg]="
+              loginBody.password && loginBody.password.length < 6
+                ? '(deve conter de 6 caracteres)'
+                : ''
+            "
             placeholder="******"
             type="password"
             label="senha"
@@ -32,6 +45,12 @@
         <div animate.enter="fadein">
           <me-input-text
             [(value)]="registerBody.nome"
+            (valueChange)="checkValidation()"
+            [errorMsg]="
+              registerBody.nome && registerBody.nome.length < 3
+                ? '(deve conter de 3 caracteres)'
+                : ''
+            "
             placeholder="seu nome"
             type="text"
             label="nome"
@@ -39,27 +58,42 @@
           />
           <me-input-text
             [(value)]="registerBody.email"
+            (valueChange)="checkValidation()"
+            [errorMsg]="
+              registerBody.email && !checkEmailValid(registerBody.email)
+                ? '(deve conter de 3 caracteres)'
+                : ''
+            "
             placeholder="seu@email.com"
             type="text"
             label="e-mail"
             inputId="email"
           />
-          <div class="row">
-            <me-input-text
-              [(value)]="registerBody.password"
-              placeholder="******"
-              type="password"
-              label="senha"
-              inputId="password"
-            />
-            <me-input-text
-              [(value)]="confirmPass"
-              placeholder="******"
-              type="password"
-              label="repetir senha"
-              inputId="password"
-            />
-          </div>
+          <me-input-text
+            [(value)]="registerBody.password"
+            (valueChange)="checkValidation()"
+            [errorMsg]="
+              registerBody.password && registerBody.password.length < 6
+                ? '(deve conter de 6 caracteres)'
+                : ''
+            "
+            placeholder="******"
+            type="password"
+            label="senha"
+            inputId="password"
+          />
+          <me-input-text
+            [(value)]="confirmPass"
+            [errorMsg]="
+              registerBody.password && confirmPass && registerBody.password !== confirmPass
+                ? '(senhas não são iguais)'
+                : ''
+            "
+            placeholder="******"
+            type="password"
+            label="repetir senha"
+            inputId="password"
+          />
         </div>
       }
     </div>

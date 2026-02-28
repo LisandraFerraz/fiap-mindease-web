@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ModalTemplateComponent } from '@components/modal-template/modal-template.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
+import { isAuthFormValid, isEmailValid } from '@functions/validate-auth';
 
 @Component({
   imports: [CommonModule, ModalTemplateComponent, MEInputTextComponent],
@@ -24,6 +25,8 @@ export class ModalAuthComponent {
     positionClass: 'toast-bottom-center',
   };
 
+  isAuthValid: boolean = false;
+
   constructor(
     private authService: AuthService,
     private toastNotif: ToastrService,
@@ -34,9 +37,23 @@ export class ModalAuthComponent {
     this.loginLayout = !this.loginLayout;
   }
 
+  checkValidation() {
+    const activeForm = this.loginLayout ? this.loginBody : this.registerBody;
+
+    const isAuthValid = isAuthFormValid(activeForm);
+    this.isAuthValid = isAuthValid;
+  }
+
+  checkEmailValid(email: string) {
+    return isEmailValid(email);
+  }
+
   sendReq() {
     if (this.loginLayout) {
-      this.authService.login(this.loginBody);
+      if (this.isAuthValid) {
+        this.authService.login(this.loginBody);
+      } else {
+      }
     } else {
       this.authService.register(this.registerBody).subscribe({
         next: (res: IRegisterResponse) => {

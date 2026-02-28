@@ -14,6 +14,12 @@ export class LandingPageComponent implements OnDestroy {
 
   isModalOpen = signal(false);
 
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.openModal();
+  }
+
   openModal() {
     this.isModalOpen.update(() => true);
     this.dialog

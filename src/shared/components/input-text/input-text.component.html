@@ -1,6 +1,13 @@
 <div>
   @if (label) {
-    <label [for]="inputId">{{ label }}</label>
+    <div class="label">
+      <label [for]="inputId">{{ label }}</label>
+      @if (errorMsg) {
+        <span class="error-msg">
+          {{ errorMsg }}
+        </span>
+      }
+    </div>
   }
   <input
     (input)="handleChange($event)"
@@ -9,6 +16,6 @@
     [type]="type"
     [placeholder]="placeholder"
     [disabled]="disabled"
-    [class]="class"
+    [class]="[class, errorMsg ? 'error-input' : '']"
   />
 </div>

@@ -19,6 +19,7 @@
       "@components/*": ["./src/shared/components/*"],
       "@services/*": ["./src/shared/services/*"],
       "@models/*": ["./src/shared/utils/models/*"],
+      "@functions/*": ["./src/shared/utils/functions/*"],
       "@types/*": ["./src/shared/utils/types/*"],
       "@core/*": ["./src/core/*"]
     }

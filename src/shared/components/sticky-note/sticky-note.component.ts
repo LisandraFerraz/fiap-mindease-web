@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
 import { StickyNote } from '@models/interfaces-model';
 
 @Component({
   selector: 'sticky-note',
-  imports: [MatIcon],
   templateUrl: './sticky-note.component.html',
   styleUrls: ['./sticky-note.component.scss'],
 })

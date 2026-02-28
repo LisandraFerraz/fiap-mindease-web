@@ -34,7 +34,7 @@
                 <mat-icon fontIcon="edit" />
               </button>
               <me-input-text
-                class="disabled"
+                [class]="['disabled']"
                 [disabled]="isEditOff()"
                 [(value)]="checklistActive.name"
                 (valueChange)="updateChecklistDetails('name', $event)"

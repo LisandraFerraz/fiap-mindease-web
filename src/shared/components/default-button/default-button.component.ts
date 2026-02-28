@@ -11,6 +11,7 @@ export class DefaultButtonComponent {
   @Input() label = '';
   @Input() customClass = '';
   @Input() color: 'primary' | 'secondary' = 'primary';
+  @Input() disabled: boolean = false;
   @Output() clicked = new EventEmitter<void>();
 
   handleClick() {

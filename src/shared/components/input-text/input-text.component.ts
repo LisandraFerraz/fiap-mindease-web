@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { getMinDate } from '../../../app/pages/kanban/modal-kanban-item/utils/format-date';
 
 @Component({
   selector: 'me-input-text',
@@ -15,7 +14,8 @@ export class MEInputTextComponent {
   @Input() placeholder = '';
   @Input() value: string = '';
   @Input() disabled: boolean = false;
-  @Input() class: string = '';
+  @Input() class: string[] = [''];
+  @Input() errorMsg: string = '';
   @Output() valueChange = new EventEmitter<string>();
 
   handleChange(event: Event) {

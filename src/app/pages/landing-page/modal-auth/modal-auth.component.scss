@@ -37,12 +37,13 @@
       border-radius: 15px 15px 0 0;
 
       border: 1px solid var(--border-color-light);
+      color: var(--text-color-dark);
       border-bottom: none;
     }
 
     .btn-inactive {
       background-color: transparent;
-      color: var(--text-color-light);
+      color: var(--text-color-opacity);
     }
   }
 
