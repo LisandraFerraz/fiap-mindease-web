@@ -31,7 +31,7 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
   private readonly kanbanService = inject(KanbanService);
   private readonly dialog = inject(MatDialog);
   private readonly datePipe = inject(DatePipe);
-  private cd = inject(ChangeDetectorRef);
+  private readonly cd = inject(ChangeDetectorRef);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public modalData: { data: IKanbanTodo; columnName: kanbanStatus },
@@ -47,28 +47,27 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.modalData.data) {
+      console.log(this.modalData.data);
       this.bodyItem = this.modalData.data;
+      // this.bodyItem.dueDate = this.datePipe.transform;
+
       this.columnName = this.bodyItem.status;
       this.isEditModal = true;
     } else {
       this.bodyItem.status = this.modalData.columnName;
     }
+  }
 
-    console.log(this.bodyItem.priority);
+  showDate() {
+    console.log('duedate :: ', this.bodyItem.dueDate);
   }
 
   handleConfirm() {
     if (this.isEditModal) {
       if (this.bodyItem.dueDate) {
-        const date = this.datePipe.transform(this.bodyItem.dueDate, 'dd/MM/yyyy');
-
-        this.bodyItem = {
-          ...this.bodyItem,
-          dueDate: String(date),
-        };
-
         this.kanbanService.updateKanbanItem(this.bodyItem).subscribe({
           next: () => {
+            this.cd.detectChanges();
             this.dialog.closeAll();
           },
           error: (error) => {

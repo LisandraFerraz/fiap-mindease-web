@@ -12,7 +12,7 @@
       label="descrição"
       inputId="descricao"
       placeholder="Adicione detalhes"
-      [value]="bodyItem.description"
+      [(value)]="bodyItem.description"
     />
     <div class="row">
       <div class="prioSelector input-group">
@@ -28,6 +28,7 @@
         <mat-form-field>
           <input
             placeholder="dd-mm-aaaa"
+            (dateChange)="showDate()"
             [(ngModel)]="bodyItem.dueDate"
             [min]="minDate"
             matInput

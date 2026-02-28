@@ -24,9 +24,7 @@
                 <kanban-card
                   cdkDrag
                   [cdkDragData]="item"
-                  [title]="item.title"
-                  [priority]="item.priority"
-                  [description]="item.description"
+                  [data]="item"
                   (deleteItem)="deleteKanbanItem(item.id)"
                   (openModal)="openModal('', item)"
                 />

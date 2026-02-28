@@ -1,7 +1,7 @@
 .card {
-  background-color: var(--input-bg-color-primary);
+  background-color: var(--bg-color-card);
   border-radius: 15px;
-  box-shadow: 0 0 4px var(--shadow-grey-color);
+  box-shadow: 0 0 8px var(--shadow-grey-color);
   padding: 25px 20px;
   min-width: 275px;
   max-height: 160px;
@@ -36,6 +36,8 @@
 
   .description {
     margin: 15px 0;
+    color: var(--text-color-light);
+    font-weight: 300;
 
     span {
       font-size: 0.8rem;
@@ -43,13 +45,20 @@
   }
 
   .bottom {
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    span {
+    .daysleft-count {
+      font-size: 0.6rem;
+    }
+
+    .tag {
       text-transform: capitalize;
-      padding: 5px 45px;
       border-radius: 100px;
       font-size: 0.8rem;
+      padding: 5px 45px;
+
       font-weight: 600;
     }
 

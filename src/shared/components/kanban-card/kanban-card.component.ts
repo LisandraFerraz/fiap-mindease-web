@@ -1,6 +1,7 @@
+import { COMMA, L } from '@angular/cdk/keycodes';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { kanbanPriority } from '@models/interfaces-model';
+import { IKanbanTodo, kanbanPriority } from '@models/interfaces-model';
 
 @Component({
   selector: 'kanban-card',
@@ -9,11 +10,11 @@ import { kanbanPriority } from '@models/interfaces-model';
   styleUrls: ['./kanban-card.component.scss'],
 })
 export class KanbanCardComponent {
-  @Input() title: string = '';
-  @Input() description: string = '';
-  @Input() priority: keyof typeof kanbanPriority;
+  @Input() data: IKanbanTodo;
   @Output() deleteItem = new EventEmitter<void>();
   @Output() openModal = new EventEmitter<void>();
+
+  // daysLeft: number = 0;
 
   handleDelete() {
     this.deleteItem.emit();
@@ -23,12 +24,10 @@ export class KanbanCardComponent {
     this.openModal.emit();
   }
 
-  ngOnInit(): void {
-    const result = this.getPriority('MEDIO');
-  }
+  ngOnInit(): void {}
 
-  getPriority(prioridade: keyof typeof kanbanPriority) {
-    const value = kanbanPriority[prioridade];
+  getPriority() {
+    const value = kanbanPriority[this.data.priority];
 
     const mapPriority = {
       [kanbanPriority.BAIXO]: 'baixo',
@@ -37,5 +36,30 @@ export class KanbanCardComponent {
     };
 
     return mapPriority[value];
+  }
+
+  get daysLeft() {
+    let message = '';
+    const today = new Date();
+    const dueDate = new Date(this.data.dueDate);
+
+    var ndays;
+    var tv1 = today.valueOf();
+    var tv2 = dueDate.valueOf();
+
+    ndays = (tv2 - tv1) / 1000 / 86400;
+    ndays = Math.round(ndays + 2);
+
+    switch (ndays) {
+      case 1:
+        message = 'Vence hoje!';
+        break;
+
+      default:
+        message = `Restam ${ndays} dias`;
+        break;
+    }
+
+    return message;
   }
 }

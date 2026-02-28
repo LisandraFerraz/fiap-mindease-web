@@ -1,6 +1,6 @@
 <div class="card">
   <div class="top">
-    <span>{{ title }}</span>
+    <span>{{ data.title }}</span>
     <div class="buttons">
       <button (click)="handleDelete()">
         <mat-icon fontIcon="delete" />
@@ -12,10 +12,11 @@
   </div>
   <div class="description">
     <span>
-      {{ description }}
+      {{ data.description }}
     </span>
   </div>
   <div class="bottom">
-    <span [class]="priority">{{ getPriority(priority) }}</span>
+    <span class="daysleft-count">{{ daysLeft }}</span>
+    <span [class]="[data.priority, 'tag']">{{ getPriority() }}</span>
   </div>
 </div>
