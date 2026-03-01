@@ -57,6 +57,7 @@
   --img-bg-pomodoro-pattern: url('./../../../assets/pomodoro-bg.svg');
   --img-bg-empty-notes: url('./../../../assets/light-empty-notes-list.png');
   --img-bg-empty-todo: url('./../../../assets/light-empty-todo-list.png');
+  --img-bg-page-not-found: url('./../../../assets/light-not-found-bg.png');
 }
 .dark-mode {
   --bg-color-base: #0a0a12;
@@ -117,4 +118,5 @@
   --img-bg-pomodoro-pattern: url('./../../../assets/dark-pomodoro-bg.svg');
   --img-bg-empty-notes: url('./../../../assets/dark-empty-notes-list.png');
   --img-bg-empty-todo: url('./../../../assets/dark-empty-todo-list.png');
+  --img-bg-page-not-found: url('./../../../assets/dark-not-found-bg.png');
 }

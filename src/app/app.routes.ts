@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from '../core/auth-guard.service';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -37,10 +38,12 @@ export const routes: Routes = [
       import('./pages/preferencias/preferencias.component').then((m) => m.PreferenciasComponent),
     canActivate: [AuthGuard],
   },
-  // to-do: not found page
+  {
+    path: 'pagina-nao-encontrada',
+    component: NotFoundComponent,
+  },
   {
     path: '**',
-    redirectTo: '',
-    pathMatch: 'full',
+    redirectTo: 'pagina-nao-encontrada',
   },
 ];

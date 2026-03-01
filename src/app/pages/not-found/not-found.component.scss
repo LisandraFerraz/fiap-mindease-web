@@ -1,0 +1,15 @@
+.not-found-bg {
+  background-image: var(--img-bg-page-not-found);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100vh;
+
+  display: flex;
+  align-items: end;
+  justify-content: center;
+
+  .bottom {
+    padding-bottom: 5%;
+  }
+}
