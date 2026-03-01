@@ -1,7 +1,7 @@
 @import 'accent_colors';
 
 .wrapper {
-  height: 100%;
+  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -216,6 +216,22 @@
 
         overflow-y: auto;
         overflow-x: hidden;
+
+        .empty-content {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          margin-top: 25px;
+
+          .empty-list {
+            background-image: var(--img-bg-empty-todo);
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 250px;
+            height: 250px;
+          }
+        }
       }
 
       @media screen and (max-width: 940px) {

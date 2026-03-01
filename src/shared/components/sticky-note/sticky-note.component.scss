@@ -1,56 +1,77 @@
 @import 'accent_colors';
 
 .card {
-  width: 325px;
-  height: 160px;
+  min-width: 300px;
+  max-width: 650px;
+  width: fit-content;
+  // height: 160px;
   border-radius: 15px;
   position: relative;
   overflow: hidden;
   position: relative;
-  height: 220px;
   box-shadow: 0 0 4px var(--shadow-grey-color);
+  resize: horizontal;
 
-  .header {
-    padding: 25px;
-    display: flex;
-    justify-content: space-between;
+  .wrapper {
+    margin: 25px;
 
-    input,
-    button {
-      background-color: transparent;
-      color: var(--text-color-dark);
-      border: none;
-      outline: none;
-      font-weight: 600;
+    .header {
+      display: flex;
+      justify-content: space-between;
 
-      &:hover {
-        cursor: pointer;
+      input,
+      button {
+        background-color: transparent;
+        color: var(--text-color-dark);
+        border: none;
+        outline: none;
+        font-weight: 600;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .card-title {
+        box-sizing: border-box;
+        field-sizing: content;
       }
     }
-  }
 
-  .card-content {
-    padding: 0 25px;
-    display: flex;
+    .card-content {
+      display: flex;
 
-    textarea {
-      flex: 1;
-      resize: none;
-      color: var(--text-color-dark);
-      background-color: transparent;
-      border: none;
-      outline: none;
+      textarea {
+        margin: 15px 0;
+        width: 100%;
+        height: max-content;
+        inline-size: 150px;
+        flex: 1;
+        overflow-wrap: break-word;
+        field-sizing: content;
+        resize: none;
+        color: var(--text-color-dark);
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
     }
-  }
 
-  ::before {
-    content: '';
-    position: absolute;
-    background-color: #575757;
-    opacity: 10%;
-    top: 0;
-    right: 0;
-    height: 10px;
-    width: 375px;
+    .card-bottom {
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--text-color-opacity);
+    }
+
+    ::before {
+      content: '';
+      position: absolute;
+      background-color: #575757;
+      opacity: 10%;
+      top: 0;
+      right: 0;
+      height: 10px;
+      width: 100%;
+    }
   }
 }

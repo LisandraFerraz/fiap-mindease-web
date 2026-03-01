@@ -4,6 +4,11 @@ export enum kanbanPriority {
   ALTO = 'alto',
 }
 
+export interface IStickyNoteSizing {
+  width: number;
+  height: number;
+}
+
 export class PomodoroTodo {
   id: string = '';
   description: string = '';

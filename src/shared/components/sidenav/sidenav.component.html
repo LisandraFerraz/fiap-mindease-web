@@ -50,7 +50,7 @@
   </div>
 
   <div [class]="[isSidenavOpened() ? 'content' : 'content-focused']" style="width: 100%">
-    <ngx-loading-bar height="5px" color="#2f64c7" />
+    <ngx-loading-bar [includeSpinner]="false" height="5px" color="#2f64c7" />
     <ng-content />
   </div>
 </div>

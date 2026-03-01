@@ -119,6 +119,23 @@
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
+
+      .empty-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 25px;
+
+        .empty-list {
+          background-image: var(--img-bg-empty-notes);
+          background-repeat: no-repeat;
+          background-size: cover;
+          width: 200px;
+          height: 200px;
+          opacity: 80%;
+        }
+      }
     }
   }
 }

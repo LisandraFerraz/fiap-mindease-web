@@ -2,7 +2,12 @@ import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/c
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { StickyNoteComponent } from '@components/sticky-note/sticky-note.component';
 import { StickyNotesService } from './sticky-notes.service';
-import { IStickyNotesResponse, StickyNote, StickyNotesGroup } from '@models/interfaces-model';
+import {
+  IStickyNoteSizing,
+  IStickyNotesResponse,
+  StickyNote,
+  StickyNotesGroup,
+} from '@models/interfaces-model';
 import { ToastNotification } from '@services/toast-notification.service';
 import { Observable } from 'rxjs';
 import { v4 as generateUID } from 'uuid';

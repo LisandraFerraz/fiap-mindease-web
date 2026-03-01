@@ -48,13 +48,19 @@
           </div>
           <div class="items-list">
             <input-add-task [(value)]="checkItemBody.description" (addTask)="addChecklistItem()" />
-            @for (item of checklistActive.data; track item) {
-              <todo-card
-                [isCompleted]="item.completed"
-                (deleteItem)="deleteChecklistItem(item.id)"
-                (markAs)="atualizaChecklistItem(item)"
-                [description]="item.description"
-              />
+            @if (checklistActive.data.length) {
+              @for (item of checklistActive.data; track item) {
+                <todo-card
+                  [isCompleted]="item.completed"
+                  (deleteItem)="deleteChecklistItem(item.id)"
+                  (markAs)="atualizaChecklistItem(item)"
+                  [description]="item.description"
+                />
+              }
+            } @else {
+              <div class="empty-content">
+                <div class="empty-list"></div>
+              </div>
             }
           </div>
         }

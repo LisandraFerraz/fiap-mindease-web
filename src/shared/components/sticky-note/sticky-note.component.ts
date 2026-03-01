@@ -1,18 +1,34 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { StickyNote } from '@models/interfaces-model';
 
 @Component({
   selector: 'sticky-note',
+  imports: [FormsModule],
   templateUrl: './sticky-note.component.html',
   styleUrls: ['./sticky-note.component.scss'],
 })
 export class StickyNoteComponent implements OnInit {
+  @ViewChild('checkresize') divResizable: ElementRef<HTMLDivElement>;
+
   @Input() noteContent: StickyNote;
   @Output() deleteNote = new EventEmitter<void>();
-  @Output() updateNote = new EventEmitter<{ fieldName: string; fieldValue: string }>();
+  @Output() updateNote = new EventEmitter<{
+    fieldName: string;
+    fieldValue: string;
+  }>();
 
   title: string;
   description: string;
+  resizeObserver: ResizeObserver;
 
   ngOnInit() {
     this.title = this.noteContent.title;

@@ -1,20 +1,27 @@
 <div [class]="['card', `BG-${noteContent.color}`]">
-  <div class="header">
-    <input
-      [value]="noteContent.title"
-      (change)="handleEditNote('title', $event)"
-      type="text"
-      class="card-title"
-    />
-    <button (click)="handleDeleteNote()">x</button>
-  </div>
+  <div class="wrapper">
+    <div class="header">
+      <input
+        [value]="noteContent.title"
+        (change)="handleEditNote('title', $event)"
+        type="text"
+        class="card-title"
+      />
+      <button (click)="handleDeleteNote()">x</button>
+    </div>
 
-  <div class="card-content">
-    <textarea
-      [value]="noteContent.description"
-      (change)="handleEditNote('description', $event)"
-      name="description"
-      id="description"
-    ></textarea>
+    <div class="card-content">
+      <textarea
+        [value]="noteContent.description"
+        (change)="handleEditNote('description', $event)"
+        [(ngModel)]="noteContent.description"
+        name="description"
+        id="description"
+        maxlength="200"
+      ></textarea>
+    </div>
+    <div class="card-bottom">
+      {{ `${noteContent.description.length}/200` }}
+    </div>
   </div>
 </div>
