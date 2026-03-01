@@ -51,12 +51,10 @@ export class KanbanComponent implements OnInit, OnDestroy {
       status: newColumnId,
     } as IKanbanTodo;
 
-    this.kanbanService.updateKanbanItem(body).subscribe({
-      error: (error) => {
-        console.error('listKanbanItems :: ', error);
-        this.toastNotif.toastError('Não foi possível salvar suas alterações.');
-      },
-    });
+    this.subscribeObservable(
+      this.kanbanService.updateKanbanItem(body),
+      'Não foi possível salvar suas alterações.',
+    );
   }
 
   openModal(columnId?: string, data?: IKanbanTodo) {

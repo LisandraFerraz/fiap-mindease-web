@@ -1,4 +1,4 @@
-<div class="card">
+<div [class]="['card', data.status === 'CONCLUIDO' ? 'task-done' : '']">
   <div class="top">
     <span>{{ data.title }}</span>
     <div class="buttons">

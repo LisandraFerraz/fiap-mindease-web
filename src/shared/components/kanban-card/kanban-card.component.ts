@@ -1,5 +1,13 @@
 import { COMMA, L } from '@angular/cdk/keycodes';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { IKanbanTodo, kanbanPriority } from '@models/interfaces-model';
 
@@ -13,8 +21,6 @@ export class KanbanCardComponent {
   @Input() data: IKanbanTodo;
   @Output() deleteItem = new EventEmitter<void>();
   @Output() openModal = new EventEmitter<void>();
-
-  // daysLeft: number = 0;
 
   handleDelete() {
     this.deleteItem.emit();
@@ -40,24 +46,29 @@ export class KanbanCardComponent {
 
   get daysLeft() {
     let message = '';
-    const today = new Date();
-    const dueDate = new Date(this.data.dueDate);
 
-    var ndays;
-    var tv1 = today.valueOf();
-    var tv2 = dueDate.valueOf();
+    const exceptionDue = ['CONCLUIDO', 'BACKLOG'];
 
-    ndays = (tv2 - tv1) / 1000 / 86400;
-    ndays = Math.round(ndays + 2);
+    if (!exceptionDue.includes(this.data.status)) {
+      const today = new Date();
+      const dueDate = new Date(this.data.dueDate);
 
-    switch (ndays) {
-      case 1:
-        message = 'Vence hoje!';
-        break;
+      var ndays;
+      var tv1 = today.valueOf();
+      var tv2 = dueDate.valueOf();
 
-      default:
-        message = `Restam ${ndays} dias`;
-        break;
+      ndays = (tv2 - tv1) / 1000 / 86400;
+      ndays = Math.round(ndays + 2);
+
+      switch (ndays) {
+        case 1:
+          message = 'Vence hoje!';
+          break;
+
+        default:
+          message = `Restam ${ndays} dias`;
+          break;
+      }
     }
 
     return message;
