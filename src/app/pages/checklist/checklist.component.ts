@@ -105,10 +105,13 @@ export class ChecklistComponent implements OnInit {
   }
 
   atualizaChecklistItem(task: ChecklistItem) {
+    const today = new Date();
     const body = {
       ...task,
+      lastUpdated: today,
       completed: !task.completed,
     };
+
     this.subscribeObservable(
       this.checklistService.atualizaChecklistItem(this.checklistActive.id, body),
       'Não foi possível atualizar a tarefa.',
@@ -116,8 +119,11 @@ export class ChecklistComponent implements OnInit {
   }
 
   addChecklistItem() {
+    const today = new Date();
+
     const body: ChecklistItem = {
       ...this.checkItemBody,
+      lastUpdated: today,
       id: generateUID(),
     };
 
@@ -130,7 +136,7 @@ export class ChecklistComponent implements OnInit {
         ) as Checklist;
 
         this.setChecklistActive(findActive);
-
+        this.checkItemBody.description = '';
         this.cd.detectChanges();
       },
       error: (error) => {

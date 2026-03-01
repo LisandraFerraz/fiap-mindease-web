@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputTemplateComponent } from '@components/input-template/input-template.component';
 
 @Component({
   selector: 'me-input-text',
-  imports: [FormsModule, InputTemplateComponent],
+  imports: [FormsModule, CommonModule, InputTemplateComponent],
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss',
 })
@@ -18,6 +19,7 @@ export class MEInputTextComponent {
   @Input() class: string[] = [''];
   @Input() errorMsg: string = '';
   @Input() required: boolean;
+  @Input() maxLen: number;
   @Output() valueChange = new EventEmitter<string>();
 
   handleChange(event: Event) {

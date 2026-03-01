@@ -69,4 +69,5 @@ export class ChecklistItem {
   id: string = '';
   description: string = '';
   completed: boolean = false;
+  lastUpdated: Date;
 }

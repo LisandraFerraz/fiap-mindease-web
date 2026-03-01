@@ -58,7 +58,7 @@ export class KanbanCardComponent {
       var tv2 = dueDate.valueOf();
 
       ndays = (tv2 - tv1) / 1000 / 86400;
-      ndays = Math.round(ndays + 2);
+      ndays = Math.round(ndays + 1);
 
       switch (ndays) {
         case 1:
