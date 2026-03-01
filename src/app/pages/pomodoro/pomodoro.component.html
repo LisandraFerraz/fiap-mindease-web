@@ -1,9 +1,13 @@
 <sidenav>
   <div class="container">
     <div class="time-options">
-      <me-button (clicked)="setStep('FIRSTROUND')" color="primary" label="Trabalho" />
-      <me-button (clicked)="setStep('SHORTBREAK')" color="secondary" label="Pausa 5min" />
-      <me-button (clicked)="setStep('LONGBREAK')" color="secondary" label="Pausa 15min" />
+      @for (step of buttonOptions; track step) {
+        <me-button
+          (clicked)="setStep(step.step)"
+          [color]="currentStep === step.step ? 'primary' : 'secondary'"
+          [label]="step.label"
+        />
+      }
     </div>
     <div class="timer-wrapper">
       <div [class]="classes">

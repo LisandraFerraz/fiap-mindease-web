@@ -12,15 +12,17 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import { IKanbanTodo, kanbanPriority } from '@models/interfaces-model';
+import { InputSelectComponent } from '@components/input-select/input-select.component';
+import { hasEmptyValues } from '@functions/validate-empty-values';
+import { InputDatePickerComponent } from '@components/input-date-picker/input-date-picker.component';
 
 @Component({
   imports: [
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
     ModalTemplateComponent,
     MEInputTextComponent,
+    InputSelectComponent,
+    InputDatePickerComponent,
   ],
   providers: [provideNativeDateAdapter(), DatePipe],
   templateUrl: './modal-kanban-item.component.html',
@@ -30,7 +32,6 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
   private readonly toastNotif = inject(ToastNotification);
   private readonly kanbanService = inject(KanbanService);
   private readonly dialog = inject(MatDialog);
-  private readonly datePipe = inject(DatePipe);
   private readonly cd = inject(ChangeDetectorRef);
 
   constructor(
@@ -43,13 +44,15 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
   prioValues = kanbanPriority;
 
   isEditModal = false;
-  minDate = new Date();
+
+  priorityList = Object.keys(kanbanPriority);
+  formHasEmptyValues: boolean = true;
 
   ngOnInit(): void {
+    console.log(this.formHasEmptyValues);
     if (this.modalData.data) {
-      console.log(this.modalData.data);
+      this.formHasEmptyValues = false;
       this.bodyItem = this.modalData.data;
-      // this.bodyItem.dueDate = this.datePipe.transform;
 
       this.columnName = this.bodyItem.status;
       this.isEditModal = true;
@@ -58,24 +61,18 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  showDate() {
-    console.log('duedate :: ', this.bodyItem.dueDate);
-  }
-
   handleConfirm() {
     if (this.isEditModal) {
-      if (this.bodyItem.dueDate) {
-        this.kanbanService.updateKanbanItem(this.bodyItem).subscribe({
-          next: () => {
-            this.cd.detectChanges();
-            this.dialog.closeAll();
-          },
-          error: (error) => {
-            console.error(error);
-            this.toastNotif.toastError('Não foi possível atualizar a tarefa.');
-          },
-        });
-      }
+      this.kanbanService.updateKanbanItem(this.bodyItem).subscribe({
+        next: () => {
+          this.cd.detectChanges();
+          this.dialog.closeAll();
+        },
+        error: (error) => {
+          console.error(error);
+          this.toastNotif.toastError('Não foi possível atualizar a tarefa.');
+        },
+      });
     } else {
       const body = {
         ...this.bodyItem,
@@ -91,6 +88,12 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
         },
       });
     }
+  }
+
+  checkValidation() {
+    const { id, status, ...body } = this.bodyItem;
+    this.formHasEmptyValues = hasEmptyValues(body);
+    console.log(this.formHasEmptyValues);
   }
 
   ngOnDestroy(): void {

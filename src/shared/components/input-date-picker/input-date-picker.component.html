@@ -1,0 +1,16 @@
+<input-template [label]="label" [required]="required" [inputId]="inputId" [errorMsg]="errorMsg">
+  <mat-form-field>
+    <input
+      placeholder="dd-mm-aaaa"
+      [(ngModel)]="date"
+      (dateChange)="handleChange()"
+      [value]="value"
+      [min]="minDate"
+      matInput
+      [matDatepicker]="picker"
+    />
+    <!-- (dateChange)="handleFielDetection()" -->
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</input-template>

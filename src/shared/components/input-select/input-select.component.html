@@ -1,0 +1,9 @@
+<input-template [label]="label" [required]="required" [inputId]="inputId" [errorMsg]="errorMsg">
+  <div class="selector">
+    <select [value]="value" (handleChange)="($event)" name="priority" id="priority">
+      @for (prio of options; track prio) {
+        <option [value]="prio">{{ prio }}</option>
+      }
+    </select>
+  </div>
+</input-template>

@@ -1,0 +1,21 @@
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .label {
+    display: block;
+
+    label {
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.7rem;
+      color: var(--text-color-dark);
+    }
+
+    span.required {
+      font-size: 0.6rem;
+      color: var(--text-color-opacity);
+    }
+  }
+}

@@ -55,6 +55,7 @@
             type="text"
             label="nome"
             inputId="name"
+            [required]="true"
           />
           <me-input-text
             [(value)]="registerBody.email"
@@ -68,6 +69,7 @@
             type="text"
             label="e-mail"
             inputId="email"
+            [required]="true"
           />
           <me-input-text
             [(value)]="registerBody.password"
@@ -81,6 +83,7 @@
             type="password"
             label="senha"
             inputId="password"
+            [required]="true"
           />
           <me-input-text
             [(value)]="confirmPass"
@@ -93,6 +96,7 @@
             type="password"
             label="repetir senha"
             inputId="password"
+            [required]="true"
           />
         </div>
       }

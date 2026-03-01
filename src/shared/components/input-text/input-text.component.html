@@ -1,14 +1,4 @@
-<div>
-  @if (label) {
-    <div class="label">
-      <label [for]="inputId">{{ label }}</label>
-      @if (errorMsg) {
-        <span class="error-msg">
-          {{ errorMsg }}
-        </span>
-      }
-    </div>
-  }
+<input-template [label]="label" [required]="required" [inputId]="inputId" [errorMsg]="errorMsg">
   <input
     (input)="handleChange($event)"
     [value]="value"
@@ -18,4 +8,4 @@
     [disabled]="disabled"
     [class]="[class, errorMsg ? 'error-input' : '']"
   />
-</div>
+</input-template>

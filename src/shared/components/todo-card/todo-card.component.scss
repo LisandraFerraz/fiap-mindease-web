@@ -3,7 +3,6 @@
   color: var(--text-color-light);
   font-weight: 600;
   border: 1px solid var(--border-color-light);
-  // background-color: var(--bg-color-base);
   background-color: var(--input-bg-color-primary);
   border-radius: 10px;
   height: 45px;
@@ -51,7 +50,7 @@
     cursor: pointer;
 
     &:hover {
-      color: var(--color-dark-red);
+      color: var(--text-color-error);
     }
   }
 }
@@ -59,8 +58,4 @@
 .completed {
   opacity: 60%;
   text-decoration: line-through;
-
-  button {
-    display: none;
-  }
 }

@@ -97,6 +97,10 @@ p {
   background-color: var(--btn-bg-color-primary) !important;
 }
 
+.mat-mdc-dialog-surface {
+  background-color: var(--input-bg-color-primary) !important;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

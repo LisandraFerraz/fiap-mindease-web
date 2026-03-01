@@ -1,42 +1,41 @@
-<me-modal (clickConfirm)="handleConfirm()">
+<me-modal [disabled]="formHasEmptyValues" (clickConfirm)="handleConfirm()">
   <div class="container">
     <me-input-text
       type="text"
-      label="título"
+      label="título "
       inputId="titulo"
       placeholder="Digite aqui..."
       [(value)]="bodyItem.title"
+      [required]="true"
+      (valueChange)="checkValidation()"
     />
     <me-input-text
       type="text"
-      label="descrição"
+      label="descrição "
       inputId="descricao"
       placeholder="Adicione detalhes"
       [(value)]="bodyItem.description"
+      [required]="true"
+      (valueChange)="checkValidation()"
     />
     <div class="row">
-      <div class="prioSelector input-group">
-        <label for="priority">Prioridade</label>
-        <select [(ngModel)]="bodyItem.priority" name="priority" id="priority">
-          <option value="BAIXO">Baixo</option>
-          <option value="MEDIO">Médio</option>
-          <option value="ALTO">Alto</option>
-        </select>
-      </div>
+      <me-input-select
+        [(value)]="bodyItem.priority"
+        id="priority"
+        [options]="priorityList"
+        label="Prioridade "
+        [required]="true"
+        (valueChange)="checkValidation()"
+      />
+
       <div class="input-group">
-        <label for="priority">vencimento</label>
-        <mat-form-field>
-          <input
-            placeholder="dd-mm-aaaa"
-            (dateChange)="showDate()"
-            [(ngModel)]="bodyItem.dueDate"
-            [min]="minDate"
-            matInput
-            [matDatepicker]="picker"
-          />
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+        <input-date-picker
+          [(value)]="bodyItem.dueDate"
+          id="dueDate"
+          label="vencimento "
+          [required]="true"
+          (valueChange)="checkValidation()"
+        />
       </div>
     </div>
   </div>

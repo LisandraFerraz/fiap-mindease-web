@@ -14,6 +14,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-kanban',
@@ -34,27 +35,14 @@ export class KanbanComponent implements OnInit, OnDestroy {
   }
 
   private listKanbanItems() {
-    this.kanbanService.getKanbanItems().subscribe({
-      next: (res: IKanbanColumn[]) => {
-        this.updateChanges(res);
-      },
-      error: (error) => {
-        console.error('listKanbanItems :: ', error);
-        this.toastNotif.toastError('Erro ao listar itens do Kanban.');
-      },
-    });
+    this.subscribeObservable(
+      this.kanbanService.getKanbanItems(),
+      'Erro ao listar itens do Kanban.',
+    );
   }
 
   deleteKanbanItem(id: string) {
-    this.kanbanService.deleteKanbanItem(id).subscribe({
-      next: (res: IKanbanColumn[]) => {
-        this.updateChanges(res);
-      },
-      error: (error) => {
-        console.error('listKanbanItems :: ', error);
-        this.toastNotif.toastError('Erro ao deleter item.');
-      },
-    });
+    this.subscribeObservable(this.kanbanService.deleteKanbanItem(id), 'Erro ao deleter item.');
   }
 
   updateColumnItem(newColumnId: string, data: IKanbanTodo) {
@@ -71,9 +59,14 @@ export class KanbanComponent implements OnInit, OnDestroy {
     });
   }
 
-  private updateChanges(data: IKanbanColumn[]) {
-    this.kanbanColumns = data;
-    this.cd.detectChanges();
+  openModal(columnId?: string, data?: IKanbanTodo) {
+    this.dialog
+      .open(ModalKanbanItemComponent, {
+        data: data ? { data } : { columnName: columnId },
+        width: '900px',
+      })
+      .afterClosed()
+      .subscribe(() => this.listKanbanItems());
   }
 
   drop(event: any) {
@@ -91,14 +84,26 @@ export class KanbanComponent implements OnInit, OnDestroy {
     }
   }
 
-  openModal(columnId?: string, data?: IKanbanTodo) {
-    this.dialog
-      .open(ModalKanbanItemComponent, {
-        data: data ? { data } : { columnName: columnId },
-        width: '900px',
-      })
-      .afterClosed()
-      .subscribe(() => this.listKanbanItems());
+  subscribeObservable(
+    obs: Observable<IKanbanColumn[]>,
+    errorMsg: string,
+    todoSuccess?: () => void,
+  ) {
+    obs.subscribe({
+      next: (res: IKanbanColumn[]) => {
+        if (todoSuccess) todoSuccess();
+        this.updateChanges(res);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError(errorMsg);
+      },
+    });
+  }
+
+  private updateChanges(data: IKanbanColumn[]) {
+    this.kanbanColumns = data;
+    this.cd.detectChanges();
   }
 
   get connectedLists(): string[] {

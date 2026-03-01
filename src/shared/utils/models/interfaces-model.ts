@@ -29,7 +29,7 @@ export class IKanbanTodo {
   title: string = '';
   status: kanbanStatus = 'AFAZER';
   priority: keyof typeof kanbanPriority = 'BAIXO';
-  dueDate: string = '';
+  dueDate: Date;
   description: string = '';
 }
 

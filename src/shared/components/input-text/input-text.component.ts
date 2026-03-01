@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InputTemplateComponent } from '@components/input-template/input-template.component';
 
 @Component({
   selector: 'me-input-text',
-  imports: [FormsModule],
+  imports: [FormsModule, InputTemplateComponent],
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss',
 })
@@ -16,6 +17,7 @@ export class MEInputTextComponent {
   @Input() disabled: boolean = false;
   @Input() class: string[] = [''];
   @Input() errorMsg: string = '';
+  @Input() required: boolean;
   @Output() valueChange = new EventEmitter<string>();
 
   handleChange(event: Event) {

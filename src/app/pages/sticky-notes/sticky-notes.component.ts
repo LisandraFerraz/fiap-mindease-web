@@ -30,6 +30,7 @@ export class StickyNotesComponent implements OnInit {
   keywordSeach = '';
 
   isEditable = signal(false);
+  activeTabTitle = '';
 
   ngOnInit(): void {
     this.listAllStickyGroups();
@@ -68,13 +69,17 @@ export class StickyNotesComponent implements OnInit {
   }
 
   updateStickyNoteName(groupId: string, groupName: string) {
-    const body = {
-      groupName: groupName,
-    };
-    this.subscribeObservable(
-      this.stickyService.updateStickyNotesGroup(groupId, body),
-      'Não foi possível atualizar o nome do grupo.',
-    );
+    if (groupName.length > 0) {
+      const body = {
+        groupName: groupName,
+      };
+      this.subscribeObservable(
+        this.stickyService.updateStickyNotesGroup(groupId, body),
+        'Não foi possível atualizar o nome do grupo.',
+      );
+    } else {
+      this.activeStickyNoteGroup.groupName = this.activeTabTitle;
+    }
   }
 
   addStickyNote() {
@@ -96,7 +101,6 @@ export class StickyNotesComponent implements OnInit {
       [emitterData.fieldName]: emitterData.fieldValue,
     } as Partial<StickyNote>;
 
-    console.log('updateStickyNote ::', body);
     this.subscribeObservable(
       this.stickyService.updateStickyNote(this.activeStickyNoteGroup.id, body, noteId),
       'Não foi possível criar o post-it.',
@@ -135,6 +139,7 @@ export class StickyNotesComponent implements OnInit {
   setActiveGroup(data: StickyNotesGroup) {
     this.activeStickyNoteGroup = data;
     this.cd.detectChanges();
+    this.activeTabTitle = data?.groupName;
   }
 
   subscribeObservable(

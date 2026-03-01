@@ -12,6 +12,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { ToastNotification } from '@services/toast-notification.service';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-checklist.component',
@@ -49,15 +50,10 @@ export class ChecklistComponent implements OnInit {
   }
 
   listChecklists() {
-    this.checklistService.listChecklists().subscribe({
-      next: (res: IChecklistResponse) => {
-        this.updateChanges(res.checklist);
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastNotif.toastError('Não foi possível recuperar as checklists.');
-      },
-    });
+    this.subscribeObservable(
+      this.checklistService.listChecklists(),
+      'Não foi possível recuperar as checklists.',
+    );
   }
 
   createChecklist() {
@@ -67,15 +63,10 @@ export class ChecklistComponent implements OnInit {
       name: 'Nova lista to-do',
       data: [],
     };
-    this.checklistService.createChecklist(this.checklistBody).subscribe({
-      next: (res) => {
-        this.updateChanges(res.checklist);
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastNotif.toastError('Não foi possível criar a checklist.');
-      },
-    });
+    this.subscribeObservable(
+      this.checklistService.createChecklist(this.checklistBody),
+      'Não foi possível recuperar as checklists.',
+    );
   }
 
   updateChecklistDetails(field: string, event: any) {
@@ -87,41 +78,30 @@ export class ChecklistComponent implements OnInit {
         [field]: fieldValue,
       } as Partial<Checklist>;
 
-      this.checklistService.atualizaChecklist(this.checklistActive.id, body).subscribe({
-        next: (res: IChecklistResponse) => {
-          this.updateChanges(res.checklist);
-          if (isFieldName) this.updateEdit();
-        },
-        error: (error) => {
-          console.error(error);
-          this.toastNotif.toastError('Não foi possível recuperar as checklists.');
-        },
-      });
+      const todo = () => {
+        if (isFieldName) this.updateEdit();
+      };
+
+      this.subscribeObservable(
+        this.checklistService.atualizaChecklist(this.checklistActive.id, body),
+        'Não foi possível recuperar as checklists.',
+        todo,
+      );
     }
   }
 
   deleteChecklist(checkId: string) {
-    this.checklistService.deletaChecklist(checkId).subscribe({
-      next: (res: IChecklistResponse) => {
-        this.updateChanges(res.checklist);
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastNotif.toastError('Não foi possível apagar a tarefa.');
-      },
-    });
+    this.subscribeObservable(
+      this.checklistService.deletaChecklist(checkId),
+      'Não foi possível apagar a tarefa.',
+    );
   }
 
   deleteChecklistItem(id: string) {
-    this.checklistService.deletaChecklistItem(this.checklistActive.id, id).subscribe({
-      next: (res: IChecklistResponse) => {
-        this.updateChanges(res.checklist);
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastNotif.toastError('Não foi possível apagar a tarefa.');
-      },
-    });
+    this.subscribeObservable(
+      this.checklistService.deletaChecklistItem(this.checklistActive.id, id),
+      'Não foi possível apagar a tarefa.',
+    );
   }
 
   atualizaChecklistItem(task: ChecklistItem) {
@@ -129,15 +109,10 @@ export class ChecklistComponent implements OnInit {
       ...task,
       completed: !task.completed,
     };
-    this.checklistService.atualizaChecklistItem(this.checklistActive.id, body).subscribe({
-      next: (res: IChecklistResponse) => {
-        this.updateChanges(res.checklist);
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastNotif.toastError('Não foi possível apagar a tarefa.');
-      },
-    });
+    this.subscribeObservable(
+      this.checklistService.atualizaChecklistItem(this.checklistActive.id, body),
+      'Não foi possível atualizar a tarefa.',
+    );
   }
 
   addChecklistItem() {
@@ -186,6 +161,23 @@ export class ChecklistComponent implements OnInit {
 
   updateEdit() {
     this.isEditOff.update((off) => !off);
+  }
+
+  subscribeObservable(
+    obs: Observable<IChecklistResponse>,
+    errorMsg: string,
+    todoSuccess?: () => void,
+  ) {
+    obs.subscribe({
+      next: (res: IChecklistResponse) => {
+        if (todoSuccess) todoSuccess();
+        this.updateChanges(res.checklist);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastNotif.toastError(errorMsg);
+      },
+    });
   }
 
   ngOnDestroy(): void {

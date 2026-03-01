@@ -17,7 +17,7 @@
               }
               <input
                 [(ngModel)]="group.groupName"
-                (dblclick)="setIsEditable()"
+                (click)="setIsEditable()"
                 (change)="updateStickyNoteName(group.id, group.groupName)"
                 type="text"
                 [class]="[

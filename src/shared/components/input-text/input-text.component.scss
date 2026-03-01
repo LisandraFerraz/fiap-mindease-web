@@ -1,55 +1,28 @@
-div {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+input {
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  background-color: var(--input-bg-color-primary);
+  padding: 0 15px;
+  transition: ease 0.2s;
+  font-size: 0.8rem;
+  color: var(--text-color-dark);
 
-  .label {
-    display: block;
-
-    label {
-      text-transform: uppercase;
-      font-weight: 600;
-      font-size: 0.7rem;
-      color: var(--text-color-dark);
-    }
+  &::placeholder {
+    color: var(--text-color-opacity);
   }
 
-  input {
-    border: none;
-    border-radius: 10px;
-    height: 50px;
-    background-color: var(--input-bg-color-primary);
-    padding: 0 15px;
-    transition: ease 0.2s;
-    font-size: 0.8rem;
-    color: var(--text-color-dark);
-
-    &::placeholder {
-      color: var(--text-color-opacity);
-    }
-
-    &[type='date'] {
-      cursor: pointer;
-    }
-
-    &:disabled {
-      background-color: transparent !important;
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 8px #00000021;
-      background-color: var(--input-bg-color-bright);
-    }
+  &[type='date'] {
+    cursor: pointer;
   }
 
-  .error-input {
-    box-shadow: 0 0 2px var(--text-color-error);
+  &:disabled {
+    background-color: transparent !important;
   }
 
-  .error-msg {
-    font-size: 0.65rem;
-    color: var(--text-color-error);
-    font-weight: 500;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 8px #00000021;
+    background-color: var(--input-bg-color-bright);
   }
 }

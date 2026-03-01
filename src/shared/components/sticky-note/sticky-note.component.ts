@@ -11,8 +11,20 @@ export class StickyNoteComponent implements OnInit {
   @Output() deleteNote = new EventEmitter<void>();
   @Output() updateNote = new EventEmitter<{ fieldName: string; fieldValue: string }>();
 
+  title: string;
+  description: string;
+
+  ngOnInit() {
+    this.title = this.noteContent.title;
+    this.description = this.noteContent.description;
+  }
+
   handleEditNote(fieldName: string, event: Event) {
-    const fieldValue = (event.target as HTMLInputElement).value;
+    let fieldValue = (event.target as HTMLInputElement).value;
+
+    if (fieldValue === '') {
+      fieldValue = fieldName === 'title' ? this.title : this.description;
+    }
 
     this.updateNote.emit({ fieldValue, fieldName });
   }
@@ -20,8 +32,4 @@ export class StickyNoteComponent implements OnInit {
   handleDeleteNote() {
     this.deleteNote.emit();
   }
-
-  constructor() {}
-
-  ngOnInit() {}
 }

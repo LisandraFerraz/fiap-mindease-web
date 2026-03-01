@@ -17,6 +17,7 @@ import { DefaultButtonComponent } from '@components/default-button/default-butto
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { PomodoroTodo } from '@models/interfaces-model';
 import { v4 as generateUID } from 'uuid';
+import { Observable } from 'rxjs';
 
 type Step = 'FIRSTROUND' | 'SHORTBREAK' | 'SECONDROUND' | 'LONGBREAK';
 
@@ -47,7 +48,7 @@ export class PomodoroComponent implements OnInit, OnDestroy {
 
   private intervalId: any;
 
-  private currentStep: Step = 'FIRSTROUND';
+  currentStep: Step = 'FIRSTROUND';
   currentRound: number = 1;
 
   private stepTimes: Record<Step, number> = {
@@ -57,6 +58,20 @@ export class PomodoroComponent implements OnInit, OnDestroy {
     LONGBREAK: 900,
   };
 
+  buttonOptions: { step: Step; label: string }[] = [
+    {
+      step: 'FIRSTROUND',
+      label: 'Trabalho',
+    },
+    {
+      step: 'SHORTBREAK',
+      label: 'Pausa 5min',
+    },
+    {
+      step: 'LONGBREAK',
+      label: 'Pausa 15min',
+    },
+  ];
   pomodoroData: PomodoroTodo[] = [];
   pomoItemBody: PomodoroTodo = new PomodoroTodo();
 
@@ -68,15 +83,7 @@ export class PomodoroComponent implements OnInit, OnDestroy {
   // -- API CALLS - -
 
   getPomodoroTasks() {
-    this.pomodoroService.listPomodoroTasks().subscribe({
-      next: (res: PomodoroTodo[]) => {
-        this.updateChanges(res);
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastNotif.toastError('Erro ao listar tasks.');
-      },
-    });
+    this.subscribeObservable(this.pomodoroService.listPomodoroTasks(), 'Erro ao criar task.');
   }
 
   addTask() {
@@ -84,26 +91,29 @@ export class PomodoroComponent implements OnInit, OnDestroy {
       ...this.pomoItemBody,
       id: generateUID(),
     };
-    this.pomodoroService.addPomodoroTask(body).subscribe({
-      next: (res: PomodoroTodo[]) => {
-        this.updateChanges(res);
-        this.pomoItemBody = new PomodoroTodo();
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastNotif.toastError('Erro ao adicionar task.');
-      },
-    });
+
+    const todo = () => (this.pomoItemBody = new PomodoroTodo());
+
+    this.subscribeObservable(
+      this.pomodoroService.addPomodoroTask(body),
+      'Erro ao criar task.',
+      todo,
+    );
   }
 
   deleteTodo(id: string) {
-    this.pomodoroService.deletePomodoroTask(id).subscribe({
+    this.subscribeObservable(this.pomodoroService.deletePomodoroTask(id), 'Erro ao apagar task.');
+  }
+
+  subscribeObservable(obs: Observable<PomodoroTodo[]>, errorMsg: string, todoSuccess?: () => void) {
+    obs.subscribe({
       next: (res: PomodoroTodo[]) => {
+        if (todoSuccess) todoSuccess();
         this.updateChanges(res);
       },
       error: (error) => {
         console.error(error);
-        this.toastNotif.toastError('Erro ao apagar task.');
+        this.toastNotif.toastError(errorMsg);
       },
     });
   }
