@@ -134,7 +134,9 @@ export class StickyNotesComponent implements OnInit {
 
     if (this.activeStickyNoteGroup) {
       const activeCheckGroup = data.find((sn) => sn.id === this.activeStickyNoteGroup.id);
-      activeCheckGroup ? this.setActiveGroup(activeCheckGroup) : this.listaStickyNotesGroup[0];
+      activeCheckGroup
+        ? this.setActiveGroup(activeCheckGroup)
+        : this.setActiveGroup(this.listaStickyNotesGroup[0]);
     } else {
       this.setActiveGroup(this.listaStickyNotesGroup[0]);
     }

@@ -53,7 +53,7 @@
         </button>
       </div>
       <div class="notes-grid">
-        @if (activeStickyNoteGroup.data.length) {
+        @if (activeStickyNoteGroup && activeStickyNoteGroup.data.length) {
           @for (note of activeStickyNoteGroup.data; track note) {
             <sticky-note
               (deleteNote)="deleteStickyNote(note.id)"
