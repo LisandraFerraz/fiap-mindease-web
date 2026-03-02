@@ -34,7 +34,6 @@ export class ContaOptionsComponent implements OnInit, OnDestroy {
   isPassValid = '';
 
   ngOnInit(): void {
-    console.log('hi');
     this.isPassValid = localStorage.getItem('validPassword') || '';
     if (this.isPassValid == 'true') this.activateSection();
   }

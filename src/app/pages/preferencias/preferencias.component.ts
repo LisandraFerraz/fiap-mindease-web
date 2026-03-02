@@ -35,7 +35,6 @@ export class PreferenciasComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('hsduahd');
     sessionStorage.removeItem('validPassword');
   }
 }

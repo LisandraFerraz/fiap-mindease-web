@@ -33,8 +33,6 @@ export class InputDatePickerComponent {
   date: Date;
 
   handleChange() {
-    console.log(this.date);
-    this.value = this.date;
     this.valueChange.emit(this.date);
   }
 }

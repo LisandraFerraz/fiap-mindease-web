@@ -49,7 +49,6 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
   formHasEmptyValues: boolean = true;
 
   ngOnInit(): void {
-    console.log(this.formHasEmptyValues);
     if (this.modalData.data) {
       this.formHasEmptyValues = false;
       this.bodyItem = this.modalData.data;
@@ -93,7 +92,6 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
   checkValidation() {
     const { id, status, ...body } = this.bodyItem;
     this.formHasEmptyValues = hasEmptyValues(body);
-    console.log(this.formHasEmptyValues);
   }
 
   ngOnDestroy(): void {

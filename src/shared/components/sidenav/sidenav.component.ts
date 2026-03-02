@@ -88,7 +88,6 @@ export class Sidenav {
   }
 
   toggleTheme() {
-    console.log('el');
     this.themeMode.toggleTheme();
   }
 
