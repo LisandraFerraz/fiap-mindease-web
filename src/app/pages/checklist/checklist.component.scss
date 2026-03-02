@@ -216,22 +216,6 @@
 
         overflow-y: auto;
         overflow-x: hidden;
-
-        .empty-content {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          margin-top: 25px;
-
-          .empty-list {
-            background-image: var(--img-bg-empty-todo);
-            background-repeat: no-repeat;
-            background-size: contain;
-            width: 250px;
-            height: 250px;
-          }
-        }
       }
 
       @media screen and (max-width: 940px) {
@@ -251,4 +235,15 @@ button {
     cursor: pointer;
     opacity: 60%;
   }
+}
+
+.empty-list {
+  align-self: center;
+  width: 100%;
+  margin-top: 25px;
+  background-image: var(--img-bg-empty-todo);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 250px;
+  height: 250px;
 }
