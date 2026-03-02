@@ -14,6 +14,8 @@ import { NotificationService } from '../../../notifications-modal/notifications.
   styleUrls: ['./modal-auth.component.scss'],
 })
 export class ModalAuthComponent {
+  private readonly notificationsService = inject(NotificationService);
+
   loginLayout: boolean = true;
 
   registerBody: UsuarioRegister = new UsuarioRegister();
@@ -62,6 +64,7 @@ export class ModalAuthComponent {
       this.authService.register(this.registerBody).subscribe({
         next: (res: IRegisterResponse) => {
           this.toastNotif.success(res.message, '', this.config);
+          this.setupNotificationsNumber();
 
           this.changeLayout();
           this.cd.detectChanges();
@@ -71,5 +74,17 @@ export class ModalAuthComponent {
         },
       });
     }
+  }
+
+  private setupNotificationsNumber() {
+    this.notificationsService.getAllNotifications().subscribe({
+      next: (res) => {
+        const arraysLen = res.checklistNotificacoes.length + res.kanbanNotificacoes.length;
+        this.notificationsService.setNotifNumber(arraysLen);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }

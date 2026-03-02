@@ -30,7 +30,12 @@
             Toggle theme
           </span>
           <span (click)="openModal()">
-            <mat-icon fontIcon="notifications" />
+            <div class="notif-icon">
+              @if (hasNotif) {
+                <span></span>
+              }
+              <mat-icon fontIcon="notifications" />
+            </div>
             Notificações
           </span>
 

@@ -37,10 +37,7 @@ export class NotificationsModalComponent implements OnInit {
         this.kanbanNotifications = res.kanbanNotificacoes;
         this.checklistNotifications = res.checklistNotificacoes;
 
-        !res.kanbanNotificacoes
-          ? (this.kanbanNotifLayout = true)
-          : (this.kanbanNotifLayout = false);
-
+        this.setActiveTab();
         this.cd.detectChanges();
       },
       error: (error) => {
@@ -50,19 +47,38 @@ export class NotificationsModalComponent implements OnInit {
   }
 
   markOneAsRead(id: string) {
-    this.notificationsService.markOneAsRead(id).subscribe();
-    this.getNotifications();
+    this.notificationsService.markOneAsRead(id).subscribe({
+      next: () => {
+        this.getNotifications();
+      },
+    });
   }
 
   markAllAsRead(notifs: INotification[]) {
     const ids = notifs.map((nt) => nt.id);
 
-    this.notificationsService.markAllAsRead(ids).subscribe();
-    this.getNotifications();
+    this.notificationsService.markAllAsRead(ids).subscribe({
+      next: () => {
+        this.getNotifications();
+      },
+    });
+  }
+
+  setActiveTab() {
+    if (this.kanbanNotifLayout && this.kanbanNotifications.length > 0) {
+      this.activeTab = this.kanbanNotifications;
+    } else {
+      this.activeTab =
+        this.checklistNotifications.length > 0
+          ? this.checklistNotifications
+          : this.kanbanNotifications;
+    }
+    this.cd.detectChanges();
   }
 
   changeLayout() {
     this.kanbanNotifLayout = !this.kanbanNotifLayout;
+    this.setActiveTab();
   }
 
   goToIem(route: string) {

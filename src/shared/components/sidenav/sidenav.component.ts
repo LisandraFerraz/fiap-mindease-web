@@ -7,6 +7,7 @@ import { SlicePipe } from '@angular/common';
 import { ThemeModeService } from '@services/theme-service/theme-mode.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationsModalComponent } from '../../../app/notifications-modal/notifications-modal.component';
+import { NotificationService } from '../../../app/notifications-modal/notifications.service';
 
 interface INavItems {
   name: string;
@@ -26,10 +27,12 @@ export class Sidenav {
   private readonly route = inject(Router);
   private readonly focusMode = inject(FocusModeService);
   private readonly dialog = inject(MatDialog);
+  private readonly notificationsService = inject(NotificationService);
 
   isFocusOn = this.focusMode.focusOn;
 
   isSidenavOpened = signal(true);
+  hasNotif: boolean = false;
 
   get navItems(): INavItems[] {
     return [
@@ -67,9 +70,28 @@ export class Sidenav {
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    // this.openModal();
+    this.updateNotifs();
+  }
+
+  checkNotifs(): void {
+    this.notificationsService.notifsNumber$.subscribe({
+      next: (res) => {
+        this.hasNotif = res !== 0;
+      },
+    });
+  }
+
+  updateNotifs() {
+    this.notificationsService.getAllNotifications().subscribe({
+      next: (res) => {
+        const arraysLen = res.checklistNotificacoes.length + res.kanbanNotificacoes.length;
+        this.notificationsService.setNotifNumber(arraysLen);
+        this.checkNotifs();
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 
   checkActiveRoute(item: string): boolean {
@@ -92,9 +114,14 @@ export class Sidenav {
   }
 
   openModal() {
-    this.dialog.open(NotificationsModalComponent, {
-      minWidth: '600px',
-    });
+    this.dialog
+      .open(NotificationsModalComponent, {
+        minWidth: '600px',
+      })
+      .afterClosed()
+      .subscribe({
+        next: () => this.updateNotifs(),
+      });
   }
 
   logout() {

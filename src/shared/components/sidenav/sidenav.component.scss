@@ -126,6 +126,22 @@
         ul > li:not(:last-child) {
           margin-bottom: 15px;
         }
+
+        .notif-icon {
+          position: relative;
+          width: 24px;
+
+          span {
+            position: absolute !important;
+            top: 0;
+            right: 0;
+
+            width: 10px;
+            height: 10px;
+            background-color: var(--notification-color-exists);
+            border-radius: 100%;
+          }
+        }
       }
     }
 
