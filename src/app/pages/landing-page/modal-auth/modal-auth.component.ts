@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IRegisterResponse, UsuarioLogin, UsuarioRegister } from '@models/user-model';
 import { AuthService } from './auth.service';
@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ModalTemplateComponent } from '@components/modal-template/modal-template.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { isAuthFormValid, isEmailValid } from '@functions/validate-auth';
+import { NotificationService } from '../../../notifications-modal/notifications.service';
 
 @Component({
   imports: [CommonModule, ModalTemplateComponent, MEInputTextComponent],
@@ -18,7 +19,10 @@ export class ModalAuthComponent {
   registerBody: UsuarioRegister = new UsuarioRegister();
   confirmPass: string = '';
 
-  loginBody: UsuarioLogin = new UsuarioLogin();
+  loginBody: UsuarioLogin = {
+    email: 'marianasilva@email.com',
+    password: '12345678',
+  };
 
   // TO-DO remover
   config = {

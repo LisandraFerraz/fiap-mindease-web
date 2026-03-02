@@ -24,6 +24,14 @@
     overflow-x: auto;
 
     .header {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 10px;
+
+      &::-webkit-scrollbar {
+        height: 8px;
+      }
+
       .sticky-groups-opt {
         display: flex;
         align-items: center;
@@ -70,7 +78,7 @@
     }
 
     .search-bar {
-      margin: 35px 0;
+      margin: 25px 0 35px 0;
 
       display: flex;
       flex-direction: row;
@@ -121,23 +129,18 @@
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
+    }
+    .empty-list {
+      justify-self: center;
 
-      .empty-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin-top: 25px;
+      margin-top: 15%;
+      background-image: var(--img-bg-empty-notes);
+      background-repeat: no-repeat;
+      background-size: cover;
 
-        .empty-list {
-          background-image: var(--img-bg-empty-notes);
-          background-repeat: no-repeat;
-          background-size: cover;
-          width: 200px;
-          height: 200px;
-          opacity: 80%;
-        }
-      }
+      width: 200px;
+      height: 200px;
+      opacity: 80%;
     }
   }
 }

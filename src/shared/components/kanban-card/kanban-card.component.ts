@@ -1,13 +1,4 @@
-import { COMMA, L } from '@angular/cdk/keycodes';
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { IKanbanTodo, kanbanPriority } from '@models/interfaces-model';
 
@@ -42,35 +33,5 @@ export class KanbanCardComponent {
     };
 
     return mapPriority[value];
-  }
-
-  get daysLeft() {
-    let message = '';
-
-    const exceptionDue = ['CONCLUIDO', 'BACKLOG'];
-
-    if (!exceptionDue.includes(this.data.status)) {
-      const today = new Date();
-      const dueDate = new Date(this.data.dueDate);
-
-      var ndays;
-      var tv1 = today.valueOf();
-      var tv2 = dueDate.valueOf();
-
-      ndays = (tv2 - tv1) / 1000 / 86400;
-      ndays = Math.round(ndays + 1);
-
-      switch (ndays) {
-        case 1:
-          message = 'Vence hoje!';
-          break;
-
-        default:
-          message = `Restam ${ndays} dias`;
-          break;
-      }
-    }
-
-    return message;
   }
 }

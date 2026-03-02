@@ -5,13 +5,16 @@
     </button>
   </div>
   <ng-content />
+
   <div class="bottom">
-    <me-button
-      label="Confirmar"
-      customClass="interactive_button"
-      color="primary"
-      [disabled]="disabled"
-      (click)="onConfirm()"
-    />
+    @if (showBottom) {
+      <me-button
+        label="Confirmar"
+        customClass="interactive_button"
+        color="primary"
+        [disabled]="disabled"
+        (click)="onConfirm()"
+      />
+    }
   </div>
 </div>

@@ -24,6 +24,17 @@
             </ul>
           </div>
           <span class="divisor"></span>
+
+          <span (click)="toggleTheme()">
+            <mat-icon fontIcon="contrast_circle" />
+            Toggle theme
+          </span>
+          <span (click)="openModal()">
+            <mat-icon fontIcon="notifications" />
+            Notificações
+          </span>
+
+          <span class="divisor"></span>
           <div class="bottom items">
             <span [class.active-route]="navItems[4].isActive">
               <a [href]="navItems[4].route">
@@ -31,19 +42,11 @@
                 {{ navItems[4].name }}</a
               >
             </span>
-
             <span (click)="logout()">
               <mat-icon fontIcon="logout" />
               Logout
             </span>
           </div>
-
-          <span class="divisor"> </span>
-
-          <span (click)="toggleTheme()">
-            <mat-icon fontIcon="contrast_circle" />
-            Toggle theme
-          </span>
         </div>
       </div>
     }

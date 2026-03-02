@@ -36,6 +36,7 @@ export class IKanbanTodo {
   priority: keyof typeof kanbanPriority = 'BAIXO';
   dueDate: Date;
   description: string = '';
+  dayCountMessage: string;
 }
 
 export interface IStickyNotesResponse {

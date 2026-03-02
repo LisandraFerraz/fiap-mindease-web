@@ -38,35 +38,37 @@
           </button>
         </div>
       </div>
-      <div class="search-bar">
-        <div class="search-group">
-          <me-input-text
-            type="text"
-            inputId="search"
-            placeholder="Pesquisar anotação..."
-            [(value)]="keywordSeach"
-          />
-          <mat-icon fontIcon="search" />
-        </div>
-        <button (click)="addStickyNote()" class="group-add-btn">
-          <mat-icon fontIcon="add" />
-        </button>
-      </div>
-      <div class="notes-grid">
-        @if (activeStickyNoteGroup && activeStickyNoteGroup.data.length) {
-          @for (note of activeStickyNoteGroup.data; track note) {
-            <sticky-note
-              (deleteNote)="deleteStickyNote(note.id)"
-              (updateNote)="updateStickyNote($event, note.id)"
-              [noteContent]="note"
+      @if (activeStickyNoteGroup) {
+        <div class="search-bar">
+          <div class="search-group">
+            <me-input-text
+              type="text"
+              inputId="search"
+              placeholder="Pesquisar anotação..."
+              [(value)]="keywordSeach"
             />
-          }
-        } @else {
-          <div class="empty-content">
-            <div class="empty-list"></div>
+            <mat-icon fontIcon="search" />
           </div>
+          <button (click)="addStickyNote()" class="group-add-btn">
+            <mat-icon fontIcon="add" />
+          </button>
+        </div>
+        @if (activeStickyNoteGroup.data.length) {
+          <div class="notes-grid">
+            @for (note of activeStickyNoteGroup.data; track note) {
+              <sticky-note
+                (deleteNote)="deleteStickyNote(note.id)"
+                (updateNote)="updateStickyNote($event, note.id)"
+                [noteContent]="note"
+              />
+            }
+          </div>
+        } @else {
+          <div class="empty-list"></div>
         }
-      </div>
+      } @else {
+        <div class="empty-list"></div>
+      }
     </div>
   </div>
 </sidenav>

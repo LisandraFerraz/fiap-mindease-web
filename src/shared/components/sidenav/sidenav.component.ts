@@ -1,10 +1,12 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { FocusModeService } from '../../services/focus-mode.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { SlicePipe } from '@angular/common';
 import { ThemeModeService } from '@services/theme-service/theme-mode.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationsModalComponent } from '../../../app/notifications-modal/notifications-modal.component';
 
 interface INavItems {
   name: string;
@@ -20,13 +22,14 @@ interface INavItems {
   styleUrl: './sidenav.component.scss',
 })
 export class Sidenav {
-  route = inject(Router);
-  focusMode = inject(FocusModeService);
-  themeMode = inject(ThemeModeService);
+  private readonly themeMode = inject(ThemeModeService);
+  private readonly route = inject(Router);
+  private readonly focusMode = inject(FocusModeService);
+  private readonly dialog = inject(MatDialog);
 
   isFocusOn = this.focusMode.focusOn;
 
-  isSidenavOpened = signal(false);
+  isSidenavOpened = signal(true);
 
   get navItems(): INavItems[] {
     return [
@@ -63,6 +66,12 @@ export class Sidenav {
     ];
   }
 
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    // this.openModal();
+  }
+
   checkActiveRoute(item: string): boolean {
     return this.route.url.includes(item.toLowerCase());
   }
@@ -71,6 +80,7 @@ export class Sidenav {
     // if (!this.isFocusOn() ) {
     this.isSidenavOpened.update((isOpen) => !isOpen);
     // }
+    this.openModal();
   }
 
   isNavVisible() {
@@ -80,6 +90,12 @@ export class Sidenav {
   toggleTheme() {
     console.log('el');
     this.themeMode.toggleTheme();
+  }
+
+  openModal() {
+    this.dialog.open(NotificationsModalComponent, {
+      minWidth: '600px',
+    });
   }
 
   logout() {

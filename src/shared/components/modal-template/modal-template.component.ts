@@ -12,6 +12,7 @@ export class ModalTemplateComponent {
   constructor(private modal: MatDialog) {}
 
   @Input() disabled: boolean = false;
+  @Input() showBottom: boolean = true;
 
   @Output() closeEvent = new EventEmitter<void>();
   @Output() clickConfirm = new EventEmitter<void>();

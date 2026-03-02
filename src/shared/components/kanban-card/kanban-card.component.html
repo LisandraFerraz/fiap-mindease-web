@@ -16,7 +16,7 @@
     </span>
   </div>
   <div class="bottom">
-    <span class="daysleft-count">{{ daysLeft }}</span>
+    <span class="daysleft-count">{{ data.dayCountMessage || '' }}</span>
     <span [class]="[data.priority, 'tag']">{{ getPriority() }}</span>
   </div>
 </div>

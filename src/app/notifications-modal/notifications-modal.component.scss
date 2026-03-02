@@ -1,0 +1,74 @@
+.modal-body {
+  .tabs {
+    padding: 0 0 15px 15px;
+
+    button {
+      outline: none;
+      border: none;
+      box-shadow: 0 0 8px var(--shadow-grey-color);
+      font-weight: 600;
+      padding: 10px;
+      min-width: 150px;
+      background-color: var(--bg-color-base);
+      color: var(--text-color-light);
+      opacity: 80%;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      transition: ease 0.2s;
+      opacity: 40%;
+
+      &:first-child {
+        margin-right: 15px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+      }
+    }
+
+    button.btn-active {
+      background-color: var(--btn-bg-color-active);
+      color: var(--text-color-dark);
+      opacity: 1;
+    }
+  }
+
+  .notifications-group {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .empty-list {
+      background-image: var(--img-bg-empty-notifications);
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      align-self: center;
+      width: 170px;
+      height: 185px;
+      opacity: 80%;
+    }
+
+    .mark-all-btn {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      color: var(--text-color-dark);
+      text-decoration: underline;
+      font-size: 0.8rem;
+      align-self: flex-end;
+      transition: ease 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 80%;
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<me-modal [showBottom]="false">
+  <div class="modal-body">
+    <div class="tabs">
+      @if (kanbanNotifications.length > 0) {
+        <button
+          [ngClass]="kanbanNotifLayout ? 'btn-active' : 'btn-inactive'"
+          (click)="changeLayout()"
+        >
+          Kanban
+        </button>
+      }
+      @if (checklistNotifications.length > 0) {
+        <button
+          [ngClass]="kanbanNotifLayout ? 'btn-inactive' : 'btn-active'"
+          (click)="changeLayout()"
+        >
+          Lista de tarefas
+        </button>
+      }
+    </div>
+
+    <div class="notifications-group">
+      @if (kanbanNotifLayout && kanbanNotifications.length) {
+        <button class="mark-all-btn" (click)="markAllAsRead(kanbanNotifications)">
+          Marcar todos como lidos ({{ kanbanNotifications.length }})
+        </button>
+        @for (kanbanNotif of kanbanNotifications; track kanbanNotif) {
+          @if (kanbanNotif) {
+            <notification-card
+              [notifData]="kanbanNotif"
+              (goToRoute)="goToIem(kanbanNotif.route)"
+              (markAsRead)="markOneAsRead(kanbanNotif.id)"
+            />
+          }
+        }
+      } @else {
+        @if (checklistNotifications.length) {
+          <button class="mark-all-btn" (click)="markAllAsRead(checklistNotifications)">
+            Marcar todos como lidos ({{ checklistNotifications.length }})
+          </button>
+          @for (checkNotif of checklistNotifications; track checkNotif) {
+            @if (checkNotif) {
+              <notification-card
+                [notifData]="checkNotif"
+                (goToRoute)="goToIem(checkNotif.route)"
+                (markAsRead)="markOneAsRead(checkNotif.id)"
+              />
+            }
+          }
+        }
+      }
+
+      @if (!kanbanNotifications.length && !checklistNotifications.length) {
+        <div class="empty-list"></div>
+      }
+    </div>
+  </div>
+</me-modal>

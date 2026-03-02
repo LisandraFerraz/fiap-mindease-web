@@ -1,0 +1,81 @@
+.card {
+  background-color: var(--bg-color-card);
+  box-shadow: 0 0 8px var(--shadow-grey-color);
+  padding: 20px;
+  border-radius: 10px;
+  transition: ease 0.2s;
+
+  &:hover {
+    opacity: 80%;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      button {
+        transform: scale(0.8);
+      }
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-color-dark);
+    }
+
+    .icon-container {
+      background-color: #efefef71;
+      width: 38px;
+      height: 32px;
+      border-radius: 100px;
+
+      .EXPIRED {
+        color: var(--color-dark-red);
+      }
+
+      .SOON {
+        color: var(--color-dark-yellow);
+      }
+
+      .TODAY {
+        color: var(--color-dark-blue);
+      }
+
+      .mat-icon {
+        margin-top: 4px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  p.description {
+    font-size: 0.8rem;
+    color: var(--text-color-opacity);
+    padding: 15px 0;
+  }
+
+  button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: var(--text-color-dark);
+    text-decoration: underline;
+    font-size: 0.8rem;
+    align-self: flex-end;
+    transition: ease 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 80%;
+    }
+  }
+}
