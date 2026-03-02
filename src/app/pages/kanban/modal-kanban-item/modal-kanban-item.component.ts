@@ -4,12 +4,9 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { ModalTemplateComponent } from '@components/modal-template/modal-template.component';
 import { KanbanService } from '../kanban.service';
-import { ToastNotification } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification.service';
 import { v4 as generateUID } from 'uuid';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import { IKanbanTodo, kanbanPriority } from '@models/interfaces-model';
 import { InputSelectComponent } from '@components/input-select/input-select.component';
@@ -29,7 +26,7 @@ import { InputDatePickerComponent } from '@components/input-date-picker/input-da
   styleUrl: './modal-kanban-item.component.scss',
 })
 export class ModalKanbanItemComponent implements OnInit, OnDestroy {
-  private readonly toastNotif = inject(ToastNotification);
+  private readonly toast = inject(ToastService);
   private readonly kanbanService = inject(KanbanService);
   private readonly dialog = inject(MatDialog);
   private readonly cd = inject(ChangeDetectorRef);
@@ -69,7 +66,7 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           console.error(error);
-          this.toastNotif.toastError('Não foi possível atualizar a tarefa.');
+          this.toast.toastError('Não foi possível atualizar a tarefa.');
         },
       });
     } else {
@@ -83,7 +80,7 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           console.error(error);
-          this.toastNotif.toastError('Não foi possível criar a tarefa.');
+          this.toast.toastError('Não foi possível criar a tarefa.');
         },
       });
     }

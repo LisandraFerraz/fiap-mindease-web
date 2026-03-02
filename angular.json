@@ -30,7 +30,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss", "@angular/material/prebuilt-themes/azure-blue.css"],
+            "styles": [
+              "src/styles.scss",
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": ["src/shared/styles", "src/shared/styles/themes"]
             }

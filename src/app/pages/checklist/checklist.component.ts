@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { v4 as generateUID } from 'uuid';
 import { DatePipe } from '@angular/common';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { ToastNotification } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification.service';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { Observable } from 'rxjs';
@@ -33,7 +33,7 @@ export class ChecklistComponent implements OnInit {
   private readonly checklistService = inject(ChecklistService);
   private cd = inject(ChangeDetectorRef);
   private readonly datePipe = inject(DatePipe);
-  private readonly toastNotif = inject(ToastNotification);
+  private readonly toast = inject(ToastService);
 
   checklistsData: Checklist[] = [];
 
@@ -141,7 +141,7 @@ export class ChecklistComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastNotif.toastError('Não foi possível criar o item.');
+        this.toast.toastError('Não foi possível criar o item.');
       },
     });
   }
@@ -181,7 +181,7 @@ export class ChecklistComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastNotif.toastError(errorMsg);
+        this.toast.toastError(errorMsg);
       },
     });
   }

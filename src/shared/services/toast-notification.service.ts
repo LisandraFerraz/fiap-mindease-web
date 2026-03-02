@@ -1,23 +1,27 @@
 import { inject, Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
+import { IndividualConfig, ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ToastNotification {
-  toastr = inject(ToastrService);
+export class ToastService {
+  toast = inject(ToastrService);
 
-  config = {
-    positionClass: 'toast-bottom-center',
-    timeOut: 3000,
-    progressBar: true,
+  config: Partial<IndividualConfig> = {
+    positionClass: 'toast-bottom-right',
+    // timeOut: 3000
   };
 
   public toastError(msg: string) {
-    return this.toastr.error(msg, '', this.config);
+    return this.toast.error(msg, '', {
+      ...this.config,
+    });
   }
 
   public toastSuccess(msg: string) {
-    return this.toastr.success(msg, '', this.config);
+    return this.toast.success(msg, '', {
+      ...this.config,
+    });
   }
 }

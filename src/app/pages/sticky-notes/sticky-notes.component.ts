@@ -2,18 +2,14 @@ import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/c
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { StickyNoteComponent } from '@components/sticky-note/sticky-note.component';
 import { StickyNotesService } from './sticky-notes.service';
-import {
-  IStickyNoteSizing,
-  IStickyNotesResponse,
-  StickyNote,
-  StickyNotesGroup,
-} from '@models/interfaces-model';
-import { ToastNotification } from '@services/toast-notification.service';
+import { IStickyNotesResponse, StickyNote, StickyNotesGroup } from '@models/interfaces-model';
+
 import { Observable } from 'rxjs';
 import { v4 as generateUID } from 'uuid';
 import { MatIcon } from '@angular/material/icon';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '@services/toast-notification.service';
 
 @Component({
   selector: 'app-sticky-notes.component',
@@ -24,7 +20,7 @@ import { FormsModule } from '@angular/forms';
 export class StickyNotesComponent implements OnInit {
   private readonly stickyService = inject(StickyNotesService);
   private readonly cd = inject(ChangeDetectorRef);
-  private readonly toastNotif = inject(ToastNotification);
+  private readonly toast = inject(ToastService);
 
   listaStickyNotesGroup: StickyNotesGroup[] = [];
   activeStickyNoteGroup: StickyNotesGroup;
@@ -68,7 +64,7 @@ export class StickyNotesComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastNotif.toastError('Não foi possível criar o post-it.');
+        this.toast.toastError('Não foi possível criar o post-it.');
       },
     });
   }
@@ -161,7 +157,7 @@ export class StickyNotesComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastNotif.toastError(errorMsg);
+        this.toast.toastError(errorMsg);
       },
     });
   }

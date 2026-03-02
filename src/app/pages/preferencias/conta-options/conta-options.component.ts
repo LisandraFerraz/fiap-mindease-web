@@ -13,7 +13,7 @@ import { OptionsTemplateComponent } from '../options-template/options-template.c
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { DefaultButtonComponent } from '@components/default-button/default-button.component';
 import { UsuarioLogin } from '@models/user-model';
-import { ToastNotification } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification.service';
 
 @Component({
   selector: 'conta-options',
@@ -23,7 +23,7 @@ import { ToastNotification } from '@services/toast-notification.service';
 })
 export class ContaOptionsComponent implements OnInit, OnDestroy {
   private readonly authService = inject(AuthService);
-  private readonly toastNotif = inject(ToastNotification);
+  private readonly toast = inject(ToastService);
   private readonly cd = inject(ChangeDetectorRef);
 
   @Input() componentData: IPreferenciasOptions;
@@ -59,7 +59,7 @@ export class ContaOptionsComponent implements OnInit, OnDestroy {
   updateUser() {
     this.authService.updateUser(this.userBody).subscribe({
       next: (res) => {
-        this.toastNotif.toastSuccess(res.result);
+        this.toast.toastSuccess(res.result);
         this.userBody = new UsuarioLogin();
 
         this.cd.detectChanges();

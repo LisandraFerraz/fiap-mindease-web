@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angula
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { KanbanService } from './kanban.service';
 import { IKanbanColumn, IKanbanTodo } from '@models/interfaces-model';
-import { ToastNotification } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification.service';
 import { MatIcon } from '@angular/material/icon';
 import { KanbanCardComponent } from '@components/kanban-card/kanban-card.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -25,8 +25,8 @@ import { Observable } from 'rxjs';
 export class KanbanComponent implements OnInit, OnDestroy {
   private readonly kanbanService = inject(KanbanService);
   private readonly dialog = inject(MatDialog);
-  private readonly toastNotif = inject(ToastNotification);
   private readonly cd = inject(ChangeDetectorRef);
+  private readonly toast = inject(ToastService);
 
   kanbanColumns: IKanbanColumn[];
 
@@ -94,7 +94,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error(error);
-        this.toastNotif.toastError(errorMsg);
+        this.toast.toastError(errorMsg);
       },
     });
   }
