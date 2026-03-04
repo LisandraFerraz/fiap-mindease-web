@@ -71,23 +71,24 @@ export class ChecklistComponent implements OnInit {
 
   updateChecklistDetails(field: string, event: any) {
     const isFieldName = field === 'name';
-    const fieldValue = isFieldName ? (event.target as HTMLInputElement).value : event;
+    // const fieldValue = isFieldName ? event: event;
+    console.log(event);
 
-    if (fieldValue) {
-      let body = {
-        [field]: fieldValue,
-      } as Partial<Checklist>;
+    // if (this.isEditOff()) {
+    let body = {
+      [field]: event,
+    } as Partial<Checklist>;
 
-      const todo = () => {
-        if (isFieldName) this.updateEdit();
-      };
+    const todo = () => {
+      if (isFieldName) this.updateEdit();
+    };
 
-      this.subscribeObservable(
-        this.checklistService.atualizaChecklist(this.checklistActive.id, body),
-        'Não foi possível recuperar as checklists.',
-        todo,
-      );
-    }
+    this.subscribeObservable(
+      this.checklistService.atualizaChecklist(this.checklistActive.id, body),
+      'Não foi possível recuperar as checklists.',
+      todo,
+    );
+    // }
   }
 
   deleteChecklist(checkId: string) {

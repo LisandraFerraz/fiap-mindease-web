@@ -1,6 +1,6 @@
 <input-template [label]="label" [required]="required" [inputId]="inputId" [errorMsg]="errorMsg">
   <input
-    (input)="handleChange($event)"
+    (change)="handleChange($event)"
     [value]="value"
     [id]="inputId"
     [type]="type"
