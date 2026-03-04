@@ -8,7 +8,7 @@ import { ToastService } from '@services/toast-notification.service';
 import { v4 as generateUID } from 'uuid';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
-import { IKanbanTodo, kanbanPriority } from '@models/interfaces-model';
+import { IKanbanTodo, kanbanPriority, kanbanStatus } from '@models/interfaces-model';
 import { InputSelectComponent } from '@components/input-select/input-select.component';
 import { hasEmptyValues } from '@functions/validate-empty-values';
 import { InputDatePickerComponent } from '@components/input-date-picker/input-date-picker.component';
@@ -32,17 +32,17 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
   private readonly cd = inject(ChangeDetectorRef);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public modalData: { data: IKanbanTodo; columnName: kanbanStatus },
+    @Inject(MAT_DIALOG_DATA)
+    public modalData: { data: IKanbanTodo; columnName: keyof typeof kanbanStatus },
   ) {}
 
   bodyItem: IKanbanTodo = new IKanbanTodo();
-  columnName: kanbanStatus;
-
-  prioValues = kanbanPriority;
+  columnName: keyof typeof kanbanStatus;
 
   isEditModal = false;
 
   priorityList = Object.keys(kanbanPriority);
+  statusList = Object.keys(kanbanStatus);
   formHasEmptyValues: boolean = true;
 
   ngOnInit(): void {
@@ -51,6 +51,7 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
       this.bodyItem = this.modalData.data;
 
       this.columnName = this.bodyItem.status;
+
       this.isEditModal = true;
     } else {
       this.bodyItem.status = this.modalData.columnName;
@@ -61,8 +62,7 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
     if (this.isEditModal) {
       this.kanbanService.updateKanbanItem(this.bodyItem).subscribe({
         next: () => {
-          this.cd.detectChanges();
-          this.dialog.closeAll();
+          this.bodyItem = new IKanbanTodo();
         },
         error: (error) => {
           console.error(error);
@@ -87,7 +87,7 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
   }
 
   checkValidation() {
-    const { id, status, ...body } = this.bodyItem;
+    const { id, status, dayCountMessage, ...body } = this.bodyItem;
     this.formHasEmptyValues = hasEmptyValues(body);
   }
 

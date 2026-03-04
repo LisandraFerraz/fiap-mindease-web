@@ -1,8 +1,8 @@
 <input-template [label]="label" [required]="required" [inputId]="inputId" [errorMsg]="errorMsg">
   <div class="selector">
-    <select [value]="value" (handleChange)="($event)" name="priority" id="priority">
-      @for (prio of options; track prio) {
-        <option [value]="prio">{{ prio }}</option>
+    <select [(ngModel)]="value" (change)="handleChange($event)" name="priority" id="priority">
+      @for (item of options; track item) {
+        <option [value]="item">{{ getKeyValue(item) }}</option>
       }
     </select>
   </div>

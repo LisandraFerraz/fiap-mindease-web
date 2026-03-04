@@ -22,22 +22,29 @@
     <div class="row">
       <me-input-select
         [(value)]="bodyItem.priority"
-        id="priority"
+        inputId="priority"
         [options]="priorityList"
         label="Prioridade "
         [required]="true"
         (valueChange)="checkValidation()"
       />
-
-      <div class="input-group">
-        <input-date-picker
-          [(value)]="bodyItem.dueDate"
-          id="dueDate"
-          label="vencimento "
-          [required]="true"
-          (valueChange)="checkValidation()"
-        />
-      </div>
+      <me-input-select
+        [(value)]="bodyItem.status"
+        inputId="status"
+        [options]="statusList"
+        label="status "
+        [required]="true"
+        (valueChange)="checkValidation()"
+      />
+    </div>
+    <div class="input-group">
+      <input-date-picker
+        [(value)]="bodyItem.dueDate"
+        id="dueDate"
+        label="vencimento "
+        [required]="true"
+        (valueChange)="checkValidation()"
+      />
     </div>
   </div>
 </me-modal>

@@ -4,6 +4,13 @@ export enum kanbanPriority {
   ALTO = 'alto',
 }
 
+export enum kanbanStatus {
+  BACKLOG = 'Backlog',
+  AFAZER = 'A fazer',
+  ANDAMENTO = 'Em andamento',
+  CONCLUIDO = 'Concluído',
+}
+
 export interface IStickyNoteSizing {
   width: number;
   height: number;
@@ -32,7 +39,7 @@ export interface IKanbanColumns {
 export class IKanbanTodo {
   id: string = '';
   title: string = '';
-  status: kanbanStatus = 'AFAZER';
+  status: keyof typeof kanbanStatus = 'AFAZER';
   priority: keyof typeof kanbanPriority = 'BAIXO';
   dueDate: Date;
   description: string = '';

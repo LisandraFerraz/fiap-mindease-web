@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { FocusModeService } from '../../services/focus-mode.service';
@@ -102,7 +102,6 @@ export class Sidenav {
     // if (!this.isFocusOn() ) {
     this.isSidenavOpened.update((isOpen) => !isOpen);
     // }
-    this.openModal();
   }
 
   isNavVisible() {

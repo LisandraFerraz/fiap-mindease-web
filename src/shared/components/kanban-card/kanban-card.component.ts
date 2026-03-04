@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+import { GetKanbanPriority } from '@functions/get-kanban-keys';
 import { IKanbanTodo, kanbanPriority } from '@models/interfaces-model';
 
 @Component({
@@ -13,25 +14,15 @@ export class KanbanCardComponent {
   @Output() deleteItem = new EventEmitter<void>();
   @Output() openModal = new EventEmitter<void>();
 
+  getPriority() {
+    return GetKanbanPriority(this.data.priority);
+  }
+
   handleDelete() {
     this.deleteItem.emit();
   }
 
   handleOpenModal() {
     this.openModal.emit();
-  }
-
-  ngOnInit(): void {}
-
-  getPriority() {
-    const value = kanbanPriority[this.data.priority];
-
-    const mapPriority = {
-      [kanbanPriority.BAIXO]: 'baixo',
-      [kanbanPriority.MEDIO]: 'médio',
-      [kanbanPriority.ALTO]: 'alto',
-    };
-
-    return mapPriority[value];
   }
 }
