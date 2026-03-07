@@ -20,7 +20,6 @@ export class ColorSelectorComponent {
 
   colors = ['BLUE', 'YELLOW', 'RED', 'GREEN', 'ORANGE'];
 
-  prioValues = kanbanPriority;
   expanded = signal(false);
 
   constructor(private eRef: ElementRef) {}

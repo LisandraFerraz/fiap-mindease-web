@@ -32,7 +32,6 @@ import { Observable } from 'rxjs';
 export class ChecklistComponent implements OnInit {
   private readonly checklistService = inject(ChecklistService);
   private cd = inject(ChangeDetectorRef);
-  private readonly datePipe = inject(DatePipe);
   private readonly toast = inject(ToastService);
 
   checklistsData: Checklist[] = [];
@@ -60,7 +59,7 @@ export class ChecklistComponent implements OnInit {
     this.checklistBody = {
       id: generateUID(),
       color: 'BLUE',
-      name: 'Nova lista to-do',
+      name: `Checklist ${this.checklistsData.length + 1}`,
       data: [],
     };
     this.subscribeObservable(

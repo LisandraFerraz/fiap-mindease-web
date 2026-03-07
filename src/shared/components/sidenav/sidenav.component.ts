@@ -49,15 +49,15 @@ export class Sidenav {
         isActive: this.checkActiveRoute('kanban'),
       },
       {
-        name: 'Lista de tarefas',
-        route: 'lista-de-tarefas',
+        name: 'Checklist',
+        route: 'checklist',
         icon: 'checklist_rtl',
-        isActive: this.checkActiveRoute('lista-de-tarefas'),
+        isActive: this.checkActiveRoute('checklist'),
       },
       {
         name: 'Post-its',
         route: 'post-its',
-        icon: 'note',
+        icon: 'note_stack',
         isActive: this.checkActiveRoute('post-its'),
       },
       {

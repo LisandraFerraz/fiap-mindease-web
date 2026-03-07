@@ -63,6 +63,7 @@ export class ModalKanbanItemComponent implements OnInit, OnDestroy {
       this.kanbanService.updateKanbanItem(this.bodyItem).subscribe({
         next: () => {
           this.bodyItem = new IKanbanTodo();
+          this.dialog.closeAll();
         },
         error: (error) => {
           console.error(error);

@@ -47,6 +47,8 @@ export class ModalAuthComponent {
   }
 
   sendReq() {
+    this.authService.login(this.loginBody);
+    return;
     if (this.loginLayout) {
       if (this.isAuthValid) {
         this.authService.login(this.loginBody);

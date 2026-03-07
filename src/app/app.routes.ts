@@ -20,7 +20,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'lista-de-tarefas',
+    path: 'checklist',
     loadComponent: () =>
       import('./pages/checklist/checklist.component').then((m) => m.ChecklistComponent),
 

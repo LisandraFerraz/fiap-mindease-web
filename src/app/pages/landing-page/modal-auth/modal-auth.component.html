@@ -1,8 +1,5 @@
-<me-modal
-  animate.enter="fadein"
-  [disabled]="isAuthValid === false || registerBody.password !== confirmPass"
-  (clickConfirm)="sendReq()"
->
+<!-- [disabled]="isAuthValid === false || registerBody.password !== confirmPass" -->
+<me-modal animate.enter="fadein" (clickConfirm)="sendReq()">
   <em class="icone"></em>
 
   <div class="modal-body">

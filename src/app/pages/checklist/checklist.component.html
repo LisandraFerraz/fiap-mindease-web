@@ -7,7 +7,7 @@
           <button (click)="createChecklist()">
             <mat-icon fontIcon="add" />
           </button>
-          <span class="title">Lista de to-dos</span>
+          <span class="title">Checklist</span>
         </div>
         <div class="checklists-group">
           @for (checklist of checklistsData; track checklist) {
@@ -39,6 +39,7 @@
                 [(value)]="checklistActive.name"
                 (valueChange)="updateChecklistDetails('name', $event)"
                 [inputId]="checklistActive.id"
+                [maxLen]="30"
               />
             </div>
             <color-selector
