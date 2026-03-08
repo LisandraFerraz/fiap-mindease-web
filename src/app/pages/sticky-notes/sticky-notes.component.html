@@ -16,6 +16,7 @@
                 </button>
               }
               <input
+                maxlength="10"
                 [(ngModel)]="group.groupName"
                 (click)="setIsEditable()"
                 (change)="updateStickyNoteName(group.id, group.groupName)"
