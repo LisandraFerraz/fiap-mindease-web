@@ -4,7 +4,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   {
-    path: 'landing',
+    path: '',
     loadComponent: () =>
       import('./pages/landing-page/landing-page.component').then((m) => m.LandingPageComponent),
   },

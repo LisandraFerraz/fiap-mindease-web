@@ -6,24 +6,30 @@
         {{ dateToday }}
       </p>
     </div>
-    <div class="dashboard_section">
-      <p class="section_title">Tarefas que expiram em breve</p>
-      <div class="todos_group">
-        @for (card of kanbanToExpire; track card) {
-          <dashboard-kanban-card [data]="card" />
-          <dashboard-kanban-card [data]="card" />
-        }
+
+    @if (kanbanToExpire.length > 0) {
+      <div class="dashboard_section">
+        <p class="section_title">Tarefas que expiram em breve</p>
+        <div class="todos_group">
+          @for (card of kanbanToExpire; track card) {
+            <dashboard-kanban-card [data]="card" />
+          }
+        </div>
       </div>
-    </div>
+    }
 
     <div class="row">
       <div class="dashboard_section sticky_notes_group">
         <p class="section_title">Post-its fixados</p>
-        <div class="todos_group">
-          @for (note of favoriteNotes; track note) {
-            <sticky-note [isLittleContent]="true" [noteContent]="note" />
-          }
-        </div>
+        @if (favoriteNotes.length > 0) {
+          <div class="todos_group">
+            @for (note of favoriteNotes; track note) {
+              <sticky-note [isLittleContent]="true" [noteContent]="note" />
+            }
+          </div>
+        } @else {
+          <div class="empty-list"></div>
+        }
       </div>
       <div class="dashboard_section">
         <p class="section_title">Visão geral de tarefas</p>

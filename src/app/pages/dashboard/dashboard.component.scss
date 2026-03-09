@@ -30,8 +30,16 @@
     }
   }
 
-  .sticky_notes_group {
-    // width: 60%;
+  .empty-list {
+    background-image: var(--img-bg-empty-notes);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    margin: 0 125px;
+
+    width: 180px;
+    height: 180px;
+    opacity: 80%;
   }
 
   .todos_group {

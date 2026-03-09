@@ -44,8 +44,8 @@ export class ContaOptionsComponent implements OnInit, OnDestroy {
 
   verificaSenha() {
     this.authService.verificaSenha(this.passConfirm).subscribe({
-      next: (res: { result: string }) => {
-        const isValid = res.result === 'VALIDO';
+      next: (res: { message: string }) => {
+        const isValid = res.message === 'VALIDO';
         this.passwordConfirmed.update(() => isValid);
 
         if (!this.isPassValid) localStorage.setItem('validPassword', 'true');

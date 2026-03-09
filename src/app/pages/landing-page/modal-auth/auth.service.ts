@@ -54,7 +54,7 @@ export class AuthService {
       password: pass,
       usuarioId: userId,
     };
-    return this.http.post<{ result: string }>(`${endpoints.verificaSenha}`, passBody);
+    return this.http.post<{ message: string }>(`${endpoints.verificaSenha}`, passBody);
   }
 
   updateUser(data: Partial<UsuarioLogin>) {
