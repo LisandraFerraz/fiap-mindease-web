@@ -20,11 +20,11 @@ export class NotificationsModalComponent implements OnInit {
   private readonly router = inject(Router);
 
   allNotifications: INotifResponse;
-  kanbanNotifications: INotification[];
-  checklistNotifications: INotification[];
+  kanbanNotifications: INotification[] = [];
+  checklistNotifications: INotification[] = [];
 
   kanbanNotifLayout: boolean = true;
-  activeTab: INotification[];
+  activeTab: INotification[] = [];
 
   ngOnInit(): void {
     this.getNotifications();

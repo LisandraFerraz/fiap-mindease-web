@@ -9,7 +9,7 @@ import { v4 as generateUID } from 'uuid';
 import { MatIcon } from '@angular/material/icon';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { FormsModule } from '@angular/forms';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 
 @Component({
   selector: 'app-sticky-notes.component',

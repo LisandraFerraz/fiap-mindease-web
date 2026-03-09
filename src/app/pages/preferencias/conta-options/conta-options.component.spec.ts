@@ -4,7 +4,7 @@ import { of, throwError } from 'rxjs';
 
 import { ContaOptionsComponent } from './conta-options.component';
 import { AuthService } from '../../landing-page/modal-auth/service/auth.service';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 import { IPreferenciasOptions } from '../utils/preferencias-options';
 import { UsuarioLogin } from '@models/user-model';
 

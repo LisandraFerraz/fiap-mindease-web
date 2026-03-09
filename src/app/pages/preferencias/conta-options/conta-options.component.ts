@@ -13,7 +13,7 @@ import { OptionsTemplateComponent } from '../options-template/options-template.c
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { DefaultButtonComponent } from '@components/default-button/default-button.component';
 import { UsuarioLogin } from '@models/user-model';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 
 @Component({
   selector: 'conta-options',

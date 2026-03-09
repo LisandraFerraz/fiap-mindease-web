@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { v4 as generateUID } from 'uuid';
 import { DatePipe } from '@angular/common';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { Observable } from 'rxjs';

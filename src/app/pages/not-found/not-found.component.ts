@@ -9,9 +9,11 @@ import { DefaultButtonComponent } from '@components/default-button/default-butto
   styleUrl: './not-found.component.scss',
 })
 export class NotFoundComponent {
+  private readonly accessToken = sessionStorage.getItem('accessToken') || '';
   private readonly router = inject(Router);
 
   redirect() {
-    this.router.navigateByUrl('pomodoro');
+    if (this.accessToken !== '') this.router.navigateByUrl('/dashboard');
+    else this.router.navigateByUrl('');
   }
 }

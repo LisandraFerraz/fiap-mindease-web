@@ -5,7 +5,7 @@ import { of, throwError } from 'rxjs';
 import { ModalAuthComponent } from './modal-auth.component';
 import { AuthService } from './service/auth.service';
 import { NotificationService } from '../../../notifications-modal/notifications.service';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 import { IRegisterResponse, UsuarioLogin, UsuarioRegister } from '@models/user-model';
 
 class AuthServiceMock {

@@ -6,7 +6,7 @@ import { ModalTemplateComponent } from '@components/modal-template/modal-templat
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { isAuthFormValid, isEmailValid } from '@functions/validate-auth';
 import { NotificationService } from '../../../notifications-modal/notifications.service';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 
 @Component({
   imports: [CommonModule, ModalTemplateComponent, MEInputTextComponent],
@@ -24,7 +24,7 @@ export class ModalAuthComponent {
   registerBody: UsuarioRegister = new UsuarioRegister();
   confirmPass: string = '';
 
-  loginBody: UsuarioLogin;
+  loginBody: UsuarioLogin = new UsuarioLogin();
   isAuthValid: boolean = false;
 
   changeLayout() {

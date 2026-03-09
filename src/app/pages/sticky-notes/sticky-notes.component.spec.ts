@@ -4,7 +4,7 @@ import { of, throwError } from 'rxjs';
 
 import { StickyNotesComponent } from './sticky-notes.component';
 import { StickyNotesService } from './service/sticky-notes.service';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 import { IStickyNotesResponse, StickyNotesGroup } from '@models/interfaces-model';
 
 @Component({ selector: 'sidenav', template: '<ng-content></ng-content>' })

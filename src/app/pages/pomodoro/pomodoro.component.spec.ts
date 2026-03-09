@@ -7,7 +7,7 @@ import { of, throwError } from 'rxjs';
 import { PomodoroTodo } from '@models/interfaces-model';
 import { PomodoroService } from './service/pomodoro.service';
 import { PomodoroComponent } from './pomodoro.component';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 
 @Component({ selector: 'sidenav', template: '<ng-content></ng-content>' })
 class StubSidenavComponent {}

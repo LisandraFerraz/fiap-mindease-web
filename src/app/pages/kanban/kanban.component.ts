@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angula
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { KanbanService } from './service/kanban.service';
 import { IKanbanColumn, IKanbanTodo } from '@models/interfaces-model';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 import { MatIcon } from '@angular/material/icon';
 import { KanbanCardComponent } from '@components/kanban-card/kanban-card.component';
 import { MatDialog } from '@angular/material/dialog';

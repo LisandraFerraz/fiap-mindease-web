@@ -23,9 +23,9 @@ export class DashboardComponent implements OnInit {
   dateToday = FormatDateName(new Date());
   Highcharts: typeof Highcharts = Highcharts;
 
-  graphData: IGraphData[];
-  kanbanToExpire: IKanbanTodo[];
-  favoriteNotes: StickyNote[];
+  graphData: IGraphData[] = [];
+  kanbanToExpire: IKanbanTodo[] = [];
+  favoriteNotes: StickyNote[] = [];
 
   chartOptions: Highcharts.Options = {};
 

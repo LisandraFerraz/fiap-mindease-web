@@ -4,7 +4,7 @@ import { of, throwError } from 'rxjs';
 
 import { KanbanComponent } from './kanban.component';
 import { KanbanService } from './service/kanban.service';
-import { ToastService } from '@services/toast-notification.service';
+import { ToastService } from '@services/toast-notification/toast-notification.service';
 import { IKanbanColumn, IKanbanTodo, kanbanStatus } from '@models/interfaces-model';
 
 @Component({ selector: 'sidenav', template: '<ng-content></ng-content>' })

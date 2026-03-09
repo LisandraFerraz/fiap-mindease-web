@@ -121,6 +121,6 @@ export class Sidenav {
 
   logout() {
     sessionStorage.clear();
-    this.route.navigate(['/landing']);
+    this.route.navigate(['/']);
   }
 }
