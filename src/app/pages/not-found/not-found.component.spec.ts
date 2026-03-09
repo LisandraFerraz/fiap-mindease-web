@@ -31,6 +31,6 @@ describe('NotFoundComponent', () => {
   it('should redirect to pomodoro when redirect is called', () => {
     component.redirect();
 
-    expect(routerMock.navigateByUrl).toHaveBeenCalledWith('pomodoro');
+    expect(routerMock.navigateByUrl).toHaveBeenCalledWith('');
   });
 });

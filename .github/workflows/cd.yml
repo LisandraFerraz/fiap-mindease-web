@@ -1,15 +1,18 @@
 name: CD Pipeline
 
 on:
-  push:
-    branches:
-      - master
+  workflow_run:
+    workflows: ['CI Pipeline']
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
   deploy:
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'master'
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
       pages: write
@@ -18,18 +21,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-          cache: 'npm'
+          cache: npm
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
-
-      - name: Run tests
-        run: npm test
 
       - name: Build for production
         run: npm run build
@@ -53,33 +55,28 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/master'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/fiap-mindease-web/browser
           cname: ${{ secrets.CUSTOM_DOMAIN }}
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
+          commit_message: 'Deploy from CI run ${{ github.event.workflow_run.run_number }}'
 
       - name: Create Release
-        if: github.ref == 'refs/heads/master' && success()
         uses: softprops/action-gh-release@v1
         with:
           tag_name: release-${{ github.run_number }}
           name: Release ${{ github.run_number }}
           body: |
-            Production deployment from commit ${{ github.sha }}
+            Production deployment
 
-            **Changes:**
-            ${{ github.event.head_commit.message }}
+            Commit: ${{ github.event.workflow_run.head_sha }}
           files: deployment-package.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deployment notification
-        if: success()
         run: |
           echo "✅ Deployment completed successfully!"
-          echo "Build artifacts are available in the Actions tab"
-          echo "GitHub Pages deployment initiated"
+          echo "GitHub Pages deployment finished."
