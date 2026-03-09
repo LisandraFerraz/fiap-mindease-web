@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, inject } from 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { ModalTemplateComponent } from '@components/modal-template/modal-template.component';
-import { KanbanService } from '../kanban.service';
+import { KanbanService } from '../service/kanban.service';
 import { ToastService } from '@services/toast-notification.service';
 import { v4 as generateUID } from 'uuid';
 import { provideNativeDateAdapter } from '@angular/material/core';

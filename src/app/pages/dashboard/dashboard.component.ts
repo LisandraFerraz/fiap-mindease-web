@@ -3,7 +3,7 @@ import { Sidenav } from '@components/sidenav/sidenav.component';
 import { FormatDateName } from '@functions/get-today-date';
 import * as Highcharts from 'highcharts';
 import { HighchartsChartComponent } from 'highcharts-angular';
-import { DashboardService } from './dashboard.service';
+import { DashboardService } from './service/dashboard.service';
 import { IDashboardRes, IGraphData } from '@models/dashboard-model';
 import { IKanbanTodo, StickyNote } from '@models/interfaces-model';
 import { DashboardKanbanCardComponent } from '@components/dashboard-kanban-card/dashboard-kanban-card.component';
@@ -113,7 +113,5 @@ export class DashboardComponent implements OnInit {
         },
       ],
     };
-
-    console.log(this.chartOptions);
   }
 }

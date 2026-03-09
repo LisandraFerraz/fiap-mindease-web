@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { StickyNoteComponent } from '@components/sticky-note/sticky-note.component';
-import { StickyNotesService } from './sticky-notes.service';
+import { StickyNotesService } from './service/sticky-notes.service';
 import { IStickyNotesResponse, StickyNote, StickyNotesGroup } from '@models/interfaces-model';
 
 import { Observable } from 'rxjs';

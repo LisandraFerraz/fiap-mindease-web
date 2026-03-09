@@ -11,13 +11,13 @@ import {
 } from '@angular/core';
 import { TodoCardComponent } from '@components/todo-card/todo-card.component';
 import { MatIconModule } from '@angular/material/icon';
-import { PomodoroService } from './pomodoro.service';
 import { ToastService } from '@services/toast-notification.service';
 import { DefaultButtonComponent } from '@components/default-button/default-button.component';
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { PomodoroTodo } from '@models/interfaces-model';
 import { v4 as generateUID } from 'uuid';
 import { Observable } from 'rxjs';
+import { PomodoroService } from './service/pomodoro.service';
 
 type Step = 'FIRSTROUND' | 'SHORTBREAK' | 'SECONDROUND' | 'LONGBREAK';
 

@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Sidenav } from '@components/sidenav/sidenav.component';
-import { KanbanService } from './kanban.service';
+import { KanbanService } from './service/kanban.service';
 import { IKanbanColumn, IKanbanTodo } from '@models/interfaces-model';
 import { ToastService } from '@services/toast-notification.service';
 import { MatIcon } from '@angular/material/icon';

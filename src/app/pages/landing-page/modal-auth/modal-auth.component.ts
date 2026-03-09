@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IRegisterResponse, UsuarioLogin, UsuarioRegister } from '@models/user-model';
-import { AuthService } from './auth.service';
+import { AuthService } from './service/auth.service';
 import { ModalTemplateComponent } from '@components/modal-template/modal-template.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { isAuthFormValid, isEmailValid } from '@functions/validate-auth';
@@ -24,11 +24,7 @@ export class ModalAuthComponent {
   registerBody: UsuarioRegister = new UsuarioRegister();
   confirmPass: string = '';
 
-  loginBody: UsuarioLogin = {
-    email: 'marianasilva@email.com',
-    password: '12345678',
-  };
-
+  loginBody: UsuarioLogin;
   isAuthValid: boolean = false;
 
   changeLayout() {
@@ -47,12 +43,11 @@ export class ModalAuthComponent {
   }
 
   sendReq() {
-    this.authService.login(this.loginBody);
-    return;
     if (this.loginLayout) {
       if (this.isAuthValid) {
         this.authService.login(this.loginBody);
       } else {
+        this.toast.toastError('Credenciais inválidas.');
       }
     } else {
       this.authService.register(this.registerBody).subscribe({

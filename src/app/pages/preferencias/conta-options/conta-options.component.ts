@@ -1,4 +1,4 @@
-import { AuthService } from './../../landing-page/modal-auth/auth.service';
+import { AuthService } from '../../landing-page/modal-auth/service/auth.service';
 import { IPreferenciasOptions } from './../utils/preferencias-options';
 import {
   ChangeDetectorRef,

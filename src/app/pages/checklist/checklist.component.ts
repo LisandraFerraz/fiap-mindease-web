@@ -71,7 +71,6 @@ export class ChecklistComponent implements OnInit {
   updateChecklistDetails(field: string, event: any) {
     const isFieldName = field === 'name';
     // const fieldValue = isFieldName ? event: event;
-    console.log(event);
 
     // if (this.isEditOff()) {
     let body = {
