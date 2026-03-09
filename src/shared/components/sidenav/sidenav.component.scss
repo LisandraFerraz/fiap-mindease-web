@@ -124,7 +124,7 @@
         }
 
         ul > li:not(:last-child) {
-          margin-bottom: 15px;
+          margin-bottom: 20px;
         }
 
         .notif-icon {
@@ -165,6 +165,7 @@
   .content-focused {
     padding: 25px 25px;
     overflow-y: auto;
+    overflow-x: hidden;
     // height: 100%;
   }
 }

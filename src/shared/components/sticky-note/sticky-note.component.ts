@@ -19,6 +19,7 @@ import { StickyNote } from '@models/interfaces-model';
 export class StickyNoteComponent implements OnInit {
   @ViewChild('checkresize') divResizable: ElementRef<HTMLDivElement>;
 
+  @Input() isLittleContent: boolean = false;
   @Input() noteContent: StickyNote;
   @Output() deleteNote = new EventEmitter<void>();
   @Output() updateNote = new EventEmitter<{

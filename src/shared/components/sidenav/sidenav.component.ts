@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { FocusModeService } from '../../services/focus-mode.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { SlicePipe } from '@angular/common';
 import { ThemeModeService } from '@services/theme-service/theme-mode.service';
@@ -25,17 +24,20 @@ interface INavItems {
 export class Sidenav {
   private readonly themeMode = inject(ThemeModeService);
   private readonly route = inject(Router);
-  private readonly focusMode = inject(FocusModeService);
   private readonly dialog = inject(MatDialog);
   private readonly notificationsService = inject(NotificationService);
 
-  isFocusOn = this.focusMode.focusOn;
-
-  isSidenavOpened = signal(true);
+  isSidenavOpened = signal(false);
   hasNotif: boolean = false;
 
   get navItems(): INavItems[] {
     return [
+      {
+        name: 'Dashboard',
+        route: 'dashboard',
+        icon: 'home',
+        isActive: this.checkActiveRoute('dashboard'),
+      },
       {
         name: 'Pomodoro',
         route: 'pomodoro',
@@ -99,13 +101,7 @@ export class Sidenav {
   }
 
   setNavVisible() {
-    // if (!this.isFocusOn() ) {
     this.isSidenavOpened.update((isOpen) => !isOpen);
-    // }
-  }
-
-  isNavVisible() {
-    return !this.isFocusOn() && this.isSidenavOpened();
   }
 
   toggleTheme() {
@@ -125,6 +121,6 @@ export class Sidenav {
 
   logout() {
     sessionStorage.clear();
-    this.route.navigate(['/']);
+    this.route.navigate(['/landing']);
   }
 }

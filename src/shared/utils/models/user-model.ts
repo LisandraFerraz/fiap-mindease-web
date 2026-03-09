@@ -13,6 +13,7 @@ export interface IaccessTokens {
   accessToken: string;
   platToolsId: string;
   usuarioId: string;
+  userName: string;
 }
 
 export interface IRegisterResponse {

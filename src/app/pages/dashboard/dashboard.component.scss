@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  .dashboard_top {
+    padding-top: 60px;
+
+    .dashboard_title {
+      font-size: 1.2rem;
+      color: var(--text-color-dark);
+      font-weight: 700;
+      line-height: 35px;
+    }
+
+    .dashboard_date {
+      font-size: 18px;
+      color: var(--text-color-light);
+    }
+  }
+
+  .dashboard_section {
+    .section_title {
+      font-size: 16px;
+      text-transform: uppercase;
+      color: var(--text-color-dark);
+      font-weight: 700;
+
+      margin-bottom: 25px;
+    }
+  }
+
+  .sticky_notes_group {
+    // width: 60%;
+  }
+
+  .todos_group {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    padding: 5px 5px 10px 5px;
+
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+
+  .row {
+    display: flex;
+    gap: 25px;
+
+    @media screen and (max-width: 940px) {
+      flex-direction: column;
+    }
+
+    .sticky_notes_group {
+      flex: 1;
+      min-width: 0;
+
+      :last-child {
+        flex: 0 0 auto;
+      }
+    }
+  }
+}

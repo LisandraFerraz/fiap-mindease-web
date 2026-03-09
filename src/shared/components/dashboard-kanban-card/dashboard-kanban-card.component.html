@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-col">
+    <span [class]="[data.priority, 'tag']">{{ getPriority() }}</span>
+    <p class="card-title">{{ data.title }}</p>
+  </div>
+  <div class="card-col">
+    <p class="card-count">
+      {{ data.dayCountMessage }}
+    </p>
+    <mat-icon fontIcon="arrow_right_alt" />
+  </div>
+</div>

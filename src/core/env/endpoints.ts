@@ -25,4 +25,6 @@ export const endpoints = {
 
   notifications: '/tools/:id/notifications',
   atualizaNotifications: '/tools/:id/notifications',
+
+  dashboard: '/tools/:id/dashboard',
 };

@@ -13,7 +13,7 @@
         <div class="items">
           <div class="main">
             <ul>
-              @for (item of navItems | slice: 0 : 4; track item.name) {
+              @for (item of navItems | slice: 0 : 5; track item.name) {
                 <li [class.active-route]="item.isActive">
                   <a [href]="item.route">
                     <mat-icon [fontIcon]="item.icon" />
@@ -41,10 +41,10 @@
 
           <span class="divisor"></span>
           <div class="bottom items">
-            <span [class.active-route]="navItems[4].isActive">
-              <a [href]="navItems[4].route">
-                <mat-icon [fontIcon]="navItems[4].icon" />
-                {{ navItems[4].name }}</a
+            <span [class.active-route]="navItems[5].isActive">
+              <a [href]="navItems[5].route">
+                <mat-icon [fontIcon]="navItems[5].icon" />
+                {{ navItems[5].name }}</a
               >
             </span>
             <span (click)="logout()">

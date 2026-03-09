@@ -4,9 +4,15 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'landing',
     loadComponent: () =>
       import('./pages/landing-page/landing-page.component').then((m) => m.LandingPageComponent),
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+    canActivate: [AuthGuard],
   },
   {
     path: 'pomodoro',

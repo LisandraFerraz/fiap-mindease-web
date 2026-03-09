@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { IndividualConfig, ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -10,7 +9,6 @@ export class ToastService {
 
   config: Partial<IndividualConfig> = {
     positionClass: 'toast-bottom-right',
-    // timeOut: 3000
   };
 
   public toastError(msg: string) {

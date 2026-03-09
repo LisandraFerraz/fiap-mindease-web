@@ -103,6 +103,7 @@ p {
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -111,12 +112,13 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--bg-color-dark);
+  background-color: #e5e5e562;
   border-radius: 100px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  transition: ease 0.2s;
+  background-color: var(--text-color-opacity);
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

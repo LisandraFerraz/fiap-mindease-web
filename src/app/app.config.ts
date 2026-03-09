@@ -7,9 +7,13 @@ import { apiInterceptor } from '../core/api-interceptor';
 import { provideToastr } from 'ngx-toastr';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideLoadingBarInterceptor } from '@ngx-loading-bar/http-client';
+import { provideHighcharts } from 'highcharts-angular';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHighcharts({
+      instance: () => import('highcharts'),
+    }),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withViewTransitions()),
     provideHttpClient(withInterceptors([apiInterceptor]), withInterceptorsFromDi()),

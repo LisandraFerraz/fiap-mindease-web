@@ -1,0 +1,36 @@
+<sidenav>
+  <div class="container">
+    <div class="dashboard_top">
+      <p class="dashboard_title">Olá, {{ userName }}</p>
+      <p class="dashboard_date">
+        {{ dateToday }}
+      </p>
+    </div>
+    <div class="dashboard_section">
+      <p class="section_title">Tarefas que expiram em breve</p>
+      <div class="todos_group">
+        @for (card of kanbanToExpire; track card) {
+          <dashboard-kanban-card [data]="card" />
+          <dashboard-kanban-card [data]="card" />
+        }
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="dashboard_section sticky_notes_group">
+        <p class="section_title">Post-its fixados</p>
+        <div class="todos_group">
+          @for (note of favoriteNotes; track note) {
+            <sticky-note [isLittleContent]="true" [noteContent]="note" />
+          }
+        </div>
+      </div>
+      <div class="dashboard_section">
+        <p class="section_title">Visão geral de tarefas</p>
+        <div class="section_content">
+          <highcharts-chart [options]="chartOptions"></highcharts-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</sidenav>

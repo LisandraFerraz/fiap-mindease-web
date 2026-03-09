@@ -30,8 +30,9 @@ export class AuthService {
           sessionStorage.setItem('accessToken', res.accessToken);
           sessionStorage.setItem('platToolsId', res.platToolsId);
           sessionStorage.setItem('usuarioId', res.usuarioId);
+          sessionStorage.setItem('usuarioNome', res.userName);
 
-          this.router.navigateByUrl('pomodoro');
+          this.router.navigateByUrl('dashboard');
           this.dialog.closeAll();
         }
       },

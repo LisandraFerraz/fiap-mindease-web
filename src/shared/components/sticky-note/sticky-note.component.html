@@ -1,4 +1,4 @@
-<div [class]="['card', `BG-${noteContent.color}`]">
+<div [class]="['card', `BG-${noteContent.color}`]" [style]="isLittleContent && 'height: 100%'">
   <div class="wrapper">
     <div class="header">
       <input
@@ -6,8 +6,11 @@
         (change)="handleEditNote('title', $event)"
         type="text"
         class="card-title"
+        [disabled]="isLittleContent"
       />
-      <button (click)="handleDeleteNote()">x</button>
+      @if (!isLittleContent) {
+        <button (click)="handleDeleteNote()">x</button>
+      }
     </div>
 
     <div class="card-content">
@@ -18,6 +21,7 @@
         name="description"
         id="description"
         maxlength="200"
+        [disabled]="isLittleContent"
       ></textarea>
     </div>
     <div class="card-bottom">
