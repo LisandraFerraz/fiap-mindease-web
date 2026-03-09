@@ -9,39 +9,39 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
       pages: write
       id-token: write
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           cache: 'npm'
-      
+
       - name: Install dependencies
-        run: npm ci
-      
+        run: npm ci --legacy-peer-deps
+
       - name: Run tests
         run: npm test
-      
+
       - name: Build for production
         run: npm run build
         env:
           NODE_ENV: production
-      
+
       - name: Create deployment package
         run: |
           cd dist
           zip -r ../deployment-package.zip .
           cd ..
-      
+
       - name: Upload deployment artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -50,7 +50,7 @@ jobs:
             dist/
             deployment-package.zip
           retention-days: 30
-      
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/master'
@@ -61,7 +61,7 @@ jobs:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
-      
+
       - name: Create Release
         if: github.ref == 'refs/heads/master' && success()
         uses: softprops/action-gh-release@v1
@@ -70,13 +70,13 @@ jobs:
           name: Release ${{ github.run_number }}
           body: |
             Production deployment from commit ${{ github.sha }}
-            
+
             **Changes:**
             ${{ github.event.head_commit.message }}
           files: deployment-package.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Deployment notification
         if: success()
         run: |
