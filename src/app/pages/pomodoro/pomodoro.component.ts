@@ -39,6 +39,7 @@ export class PomodoroComponent implements OnInit, OnDestroy {
   private pomodoroService = inject(PomodoroService);
   private cd = inject(ChangeDetectorRef);
 
+  animationEnabled = signal(true);
   private timeRemaining = signal(0);
   readonly isRunning = signal(false);
   private initialTime = signal(0);
@@ -213,8 +214,12 @@ export class PomodoroComponent implements OnInit, OnDestroy {
 
   readonly isCompleted = computed(() => this.timeLeft() === 0);
 
+  toggleAnimation() {
+    this.animationEnabled.update((isAnimated) => !isAnimated);
+  }
+
   get classes() {
-    return ['timer', this.isRunning() ? `with-animation` : ''];
+    return ['timer', this.isRunning() && this.animationEnabled() ? `with-animation` : ''];
   }
 
   ngOnDestroy(): void {
