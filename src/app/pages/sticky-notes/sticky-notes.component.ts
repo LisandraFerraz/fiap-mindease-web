@@ -97,8 +97,8 @@ export class StickyNotesComponent implements OnInit {
     );
   }
 
-  updateStickyNote(emitterData: { fieldName: string; fieldValue: string }, noteId: string) {
-    if (emitterData.fieldName === 'isFavorite') {
+  updateStickyNote(emitterData: { fieldName: string; fieldValue: any }, noteId: string) {
+    if (emitterData.fieldName === 'isFavorite' && emitterData.fieldValue === true) {
       const allFavs: any = this.listaStickyNotesGroup
         .flatMap((sn) => sn.data)
         .map((d) => d.isFavorite)
