@@ -63,6 +63,10 @@ export class StickyNote {
   isFavorite: boolean = false;
 }
 
+export class FilterStickyNotes {
+  search: string = '';
+}
+
 export interface IChecklistResponse {
   checklist: Checklist[];
 }

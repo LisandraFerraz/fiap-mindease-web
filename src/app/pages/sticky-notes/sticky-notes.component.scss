@@ -110,16 +110,25 @@
         flex: 1;
         position: relative;
 
-        .mat-icon {
-          color: var(--text-color-dark);
+        .group_search_btn {
           position: absolute;
-          right: 25px;
           top: 12px;
-          transition: ease 0.2s;
+          right: 25px;
 
-          &:hover {
-            cursor: pointer;
-            opacity: 60%;
+          button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+          }
+
+          .mat-icon {
+            color: var(--text-color-dark);
+            transition: ease 0.2s;
+
+            &:hover {
+              cursor: pointer;
+              opacity: 60%;
+            }
           }
         }
       }

@@ -31,8 +31,10 @@
         [disabled]="isLittleContent"
       ></textarea>
     </div>
-    <div class="card-bottom">
-      {{ `${noteContent.description.length}/200` }}
-    </div>
+    @if (!isLittleContent) {
+      <div class="card-bottom">
+        {{ `${noteContent.description.length}/200` }}
+      </div>
+    }
   </div>
 </div>

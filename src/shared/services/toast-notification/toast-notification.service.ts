@@ -17,6 +17,12 @@ export class ToastService {
     });
   }
 
+  public toastWarning(msg: string) {
+    return this.toast.warning(msg, '', {
+      ...this.config,
+    });
+  }
+
   public toastSuccess(msg: string) {
     return this.toast.success(msg, '', {
       ...this.config,

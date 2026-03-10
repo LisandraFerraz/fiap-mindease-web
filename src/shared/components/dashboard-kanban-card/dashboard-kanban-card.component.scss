@@ -19,6 +19,7 @@
     color: var(--text-color-light);
 
     .card-title {
+      font-size: var(--font-size-description);
       font-weight: 700;
     }
 
@@ -26,11 +27,21 @@
       font-size: var(--font-size-description);
     }
 
-    .mat-icon {
-      width: fit-content;
-      height: fit-content;
-      font-size: 45px;
-      color: var(--text-color-opacity);
+    button {
+      border: none;
+      outline: none;
+      background-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .mat-icon {
+        width: fit-content;
+        height: fit-content;
+        font-size: 45px;
+        color: var(--text-color-opacity);
+      }
     }
 
     .tag {
