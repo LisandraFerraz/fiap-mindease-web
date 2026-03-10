@@ -4,12 +4,12 @@
   min-width: 300px;
   max-width: 650px;
   width: fit-content;
-  // height: 160px;
   border-radius: 15px;
   position: relative;
   overflow: hidden;
   position: relative;
   box-shadow: 0 0 4px var(--shadow-grey-color);
+  border-bottom: 10px solid #57575778;
 
   .wrapper {
     margin: 25px;
@@ -60,17 +60,6 @@
       text-align: right;
       font-size: var(--font-size-description);
       color: var(--text-color-light);
-    }
-
-    ::before {
-      content: '';
-      position: absolute;
-      background-color: #575757;
-      opacity: 10%;
-      top: 0;
-      right: 0;
-      height: 10px;
-      width: 100%;
     }
   }
 }

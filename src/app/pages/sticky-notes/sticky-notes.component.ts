@@ -98,6 +98,18 @@ export class StickyNotesComponent implements OnInit {
   }
 
   updateStickyNote(emitterData: { fieldName: string; fieldValue: string }, noteId: string) {
+    if (emitterData.fieldName === 'isFavorite') {
+      const allFavs: any = this.listaStickyNotesGroup
+        .flatMap((sn) => sn.data)
+        .map((d) => d.isFavorite)
+        .filter(Boolean) as [true];
+
+      if (allFavs.length === 6) {
+        this.toast.toastError('Só é possível favoritar até 6 post-its.');
+        return;
+      }
+    }
+
     const body = {
       [emitterData.fieldName]: emitterData.fieldValue,
     } as Partial<StickyNote>;
