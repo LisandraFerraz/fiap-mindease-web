@@ -81,7 +81,7 @@
       }
 
       span:last-child {
-        font-size: 0.8rem;
+        font-size: var(--font-size-description);
         font-weight: 500;
       }
     }

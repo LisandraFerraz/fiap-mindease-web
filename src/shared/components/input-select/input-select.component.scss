@@ -9,7 +9,7 @@
     background-color: var(--input-bg-color-primary);
     color: var(--text-color-dark);
     appearance: none;
-    font-size: 0.8rem;
+    font-size: var(--font-size-description);
     padding: 0.675em 6em 0.675em 1em;
     border-radius: 0.25rem;
     cursor: pointer;

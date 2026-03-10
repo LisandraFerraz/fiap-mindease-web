@@ -8,5 +8,11 @@
       <span>Modo escuro</span>
       <mat-slide-toggle [checked]="currentTheme === 'dark-mode'" (change)="changeTheme()" />
     </div>
+    <div>
+      <div class="font-sizing-option">
+        <span>Tamanho dos textos</span>
+        <font-size-selector />
+      </div>
+    </div>
   </div>
 </options-template>

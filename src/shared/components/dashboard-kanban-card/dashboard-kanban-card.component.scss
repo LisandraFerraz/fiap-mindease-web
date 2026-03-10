@@ -23,7 +23,7 @@
     }
 
     .card-count {
-      font-size: 0.8rem;
+      font-size: var(--font-size-description);
     }
 
     .mat-icon {
@@ -36,7 +36,7 @@
     .tag {
       text-transform: capitalize;
       border-radius: 100px;
-      font-size: 0.8rem;
+      font-size: var(--font-size-description);
       padding: 5px 25px;
 
       font-weight: 600;

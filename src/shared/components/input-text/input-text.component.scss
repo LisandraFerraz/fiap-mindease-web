@@ -5,7 +5,7 @@ input {
   background-color: var(--input-bg-color-primary);
   padding: 0 15px;
   transition: ease 0.2s;
-  font-size: 0.8rem;
+  font-size: var(--font-size-description);
   color: var(--text-color-dark);
 
   &::placeholder {

@@ -1,4 +1,11 @@
 .options {
+  div.font-sizing-option {
+    display: flex;
+    align-content: start !important;
+    flex-direction: column;
+    gap: 15px;
+  }
+
   > div {
     max-width: 400px;
     display: flex;
@@ -9,7 +16,7 @@
     span {
       color: var(--text-color-dark);
       font-weight: 600;
-      font-size: 1rem;
+      font-size: var(--font-size-text);
     }
   }
 }

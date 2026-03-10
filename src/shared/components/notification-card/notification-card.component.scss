@@ -28,7 +28,7 @@
 
     p {
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: var(--font-size-description);
       color: var(--text-color-dark);
     }
 
@@ -58,7 +58,7 @@
   }
 
   p.description {
-    font-size: 0.8rem;
+    font-size: var(--font-size-description);
     color: var(--text-color-light);
     padding: 15px 0;
   }
@@ -69,7 +69,7 @@
     border: none;
     color: var(--text-color-dark);
     text-decoration: underline;
-    font-size: 0.8rem;
+    font-size: var(--font-size-description);
     align-self: flex-end;
     transition: ease 0.2s;
 

@@ -55,11 +55,11 @@
   --border-color-dark: #4f5162;
 
   --img-bg-lp-pattern: url(./../../../assets/landing-bg.png);
-  --img-bg-pomodoro-pattern: url('./../../../assets/pomodoro-bg.svg');
-  --img-bg-empty-notes: url('./../../../assets/light-empty-notes-list.png');
-  --img-bg-empty-todo: url('./../../../assets/light-empty-todo-list.png');
-  --img-bg-empty-notifications: url('./../../../assets/light-empty-notifications.png');
-  --img-bg-page-not-found: url('./../../../assets/light-not-found-bg.png');
+  --img-bg-pomodoro-pattern: url('./../../../assets/light/light-pomodoro-bg.svg');
+  --img-bg-empty-notes: url('./../../../assets/light/light-empty-notes-list.png');
+  --img-bg-empty-todo: url('./../../../assets/light/light-empty-todo-list.png');
+  --img-bg-empty-notifications: url('./../../../assets/light/light-empty-notifications.png');
+  --img-bg-page-not-found: url('./../../../assets/light/light-not-found-bg.png');
 }
 .dark-mode {
   --bg-color-base: #0a0a12;
@@ -117,10 +117,10 @@
   --border-color-light: #272639;
   --border-color-dark: #ffffff;
 
-  --img-bg-lp-pattern: url(./../../../assets/dark-landing-bg.png);
-  --img-bg-pomodoro-pattern: url('./../../../assets/dark-pomodoro-bg.svg');
-  --img-bg-empty-notes: url('./../../../assets/dark-empty-notes-list.png');
-  --img-bg-empty-notifications: url('./../../../assets/dark-empty-notifications.png');
-  --img-bg-empty-todo: url('./../../../assets/dark-empty-todo-list.png');
-  --img-bg-page-not-found: url('./../../../assets/dark-not-found-bg.png');
+  --img-bg-lp-pattern: url(./../../../assets/dark/dark-landing-bg.png);
+  --img-bg-pomodoro-pattern: url('./../../../assets/dark/dark-pomodoro-bg.svg');
+  --img-bg-empty-notes: url('./../../../assets/dark/dark-empty-notes-list.png');
+  --img-bg-empty-notifications: url('./../../../assets/dark/dark-empty-notifications.png');
+  --img-bg-empty-todo: url('./../../../assets/dark/dark-empty-todo-list.png');
+  --img-bg-page-not-found: url('./../../../assets/dark/dark-not-found-bg.png');
 }

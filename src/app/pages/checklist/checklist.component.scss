@@ -9,7 +9,7 @@
   > span.title {
     color: var(--text-color-dark);
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: var(--font-size-title);
     padding-top: 60px;
   }
 
@@ -54,7 +54,7 @@
         width: 100%;
         font-weight: 600;
         color: var(--text-color-dark);
-        font-size: 1em;
+        font-size: var(--font-size-text);
 
         .mat-icon {
           color: var(--text-color-dark);
@@ -89,7 +89,7 @@
 
             color: var(--text-color-dark);
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: var(--font-size-description);
 
             &:hover {
               opacity: 80%;
@@ -184,7 +184,7 @@
 
           input {
             font-weight: 600;
-            font-size: 1rem;
+            font-size: var(--font-size-text);
             color: var(--text-color-dark);
             height: 45px;
             width: 400px;

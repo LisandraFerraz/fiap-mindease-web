@@ -1,6 +1,7 @@
+import { ThemeModeService } from '@services/theme-service/theme-mode.service';
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ThemeModeService } from '@services/theme-service/theme-mode.service';
+import { FontSizeService } from '@services/theme-service/font-sizing.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,10 @@ import { ThemeModeService } from '@services/theme-service/theme-mode.service';
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
-  themeMode = inject(ThemeModeService);
-
-  ngOnInit(): void {
-    // this.themeMode.theme();
-  }
-
-  protected readonly title = signal('fiap-mindease-web');
+  constructor(
+    private fontSizeService: FontSizeService,
+    private themeModeService: ThemeModeService,
+  ) {}
+  ngOnInit(): void {}
+  protected readonly title = signal('Mindease');
 }
