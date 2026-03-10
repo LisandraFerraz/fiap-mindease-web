@@ -23,8 +23,4 @@ export class FontSizeService {
   setFontSize(size: FontSizeMode) {
     this.fontSize.set(size);
   }
-
-  // resetFont() {
-  //   this.fontSize.set('default-text');
-  // }
 }
