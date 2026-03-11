@@ -13,6 +13,11 @@
       <div [class]="classes">
         <span class="timer-count">{{ formattedTime() }}</span>
         <div class="buttons">
+          @if (isRunning()) {
+            <button [class.pomodoro_animation]="!animationEnabled()" (click)="toggleAnimation()">
+              <mat-icon fontIcon="auto_awesome_motion" />
+            </button>
+          }
           <button (click)="isRunning() ? stop() : start()">
             <mat-icon [fontIcon]="isRunning() ? 'pause' : 'play_arrow'" />
           </button>

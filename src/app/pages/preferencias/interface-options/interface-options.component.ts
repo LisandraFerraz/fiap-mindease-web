@@ -3,10 +3,11 @@ import { OptionsTemplateComponent } from '../options-template/options-template.c
 import { IPreferenciasOptions } from '../utils/preferencias-options';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ThemeModeService } from '@services/theme-service/theme-mode.service';
+import { FontSizeSelectorComponent } from '@components/font-size-selector/font-size-selector.component';
 
 @Component({
   selector: 'interface-options',
-  imports: [OptionsTemplateComponent, MatSlideToggleModule],
+  imports: [OptionsTemplateComponent, FontSizeSelectorComponent, MatSlideToggleModule],
   templateUrl: './interface-options.component.html',
   styleUrl: './interface-options.component.scss',
 })

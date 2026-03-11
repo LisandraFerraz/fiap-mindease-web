@@ -9,12 +9,12 @@ div {
     label {
       text-transform: uppercase;
       font-weight: 600;
-      font-size: 0.7rem;
+      font-size: var(--font-size-label);
       color: var(--text-color-dark);
     }
 
     span.required {
-      font-size: 0.6rem;
+      font-size: var(--font-size-label);
       color: var(--text-color-opacity);
     }
   }

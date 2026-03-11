@@ -20,6 +20,7 @@ export const endpoints = {
   deleteChecklist: '/tools/:id/checklist/deleta-checklist',
 
   stickyNotes: '/tools/:id/sticky-notes',
+  searchAtickyNotes: '/tools/:id/sticky-notes/search',
   createStickyNotesGroup: '/tools/:id/sticky-notes/novo-sticky-note-group',
   deleteStickyNotesGroup: '/tools/:id/sticky-notes/deleta-grupo-sticky-note',
 

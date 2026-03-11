@@ -27,7 +27,7 @@ export class Sidenav {
   private readonly dialog = inject(MatDialog);
   private readonly notificationsService = inject(NotificationService);
 
-  isSidenavOpened = signal(false);
+  isSidenavOpened = signal(true);
   hasNotif: boolean = false;
 
   get navItems(): INavItems[] {

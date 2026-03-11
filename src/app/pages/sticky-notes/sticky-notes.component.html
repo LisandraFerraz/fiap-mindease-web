@@ -46,9 +46,18 @@
               type="text"
               inputId="search"
               placeholder="Pesquisar anotação..."
-              [(value)]="keywordSeach"
+              [(value)]="searchBody.search"
             />
-            <mat-icon fontIcon="search" />
+            <div class="group_search_btn">
+              @if (!filtersApplied()) {
+                <button (click)="resetFilters()">
+                  <mat-icon fontIcon="restart_alt" />
+                </button>
+              }
+              <button (click)="searchNotesGroup()">
+                <mat-icon fontIcon="search" />
+              </button>
+            </div>
           </div>
           <button (click)="addStickyNote()" class="group-add-btn">
             <mat-icon fontIcon="add" />

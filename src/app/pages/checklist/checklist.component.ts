@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { InputAddTask } from '@components/input-add-task/input-add-task.component';
 import { Sidenav } from '@components/sidenav/sidenav.component';
@@ -13,6 +20,7 @@ import { ToastService } from '@services/toast-notification/toast-notification.se
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
 import { MEInputTextComponent } from '@components/input-text/input-text.component';
 import { Observable } from 'rxjs';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-checklist.component',
@@ -24,10 +32,12 @@ import { Observable } from 'rxjs';
     FormsModule,
     MatIconModule,
     MEInputTextComponent,
+    MatProgressBar,
   ],
   providers: [provideNativeDateAdapter(), DatePipe],
   templateUrl: './checklist.component.html',
   styleUrl: './checklist.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class ChecklistComponent implements OnInit {
   private readonly checklistService = inject(ChecklistService);
@@ -70,9 +80,7 @@ export class ChecklistComponent implements OnInit {
 
   updateChecklistDetails(field: string, event: any) {
     const isFieldName = field === 'name';
-    // const fieldValue = isFieldName ? event: event;
 
-    // if (this.isEditOff()) {
     let body = {
       [field]: event,
     } as Partial<Checklist>;
@@ -86,7 +94,6 @@ export class ChecklistComponent implements OnInit {
       'Não foi possível recuperar as checklists.',
       todo,
     );
-    // }
   }
 
   deleteChecklist(checkId: string) {
@@ -119,6 +126,11 @@ export class ChecklistComponent implements OnInit {
 
   addChecklistItem() {
     const today = new Date();
+
+    if (this.checklistActive.data.length === 10) {
+      this.toast.toastError('Vamos com calma! Apenas 10 tarefas por checklist :)');
+      return;
+    }
 
     const body: ChecklistItem = {
       ...this.checkItemBody,
@@ -183,6 +195,15 @@ export class ChecklistComponent implements OnInit {
         this.toast.toastError(errorMsg);
       },
     });
+  }
+
+  get currentChecklistProgress() {
+    const totalItems = this.checklistActive.data.length;
+    const completedItems = this.checklistActive.completedItems ?? 0;
+
+    const pct = totalItems > 0 ? (completedItems / totalItems) * 100 : 0;
+
+    return pct.toFixed(2);
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div class="btn_group">
+    @for (fontS of fontsizeOpts; track fontS) {
+      <div class="btn_label">
+        <button
+          (click)="handleToggleFontSize(fontS.size)"
+          [class]="['btn-selector', fontS.size === sizeSelected() ? 'size-selected' : undefined]"
+        ></button>
+        <span>{{ fontS.label }}</span>
+      </div>
+    }
+  </div>
+  <div class="line"></div>
+</div>

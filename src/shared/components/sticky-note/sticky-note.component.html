@@ -8,9 +8,16 @@
         class="card-title"
         [disabled]="isLittleContent"
       />
-      @if (!isLittleContent) {
-        <button (click)="handleDeleteNote()">x</button>
-      }
+      <div class="btn_group">
+        @if (!isLittleContent) {
+          <button class="close-btn" (click)="handleToggleFavorite()">
+            <mat-icon [fontIcon]="noteContent.isFavorite ? 'favorite' : 'favorite_border'" />
+          </button>
+          <button class="close-btn" (click)="handleDeleteNote()">
+            <mat-icon fontIcon="close" />
+          </button>
+        }
+      </div>
     </div>
 
     <div class="card-content">
@@ -24,8 +31,10 @@
         [disabled]="isLittleContent"
       ></textarea>
     </div>
-    <div class="card-bottom">
-      {{ `${noteContent.description.length}/200` }}
-    </div>
+    @if (!isLittleContent) {
+      <div class="card-bottom">
+        {{ `${noteContent.description.length}/200` }}
+      </div>
+    }
   </div>
 </div>

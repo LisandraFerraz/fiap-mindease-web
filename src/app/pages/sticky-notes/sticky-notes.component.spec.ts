@@ -14,6 +14,7 @@ class StickyNotesServiceMock {
   listAllStickyGroups = jest.fn();
   createStickyNotesGroup = jest.fn();
   updateStickyNotesGroup = jest.fn();
+  filterKeywordNotesGroup = jest.fn();
   addStickyNote = jest.fn();
   updateStickyNote = jest.fn();
   deleteStickyNote = jest.fn();
@@ -23,6 +24,7 @@ class StickyNotesServiceMock {
 class ToastServiceMock {
   toastSuccess = jest.fn();
   toastError = jest.fn();
+  toastWarning = jest.fn();
 }
 
 describe('StickyNotesComponent', () => {
@@ -78,6 +80,10 @@ describe('StickyNotesComponent', () => {
 
     fixture = TestBed.createComponent(StickyNotesComponent);
     component = fixture.componentInstance;
+
+    stickyNotesService.filterKeywordNotesGroup.mockImplementation(() =>
+      of({ stickyNotes: component.activeStickyNoteGroup }),
+    );
   });
 
   afterEach(() => {
@@ -245,5 +251,164 @@ describe('StickyNotesComponent', () => {
     component.setIsEditable();
 
     expect(component.isEditable()).toBe(true);
+  });
+
+  describe('searchNotesGroup', () => {
+    it('should update activeStickyNoteGroup and toggle filtersApplied on success', () => {
+      const searchResult = { ...mockGroup1, groupName: 'Filtered Group' };
+      component.activeStickyNoteGroup = mockGroup1;
+      stickyNotesService.filterKeywordNotesGroup.mockReturnValue(of({ stickyNotes: searchResult }));
+      const initialFiltersApplied = component.filtersApplied();
+
+      component.searchNotesGroup();
+
+      expect(stickyNotesService.filterKeywordNotesGroup).toHaveBeenCalledWith(
+        component.searchBody,
+        mockGroup1.id,
+      );
+      expect(component.activeStickyNoteGroup).toEqual(searchResult);
+      expect(component.filtersApplied()).toBe(!initialFiltersApplied);
+    });
+
+    it('should call toastError when search fails', () => {
+      component.activeStickyNoteGroup = mockGroup1;
+      stickyNotesService.filterKeywordNotesGroup.mockReturnValue(
+        throwError(() => new Error('Search error')),
+      );
+
+      component.searchNotesGroup();
+
+      expect(toastService.toastError).toHaveBeenCalledWith('Não foi possível pesquisar.');
+    });
+  });
+
+  describe('updateStickyNote – isFavorite handling', () => {
+    it('should proceed with update when favoriting a note below the 6-favorite limit', () => {
+      component.listaStickyNotesGroup = [
+        {
+          id: 'group-1',
+          groupName: 'Group 1',
+          data: [
+            { id: 'n1', title: 'N1', description: '', color: 'BLUE', isFavorite: true },
+            { id: 'n2', title: 'N2', description: '', color: 'BLUE', isFavorite: true },
+          ],
+        },
+      ];
+      component.activeStickyNoteGroup = component.listaStickyNotesGroup[0];
+      stickyNotesService.updateStickyNote.mockReturnValue(of(mockResponse));
+
+      component.updateStickyNote({ fieldName: 'isFavorite', fieldValue: true }, 'new-note');
+
+      expect(stickyNotesService.updateStickyNote).toHaveBeenCalledWith(
+        component.activeStickyNoteGroup.id,
+        { isFavorite: true },
+        'new-note',
+      );
+      expect(toastService.toastWarning).not.toHaveBeenCalled();
+    });
+
+    it('should show toastWarning and not call service when 6 favorites already exist', () => {
+      const groupWithSixFavs: IStickyNotesResponse['stickyNotes'][number] = {
+        id: 'group-fav',
+        groupName: 'Fav Group',
+        data: Array.from({ length: 6 }, (_, i) => ({
+          id: `fav-${i}`,
+          title: `Fav ${i}`,
+          description: '',
+          color: 'BLUE' as const,
+          isFavorite: true,
+        })),
+      };
+      component.listaStickyNotesGroup = [groupWithSixFavs];
+      component.activeStickyNoteGroup = groupWithSixFavs;
+
+      component.updateStickyNote({ fieldName: 'isFavorite', fieldValue: true }, 'new-note');
+
+      expect(toastService.toastWarning).toHaveBeenCalledWith(
+        'Só é possível favoritar até 6 post-its.',
+      );
+      expect(stickyNotesService.updateStickyNote).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('error paths via subscribeObservable', () => {
+    beforeEach(() => {
+      component.activeStickyNoteGroup = mockGroup1;
+    });
+
+    it('should call toastError when updateStickyNote fails', () => {
+      stickyNotesService.updateStickyNote.mockReturnValue(throwError(() => new Error('error')));
+
+      component.updateStickyNote({ fieldName: 'title', fieldValue: 'X' }, 'note-1');
+
+      expect(toastService.toastError).toHaveBeenCalledWith('Não foi possível criar o post-it.');
+    });
+
+    it('should call toastError when addStickyNote fails', () => {
+      stickyNotesService.addStickyNote.mockReturnValue(throwError(() => new Error('error')));
+
+      component.addStickyNote();
+
+      expect(toastService.toastError).toHaveBeenCalledWith('Não foi possível criar o post-it.');
+    });
+
+    it('should call toastError when deleteStickyNote fails', () => {
+      stickyNotesService.deleteStickyNote.mockReturnValue(throwError(() => new Error('error')));
+
+      component.deleteStickyNote('note-1');
+
+      expect(toastService.toastError).toHaveBeenCalledWith('Não foi possível excluir o post-it.');
+    });
+
+    it('should call toastError when deleteStickyNotesGroup fails', () => {
+      component.listaStickyNotesGroup = mockResponse.stickyNotes;
+      stickyNotesService.deleteStickyNotesGroup.mockReturnValue(
+        throwError(() => new Error('error')),
+      );
+
+      component.deleteStickyNotesGroup();
+
+      expect(toastService.toastError).toHaveBeenCalledWith('Não foi possível excluir o post-it.');
+    });
+
+    it('should call toastError when updateStickyNoteName fails', () => {
+      stickyNotesService.updateStickyNotesGroup.mockReturnValue(
+        throwError(() => new Error('error')),
+      );
+
+      component.updateStickyNoteName('group-1', 'New Name');
+
+      expect(toastService.toastError).toHaveBeenCalledWith(
+        'Não foi possível atualizar o nome do grupo.',
+      );
+    });
+  });
+
+  it('should set first group as active when activeStickyNoteGroup is undefined in updateChanges', () => {
+    (component as any).activeStickyNoteGroup = undefined;
+
+    component.updateChanges(mockResponse.stickyNotes);
+
+    expect(component.listaStickyNotesGroup).toEqual(mockResponse.stickyNotes);
+    expect(component.activeStickyNoteGroup).toEqual(mockGroup1);
+  });
+
+  it('should reset searchBody and call searchNotesGroup on resetFilters', () => {
+    component.activeStickyNoteGroup = mockGroup1;
+    component.searchBody.search = 'some query';
+    jest.spyOn(component, 'searchNotesGroup');
+
+    component.resetFilters();
+
+    expect(component.searchBody.search).toBe('');
+    expect(component.searchNotesGroup).toHaveBeenCalled();
+  });
+
+  it('should reset searchBody on ngOnDestroy', () => {
+    component.searchBody.search = 'active query';
+
+    component.ngOnDestroy();
+
+    expect(component.searchBody.search).toBe('');
   });
 });

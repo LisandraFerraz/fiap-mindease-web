@@ -2,7 +2,12 @@ import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/c
 import { Sidenav } from '@components/sidenav/sidenav.component';
 import { StickyNoteComponent } from '@components/sticky-note/sticky-note.component';
 import { StickyNotesService } from './service/sticky-notes.service';
-import { IStickyNotesResponse, StickyNote, StickyNotesGroup } from '@models/interfaces-model';
+import {
+  FilterStickyNotes,
+  IStickyNotesResponse,
+  StickyNote,
+  StickyNotesGroup,
+} from '@models/interfaces-model';
 
 import { Observable } from 'rxjs';
 import { v4 as generateUID } from 'uuid';
@@ -27,14 +32,30 @@ export class StickyNotesComponent implements OnInit {
 
   bodyStickyGroup = new StickyNotesGroup();
   bodyStickyNote = new StickyNote();
-
-  keywordSeach = '';
+  searchBody = new FilterStickyNotes();
 
   isEditable = signal(false);
   activeTabTitle = '';
+  filtersApplied = signal(false);
 
   ngOnInit(): void {
     this.listAllStickyGroups();
+  }
+
+  searchNotesGroup() {
+    this.stickyService
+      .filterKeywordNotesGroup(this.searchBody, this.activeStickyNoteGroup.id)
+      .subscribe({
+        next: (res: any) => {
+          this.activeStickyNoteGroup = res.stickyNotes;
+          this.filtersApplied.update((applied) => !applied);
+          this.cd.detectChanges();
+        },
+        error: (err) => {
+          console.error(err);
+          this.toast.toastError('Não foi possível pesquisar.');
+        },
+      });
   }
 
   listAllStickyGroups() {
@@ -70,6 +91,7 @@ export class StickyNotesComponent implements OnInit {
   }
 
   updateStickyNoteName(groupId: string, groupName: string) {
+    1;
     if (groupName.length > 0) {
       const body = {
         groupName: groupName,
@@ -97,7 +119,19 @@ export class StickyNotesComponent implements OnInit {
     );
   }
 
-  updateStickyNote(emitterData: { fieldName: string; fieldValue: string }, noteId: string) {
+  updateStickyNote(emitterData: { fieldName: string; fieldValue: any }, noteId: string) {
+    if (emitterData.fieldName === 'isFavorite' && emitterData.fieldValue === true) {
+      const allFavs: any = this.listaStickyNotesGroup
+        .flatMap((sn) => sn.data)
+        .map((d) => d.isFavorite)
+        .filter(Boolean) as [true];
+
+      if (allFavs.length === 6) {
+        this.toast.toastWarning('Só é possível favoritar até 6 post-its.');
+        return;
+      }
+    }
+
     const body = {
       [emitterData.fieldName]: emitterData.fieldValue,
     } as Partial<StickyNote>;
@@ -141,8 +175,9 @@ export class StickyNotesComponent implements OnInit {
 
   setActiveGroup(data: StickyNotesGroup) {
     this.activeStickyNoteGroup = data;
-    this.cd.detectChanges();
     this.activeTabTitle = data?.groupName;
+    this.resetFilters();
+    this.cd.detectChanges();
   }
 
   subscribeObservable(
@@ -162,7 +197,16 @@ export class StickyNotesComponent implements OnInit {
     });
   }
 
+  resetFilters() {
+    this.searchBody = new FilterStickyNotes();
+    this.searchNotesGroup();
+  }
+
   setIsEditable() {
     this.isEditable.update((editable) => (editable = true));
+  }
+
+  ngOnDestroy(): void {
+    this.searchBody = new FilterStickyNotes();
   }
 }

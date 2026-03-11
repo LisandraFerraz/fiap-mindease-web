@@ -7,7 +7,7 @@
   border: none !important;
   transition: ease 0.2s;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: var(--font-size-description);
 
   &:hover {
     opacity: 80%;

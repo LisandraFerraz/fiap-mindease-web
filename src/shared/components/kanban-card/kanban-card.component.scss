@@ -12,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
 
-    font-size: 0.9rem;
+    font-size: var(--font-size-description);
     font-weight: 600;
 
     .buttons button {
@@ -40,7 +40,7 @@
     font-weight: 300;
 
     span {
-      font-size: 0.8rem;
+      font-size: var(--font-size-description);
     }
   }
 
@@ -50,13 +50,13 @@
     align-items: center;
 
     .daysleft-count {
-      font-size: 0.6rem;
+      font-size: var(--font-size-label);
     }
 
     .tag {
       text-transform: capitalize;
       border-radius: 100px;
-      font-size: 0.8rem;
+      font-size: var(--font-size-description);
       padding: 5px 45px;
 
       font-weight: 600;

@@ -9,7 +9,7 @@
       p {
         color: var(--text-color-dark);
         font-weight: 600;
-        font-size: 1rem;
+        font-size: var(--font-size-text);
         display: flex;
         flex-direction: column;
         margin-bottom: 15px;
@@ -18,7 +18,7 @@
         display: inline-block;
         color: var(--text-color-light);
         font-weight: 300;
-        font-size: 1rem;
+        font-size: var(--font-size-text);
         margin-bottom: 15px;
       }
 

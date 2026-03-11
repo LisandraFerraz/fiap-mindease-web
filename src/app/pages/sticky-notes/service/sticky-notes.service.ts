@@ -21,6 +21,10 @@ export class StickyNotesService {
     return this.http.post<IStickyNotesResponse>(`${endpoints.createStickyNotesGroup}`, body);
   }
 
+  filterKeywordNotesGroup(body: { search: string }, groupId: string) {
+    return this.http.post(`${endpoints.searchAtickyNotes}/${groupId}`, body);
+  }
+
   updateStickyNotesGroup(groupId: string, body: Partial<StickyNotesGroup>) {
     return this.http.patch<IStickyNotesResponse>(
       `${endpoints.stickyNotes}/${groupId}/atualiza-sticky-note-group`,

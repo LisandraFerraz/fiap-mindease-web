@@ -9,7 +9,7 @@
   > span.title {
     color: var(--text-color-dark);
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: var(--font-size-title);
     padding-top: 60px;
   }
 
@@ -65,7 +65,7 @@
 
         .empty-message {
           color: var(--text-color-dark);
-          font-size: 0.9rem;
+          font-size: var(--font-size-description);
           margin-bottom: 5px !important;
         }
       }
@@ -110,16 +110,25 @@
         flex: 1;
         position: relative;
 
-        .mat-icon {
-          color: var(--text-color-dark);
+        .group_search_btn {
           position: absolute;
-          right: 25px;
           top: 12px;
-          transition: ease 0.2s;
+          right: 25px;
 
-          &:hover {
-            cursor: pointer;
-            opacity: 60%;
+          button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+          }
+
+          .mat-icon {
+            color: var(--text-color-dark);
+            transition: ease 0.2s;
+
+            &:hover {
+              cursor: pointer;
+              opacity: 60%;
+            }
           }
         }
       }

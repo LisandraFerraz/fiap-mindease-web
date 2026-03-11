@@ -63,6 +63,10 @@ export class StickyNote {
   isFavorite: boolean = false;
 }
 
+export class FilterStickyNotes {
+  search: string = '';
+}
+
 export interface IChecklistResponse {
   checklist: Checklist[];
 }
@@ -72,6 +76,7 @@ export class Checklist {
   name: string;
   color: stickyNoteColor;
   data: ChecklistItem[];
+  completedItems?: number;
 }
 
 export class ChecklistItem {
