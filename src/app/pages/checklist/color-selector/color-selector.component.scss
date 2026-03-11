@@ -37,6 +37,7 @@
   .option-selector {
     position: relative;
     display: inline-block;
+    height: 45px;
     box-shadow: 0 0 4px var(--shadow-grey-color);
 
     &::after {
@@ -74,6 +75,8 @@
     box-shadow: 0 0 8px rgb(var(--shadow-grey-color), 50%);
 
     > button {
+      height: 45px;
+
       .option {
         margin-left: 35%;
       }

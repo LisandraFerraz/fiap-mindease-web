@@ -30,6 +30,13 @@ p {
       calendar-container-background-color: #f6f6f6,
     )
   );
+
+  @include mat.progress-bar-overrides(
+    (
+      active-indicator-color: var(--color-dark-blue),
+      track-color: var(--text-color-opacity),
+    )
+  );
 }
 
 // refatorando input date do cdk
@@ -42,9 +49,6 @@ p {
   line-height: 0 !important;
   font-size: var(--font-size-description) !important;
 }
-// .mat-mdc-text-field-wrapper:hover .mat-mdc-form-field-focus-overlay {
-//   background-color: transparent !important;
-// }
 
 .mat-datepicker-content .mat-calendar {
   background-color: var(--input-bg-color-primary) !important;

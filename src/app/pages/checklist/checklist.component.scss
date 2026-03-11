@@ -158,11 +158,11 @@
       border-radius: 15px;
       box-shadow: 0 0 4px var(--shadow-grey-color);
 
-      span.top-border {
+      .progresbar {
         position: absolute;
         top: 0;
+        z-index: 1;
         width: 100%;
-        height: 10px;
       }
 
       .content-header {
@@ -221,6 +221,22 @@
 
         overflow-y: auto;
         overflow-x: hidden;
+
+        .todo-counter-indicator {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          justify-content: end;
+          align-items: baseline;
+          color: var(--text-color-light);
+
+          p.progress-counter {
+            margin: 15px 0 25px 0;
+            font-size: var(--font-size-text);
+            font-weight: 600;
+            text-align: right;
+          }
+        }
       }
 
       @media screen and (max-width: 940px) {
@@ -251,4 +267,28 @@ button {
   background-size: contain;
   width: 250px;
   height: 250px;
+}
+
+.BLUE span.mdc-linear-progress__bar-inner {
+  border: 8px solid var(--color-accent-blue) !important;
+}
+
+.YELLOW span.mdc-linear-progress__bar-inner {
+  border: 8px solid var(--color-accent-yellow) !important;
+}
+
+.RED span.mdc-linear-progress__bar-inner {
+  border: 8px solid var(--color-accent-red) !important;
+}
+
+.GREEN span.mdc-linear-progress__bar-inner {
+  border: 8px solid var(--color-accent-green) !important;
+}
+
+.ORANGE span.mdc-linear-progress__bar-inner {
+  border: 8px solid var(--color-accent-orange) !important;
+}
+
+.mdc-linear-progress__buffer {
+  height: 26px !important;
 }

@@ -76,6 +76,7 @@ export class Checklist {
   name: string;
   color: stickyNoteColor;
   data: ChecklistItem[];
+  completedItems?: number;
 }
 
 export class ChecklistItem {

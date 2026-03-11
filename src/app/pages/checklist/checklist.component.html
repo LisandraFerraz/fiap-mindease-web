@@ -30,7 +30,13 @@
       </div>
       <div class="content">
         @if (checklistActive) {
-          <span [class]="['top-border', `${checklistActive.color}`]"></span>
+          <div class="progresbar">
+            <mat-progress-bar
+              mode="determinate"
+              [className]="checklistActive.color"
+              [value]="currentChecklistProgress"
+            ></mat-progress-bar>
+          </div>
           <div class="content-header">
             <div class="checklist-name-input">
               <button (click)="updateEdit()">
@@ -51,6 +57,19 @@
             />
           </div>
           <div class="items-list">
+            <div class="todo-counter-indicator">
+              @if (checklistActive.data.length) {
+                <p class="progress-counter">
+                  {{
+                    `${checklistActive.completedItems}/${checklistActive.data.length} tarefas finalizadas`
+                  }}
+                </p>
+                <span>|</span>
+              }
+              <p class="progress-counter">
+                {{ `${checklistActive.data.length}/10 tarefas criadas` }}
+              </p>
+            </div>
             <input-add-task [(value)]="checkItemBody.description" (addTask)="addChecklistItem()" />
             @if (checklistActive.data.length) {
               @for (item of checklistActive.data; track item) {

@@ -17,11 +17,11 @@ export class InputAddTask {
   handleChange(event: Event) {
     const fieldValue = (event.target as HTMLInputElement).value;
     this.valueChange.emit(fieldValue);
-
-    this.isInputValid.update((isValid) => (isValid = fieldValue.length >= 5));
+    this.isInputValid.update((isValid) => (isValid = fieldValue.length > 5));
   }
 
   handleClick() {
     if (this.isInputValid()) this.addTask.emit();
+    this.isInputValid.update((isValid) => !isValid);
   }
 }
