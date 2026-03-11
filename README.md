@@ -1,21 +1,21 @@
 # MindEase Web
 
-MindEase Web é uma aplicação front-end Angular para apoiar a gestão de bem-estar mental e produtividade, combinando recursos como atividades, registro de humor, checklist, kanban, pomodoro, notas adesivas e painel de acompanhamento.
+MindEase Web é uma aplicação front-end em Angular para apoiar a gestão acadêmica e profissional de pessoas neurodivergentes e/ou com desafios de processamento cognitivo e produtividade, combinando recursos como checklist, kanban, pomodoro, notas adesivas e painel de acompanhamento.
 
 ## Estrutura do Projeto
 
 - **src/app/pages** – principais telas (páginas) da aplicação:
   - `landing-page` (home + modal de autenticação)
   - `dashboard` (visão geral, widgets e gráficos)
-  - `checklist` (listas de tarefas com seleção de cor)
-  - `kanban` (quadro estilo kanban com modal de item)
+  - `checklist` (listas de tarefas com agrupamento, visualização de progresso e seleção de cor)
+  - `kanban` (quadro de tarefas ordenadas por status)
   - `pomodoro` (timer de produtividade)
-  - `sticky-notes` (notas adesivas)
+  - `sticky-notes` (notas adesivas com agrupamento)
   - `preferencias` (configurações de conta, interface, etc)
   - `not-found` (página 404)
 - **src/app/notifications-modal** – componente modal para exibir notificações
 - **src/shared** – componentes reutilizáveis (botões, cards, inputs, modais, etc)
-- **src/shared/services/theme-service** – serviço para gerenciamento de tema (claro/escuro)
+- **src/shared/services/theme-service** – serviço para gerenciamento de tema (claro/escuro) e tamanho de textos
 - **src/shared/styles** – temas e animações
 - **src/shared/utils** – funções, modelos e tipos utilitários
 - **src/core/env** – configuração de ambientes
@@ -24,11 +24,11 @@ MindEase Web é uma aplicação front-end Angular para apoiar a gestão de bem-e
 
 - **Angular 21** (core, router, forms, material)
 - **Angular Material** (UI, layout, componentes)
+- **Jest** (testes unitários)
 - **Highcharts + highcharts-angular** (gráficos de evolução e estatísticas)
 - **ngx-toastr** (notificações toast)
 - **ngx-loading-bar** (barra de carregamento para requisições HTTP)
 - **uuid** (geração de IDs)
-- **json-server** (mock de API via `npm run start:mock`)
 
 ## Scripts úteis
 
@@ -36,18 +36,11 @@ MindEase Web é uma aplicação front-end Angular para apoiar a gestão de bem-e
 - `npm run build` – gera build de produção
 - `npm run watch` – build em modo watch para desenvolvimento
 - `npm test` – executa testes (Angular)
-- `npm run start:mock` – inicia mock API local em `http://localhost:3001`
 
 ## Rotas / Telas (Pages)
 
 - **/** – Home (landing page)  
   Apresenta o app, chamadas para ação e modal de login/cadastro.
-
-- **/login** – Login  
-  Formulário de autenticação (e-mail e senha). Integração com backend para obtenção de token.
-
-- **/register** – Cadastro  
-  Criação de conta com validação de campos e confirmação de senha.
 
 - **/dashboard** – Painel Principal  
   Visão geral do usuário (estatísticas, cards, gráficos, atalhos para ferramentas).
@@ -67,9 +60,6 @@ MindEase Web é uma aplicação front-end Angular para apoiar a gestão de bem-e
 - **/preferences** – Preferências  
   Configurações de conta (conta-options) e interface (interface-options), com templates reutilizáveis.
 
-- **/settings** (se houver) – Configurações adicionais  
-  Preferências de notificações, tema (claro/escuro) e privacidade.
-
 - **/not-found** – Página 404  
   Exibida quando rota não encontrada.
 
@@ -80,7 +70,8 @@ MindEase Web é uma aplicação front-end Angular para apoiar a gestão de bem-e
 - **Tema**: suporte a modo claro/escuro via `theme-service`.
 - **Layout responsivo**: adaptado para desktop e mobile.
 - **Feedback**: toasts de sucesso/erro e barra de carregamento em requisições HTTP.
-- **Mock de backend**: `json-server` para desenvolvimento offline e testes.
+- **Integração com API**: dados informados nas ferramentas são salvos e é possível visualizar em ambos os Front-ends (WEB e Mobile)
+- **CI/CD**: verificação de testes para merge na branch principal e deploy.
 
 ---
 
@@ -92,13 +83,8 @@ MindEase Web é uma aplicação front-end Angular para apoiar a gestão de bem-e
    npm install
    ```
 
-2. Inicie o servidor mock (opcional):
-
+2. Inicie a aplicação:
    ```bash
-   npm run start:mock
+   ng serve
    ```
-
-3. Inicie a aplicação:
-   ```bash
-   npm start
-   ```
+3. Acesse a aplicação em localhost:4200
